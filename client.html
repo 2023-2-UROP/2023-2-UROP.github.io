@@ -446,7 +446,7 @@
         답 확인하기 버튼의 기능은 답 확인하기 버튼 만드는 코드를 참고하세요.
             <br><br>
 
-        새 게임을 누를 때 마다 답이 바뀌니 그 때마다 답안 배열을 가져와 저장해 놓으면 좋겠네요.
+        새 게임을 누를 때 마다 답이 바뀌니 그 때마다 답안 배열을 가져와 저장해 놓으면 좋습니다.
         <br><br>
         자동 완성 버튼은 스도쿠 정답 배열로 스도쿠 게임 보드를 채워주기만 하면 기능이 완성됩니다.
 
@@ -516,12 +516,12 @@
         </pre>
             <br><br>
         
-        답 확인버튼을 눌렀을 때 결과를 알려주는 함수도 만들어 봅시다.
+        답 확인버튼을 눌렀을 때 결과를 알려주는 창을 띄우는 함수도 만들어 봅시다.
         <br><br>
 
             <pre style = "background-color: rgb(225, 225, 225);">
                 <code>
-        Future<void> showSuccessDialog() async {
+        Future<void> showSuccessDialog() async { // 성공시 성공 메시지가 뜨는 미니 창을 띄우는 함수
             clearTime = endTime.difference(startTime);
             formattedTime = clearTime.toString();
         
@@ -552,7 +552,7 @@
             );
             }
         
-        Future<void> showFailDialog() async {
+        Future<void> showFailDialog() async { // 실패 시 실패 메시지가 뜨는 미니 창을 만드는 함수
         return showDialog<void>(
             context: context,
             barrierDismissible: false, 
@@ -631,7 +631,7 @@
 
             실행 취소 버튼은 사용자가 입력했던 정보를 저장하는 필드를 만들어 구현해 봅시다.
             <br><br>
-            다음과 같이 사용자의 입력 데이터를 저장하고 이 데이터를 리스트에 저장하여 가장 최근 데이터를 통해 실행 취소 버튼을 만들어 보세요.
+            다음과 같이 사용자의 입력 데이터를 저장하고 이 데이터를 리스트에 저장하고, 사용자 입력 데이터를 이용해 실행 취소 버튼을 만들어 보세요.
 
             <br><br>
             <pre style = "background-color: rgb(225, 225, 225);">
@@ -666,7 +666,7 @@
         <div style="margin: 5% 0%;">
             <h2>5. 배치 밎 완성</h2>
             <br><br>
-            <p>이제 모든 요소들이 완성 되었을 거에요.
+            <p>이제 모든 요소들이 완성 되었을 겁니다.
                 <br>
                 모든 요소들을 배치하고 자유롭게 꾸며 봅시다. 마음 껏 만들어 보세요!
                 <br>
