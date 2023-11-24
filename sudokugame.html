@@ -1,0 +1,763 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>2023-2 UROP</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgb(0,0,0);">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">UROP</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            개발 가이드
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">환경설정</a></li>
+                                <li><a class="dropdown-item" href="#">클라이언트</a></li>
+                                <li><a class="dropdown-item" href="#">서버</a></li>
+                                <li><a class="dropdown-item" href="#">알고리즘</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            앱 설명
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">앱 빌드 방법</a></li>
+                                <li><a class="dropdown-item" href="#">앱 구동 모습 설명</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="p-5 mb-4 bg-light rounded-3">
+            <div class="container-fluid py-5">
+                <h1 class="display-5 fw-bold">Client - 스도쿠 게임 만들기</h1>
+                <p class="col-md-8 fs-4">개발자를 위한 학습 플랫폼 개발 💥 </p>
+                <h1>배치는 어떻게 하고 디자인은 어떻게 할지 정하죠</h1>
+            </div>
+        </div>
+
+        <hr>
+        <div style="margin: 5% 5%;">
+            <div style="margin: 5% 0%; background-color: rgb(55, 55, 55); color: rgb(242, 253, 253); padding: 1rem; border-radius: 1.5rem;">
+        <h1>스도쿠 게임 개발 가이드</h2>
+
+        <p>
+        <b>스도쿠 게임을 만들기 위해 아래의 개발 가이드를 따라 주세요.</b>
+        <br>
+        <b>현재는 flutter를 이용한 개발만 지원하고 있지만 추후에 언어에 상관없이 만들 수 있도록 추가될 예정입니다!</b>
+        <br>
+        <b>개발에 어려움을 겪고 있다면 예제 코드를 그대로 사용해 보아도 좋습니다.</b>
+        <br>
+        <b>전체 코드를 이용하고 요소만 바꾸어 보며 코드를 이해하고 그 후에 다시 만들어볼 수 있습니다.</b>
+        <br>
+        스도쿠에 필요한 요소들(스도쿠 게임 보드, 숫자 패드, 기능 버튼)등을 만들어 봅시다!
+        <br>
+<br>
+ 
+        </p>
+</div>
+<div>
+        <h2>1. 스도쿠 게임 보드 만들기</h2>
+        <p>
+            먼저 스도쿠 게임에 필요한 구성요소를 만들어야 합니다.
+            <br><br>
+            스도쿠 게임 보드를 만들어봅시다.
+            <br>
+            스도쿠 게임보드는 9X9 2차원 배열로 만듭니다.
+            <br><br>
+            스도쿠 게임 보드를 클릭하면 숫자 패드에 선택된 숫자로 스도쿠 게임 보드가 업데이트 되도록 기능을 추가해 보세요.
+            <br>
+            숫자 패드는 잠시 뒤에 만들거에요. 기능의 틀만 만들어도 좋고, 어렵다면 숫자 패드를 먼저 만들고 다시 와서 만들어 봅시다.
+        
+            
+
+<br><br>
+            다음은 dart로 만든 예제 코드 입니다.
+            <br>
+            <pre style="background-color: rgb(225, 225, 225);">
+            <code>
+    Widget buildSudokuBoard() { // 스도쿠 게임 보드 만드는 함수
+        return Column( // 9X9모양의 스도쿠 보드
+            children: List.generate(9, (row) {
+            return Row(
+                children: List.generate(9, (col) {
+                return GestureDetector( // 스도쿠 보드 클릭시 이벤트(숫자입력)
+                    onTap: () {
+                    setState(() {
+                        if (eraseMode) { // 나중에 추가할 숫자 지우기 모드 버튼 기능
+                        if (sudokuBoard[row][col] != 0) {
+                            history.add(HistoryItem(row, col, sudokuBoard[row][col]));
+                            sudokuBoard[row][col] = 0;
+                        }
+                        } else if (selectedNumber != -1) { // 숫자 패드로 선택한 숫자로 스도쿠 게임 보드 업데이트
+                        history.add(HistoryItem(row, col, sudokuBoard[row][col]));
+                        sudokuBoard[row][col] = selectedNumber;
+                        }
+                    });
+                    },
+                    child: Container( // 보드 크기와 디자인 부분
+                    width: 30,
+                    height: 30,
+                    decoration: BoxDecoration(
+                        border: Border.all(),
+                        color: (((0 <= row && row <= 2) && (0 <= col && col <= 2)) ||
+                                ((3 <= row && row <= 5) && (3 <= col && col <= 5)) ||
+                                ((6 <= row && row <= 8) && (6 <= col && col <= 8)) ||
+                                ((0 <= row && row <= 2) && (6 <= col && col <= 8)) ||
+                                ((6 <= row && row <= 8) && (0 <= col && col <= 2)))
+                            ? const Color.fromARGB(255, 232, 232, 232)
+                            : Colors.white,
+                    ),
+                    alignment: Alignment.center,
+                    child: Text(
+                        sudokuBoard[row][col] != 0
+                            ? sudokuBoard[row][col].toString()
+                            : '',
+                        style: const TextStyle(fontSize: 15),
+                    ),
+                    ),
+                );
+                }),
+            );
+            }),
+        );
+        }
+            </code>
+        </pre>
+        </p>
+        </div>
+
+        <hr>
+        <div style="margin: 5% 0%;">
+            <h2>2. 숫자패드 만들기</h2>
+            <br>
+            <p>
+                다음은 숫자패드 입니다.
+                <br>
+                숫자패드는 1부터 9까지의 숫자 버튼을 만들어야 합니다.
+                <br>
+                자유롭게 숫자패드를 만들어 보세요!
+                <br>
+                예제 코드입니다.
+                <br>
+                <pre style="background-color: rgb(225, 225, 225);">
+                    <code>
+    Widget buildNumberGrid() { // 숫자 패드의 배열 만드는 함수
+        return GridView.builder( // 3X3의 숫자 패드를 만듦.
+            shrinkWrap: true,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3, 
+            crossAxisSpacing: 10.0,
+            mainAxisSpacing: 10.0,
+            ),
+            itemBuilder: (context, index) {
+            final number = index + 1;
+            return GestureDetector( // 숫자 패드의 셀을 클릭 했을 때의 이벤트를 생성하는 부분
+                onTap: () {
+                setState(() {
+                    if (eraseMode) {
+                    eraseMode = false;
+                    selectedNumber = number;
+                    } else {
+                    selectedNumber = number;
+                    }
+                });
+                },
+                child: Container( // 숫자 패드 크기, 디자인 수정 부분
+                width: 20,
+                height: 20,
+                decoration: BoxDecoration(
+                    border: Border.all(),
+                    color: selectedNumber == number
+                        ? const Color.fromARGB(255, 184, 184, 184)
+                        : Colors.white,
+                    shape: BoxShape.rectangle,
+                ),
+                alignment: Alignment.center,
+                child: Text(
+                    number.toString(),
+                    style: const TextStyle(fontSize: 20),
+                ),
+                ),
+            );
+            },
+            itemCount: 9,
+        );
+        }
+                    </code>
+                </pre>
+            </p>
+        </div>
+
+        <hr>
+
+        <div style="margin: 5% 0%;">
+        <p>
+            <h2>3. 기능 버튼 만들기</h2>
+            <br>
+            이제 틀이 갖추어 졌으니 기본적인 기능을 만들어야 합니다.
+            <br>
+            그 전에 기능을 실행하기 위한 버튼을 만들어 봅시다.
+            <br>
+            지우기, 답 확인하기, 새 게임 버튼을 만들어 보죠.
+            <br>
+            추가로 자동 완성과 되돌리기 버튼은 선택해서 도전해보세요.
+            <br><br>
+            예제 코드입니다.
+            <br><br>
+            <pre style="background-color: rgb(225, 225, 225);">
+                <code>
+    Widget buildUndoButton() { // 실행 취소 버튼
+        return ElevatedButton(
+            onPressed: () { // 버튼 눌렀을 때의 기능(이벤트) 추가하는 부분
+            setState(() {
+                undoLastAction();
+            });
+            },
+            style: ElevatedButton.styleFrom( // 스타일과 디자인 추가하는 부분
+            padding: const EdgeInsets.all(0.5),
+            ),
+            child: const Text( // 버튼에 들어갈 텍스트
+            '실행취소',
+            style: TextStyle(fontSize: 7), // 텍스트 크기
+            ),
+        );
+        }
+    </code>
+</pre><br><br><br>
+        <pre style="background-color: rgb(225, 225, 225);">
+            <code>
+        Widget buildClearButton() { // 지우기 버튼
+        return ElevatedButton(
+            onPressed: () { // 버튼 눌렀을 때의 기능(이벤트) 추가하는 부분
+            setState(() {
+                eraseMode = !eraseMode;
+            });
+            },
+            style: ElevatedButton.styleFrom( // 스타일과 디자인 추가하는 부분
+            padding: const EdgeInsets.all(0.5),
+            backgroundColor:
+                eraseMode ? const Color.fromARGB(255, 217, 217, 217) : null, 
+            ),
+            child: const Text( // 버튼에 들어갈 텍스트
+            '지우기',
+            style: TextStyle(fontSize: 7), // 텍스트 크기
+            ),
+        );
+        }
+    </code>
+</pre><br><br><br>
+        <pre style="background-color: rgb(225, 225, 225);">
+            <code>
+        Widget buildNewGameButton() { // 새 게임 버튼
+        return ElevatedButton(
+            onPressed: () { // 버튼 눌렀을 때의 기능(이벤트) 추가하는 부분
+            setState(() {
+                fetchSudokuData();
+            });
+            },
+            style: ElevatedButton.styleFrom( // 스타일과 디자인 추가하는 부분
+            padding: const EdgeInsets.all(0.0),
+            ),
+            child: const Text( // 버튼에 들어갈 텍스트
+            '새 게임',
+            style: TextStyle(fontSize: 7), // 텍스트 크기
+            ),
+        );
+        }
+    </code>
+</pre><br><br><br>
+        <pre style="background-color: rgb(225, 225, 225);">
+            <code>
+        Widget buildCheckButton() {
+        // 정답 확인 버튼
+        return ElevatedButton(
+            onPressed: () { // 버튼 눌렀을 때의 기능(이벤트) 추가하는 부분
+            setState(() {
+                if (const DeepCollectionEquality()
+                    .equals(sudokuAnswerBoard, sudokuBoard)) {
+                endTime = DateTime.now();
+                clearTime = endTime.difference(startTime);
+    
+                showSuccessDialog();
+                sendClearTime();
+                } else {
+                showFailDialog();
+                }
+            });
+            },
+            style: ElevatedButton.styleFrom( // 스타일과 디자인 추가하는 부분
+            padding: const EdgeInsets.all(0.0),
+            ),
+            child: const Text( // 버튼에 들어갈 텍스트
+            '답 확인하기',
+            style: TextStyle(fontSize: 7), // 텍스트 크기
+            ),
+        );
+        }
+    </code>
+</pre><br><br><br>
+        <pre style="background-color: rgb(225, 225, 225);">
+            <code>
+        Widget buildcompleteButton() {
+        // 자동 정답 완성 버튼
+        return ElevatedButton(
+            onPressed: () { // 버튼 눌렀을 때의 기능(이벤트) 추가하는 부분
+            setState(() {
+                fillSudokuBoard(sudokuAnswerBoard);
+            });
+            },
+            style: ElevatedButton.styleFrom( // 스타일과 디자인 추가하는 부분
+            padding: const EdgeInsets.all(0.0),
+            ),
+            child: const Text( // 버튼에 들어갈 텍스트
+            '자동 완성',
+            style: TextStyle(fontSize: 7), // 텍스트 크키
+            ),
+        );
+        }
+                </code>
+            </pre><br><br><br>
+        </p>
+        </div>
+        <hr>
+        <div style="margin: 5% 0%;">
+        <h2>4. 버튼 기능 추가</h2>
+        <p><br><br>
+            이제 버튼을 만들었으니 버튼에 기능을 추가해 봅시다.
+            <br>
+            지우기, 답 확인하기, 새 게임 버튼의 기능을 만들어 봅시다.
+            <br>
+            마찬가지로 다 했다면 자동 완성과 되돌리기 버튼은 선택해서 도전해보세요.
+            <br><br>
+            기능을 만들때는 api를 이용하여 간단하게 기능을 만들 수 있습니다.
+            <br><br>
+            
+                    새로운 스도쿠 게임 배열을 받아오기 위해서는<br>
+                    http://ec2-54-172-150-42.compute-1.amazonaws.com:8080/new/ 로 POST 요청을 보내면 됩니다.
+                    <br>
+
+                    response 데이터 예시 입니다.
+                    <br>2차원 배열이 반환됩니다.
+                    <pre style="background-color: rgb(225, 225, 225);">
+                        <code>
+        {'arr': 
+        [4, 6, 0, 1, 0, 3, 0, 7, 8, 
+        0, 7, 9, 4, 0, 6, 2, 3, 5, 
+        0, 0, 3, 7, 0, 9, 0, 4, 1, 
+        2, 4, 8, 0, 6, 5, 1, 0, 7, 
+        3, 9, 0, 8, 7, 0, 0, 2, 6, 
+        0, 5, 7, 2, 9, 1, 3, 0, 4, 
+        5, 3, 0, 9, 0, 0, 7, 1, 2, 
+        7, 0, 4, 5, 3, 2, 8, 0, 9, 
+        9, 8, 2, 6, 0, 7, 4, 5, 0, 
+        ]}
+
+        0은 스도쿠 보드의 빈 칸을 의미합니다.
+                </code>
+            </pre><br><br>
+            
+            
+                    답을 확인하기 위해서는
+                    <br>
+                    http://ec2-54-172-150-42.compute-1.amazonaws.com:8080/solve/로 POST 요청을 보내면 스도쿠의 정답 배열을 반환합니다.
+                    <br>
+                    이를 플레이하던 스도쿠 배열과 비교하여 답을 확인 하면 됩니다.<br><br>
+                    이 때 request 요청의 body에 게임을 시작할 때 받아왔던 스도쿠 게임 배열을 보내야 합니다.<br>
+
+                    request 요청의 body 데이터 예시입니다.
+                    <br>
+
+                    <pre style="background-color: rgb(225, 225, 225);">
+                        <code>
+        {'arr': 
+        [4, 6, 0, 1, 0, 3, 0, 7, 8, 
+        0, 7, 9, 4, 0, 6, 2, 3, 5, 
+        0, 0, 3, 7, 0, 9, 0, 4, 1, 
+        2, 4, 8, 0, 6, 5, 1, 0, 7, 
+        3, 9, 0, 8, 7, 0, 0, 2, 6, 
+        0, 5, 7, 2, 9, 1, 3, 0, 4, 
+        5, 3, 0, 9, 0, 0, 7, 1, 2, 
+        7, 0, 4, 5, 3, 2, 8, 0, 9, 
+        9, 8, 2, 6, 0, 7, 4, 5, 0, 
+        ]}
+
+        0은 스도쿠 보드의 빈 칸을 의미합니다.
+                </code>
+            </pre><br><br>
+
+                    다음은 response 데이터 예시 입니다.
+                    <pre style="background-color: rgb(225, 225, 225);">
+                        <code>
+        {'arr': 
+        [4, 6, 5, 1, 2, 3, 9, 7, 8, 
+        1, 7, 9, 4, 8, 6, 2, 3, 5, 
+        8, 2, 3, 7, 5, 9, 6, 4, 1, 
+        2, 4, 8, 3, 6, 5, 1, 9, 7, 
+        3, 9, 1, 8, 7, 4, 5, 2, 6, 
+        6, 5, 7, 2, 9, 1, 3, 8, 4, 
+        5, 3, 6, 9, 4, 8, 7, 1, 2, 
+        7, 1, 4, 5, 3, 2, 8, 6, 9, 
+        9, 8, 2, 6, 1, 7, 4, 5, 3, 
+        ]}
+                </code>
+            </pre><br><br>
+
+        답 확인하기 버튼을 눌렀을 때 사용자의 데이터(email, 클리어 시간)을 DB에 저장하려면
+        <br>
+        http://ec2-54-172-150-42.compute-1.amazonaws.com:8080/users/rankingDB 에 POST 요청을 보내면 됩니다.
+        <br>
+
+        요청을 보낼 때는 다음과 같은 형식으로 데이터를 보내면 됩니다.
+
+        <pre style = "background-color: rgb(225, 225, 225);">
+            <code>
+                {
+                    'email': 'kmu1234',
+                    'duration': 2023-10-23 00:09:56
+                }
+            </code>
+        </pre>
+        <br><br>
+
+        지우기 버튼은 boolean 변수를 이용해 지우기 버튼을 눌렀을 때 boolean 값을 바꾸어 주어, boolean 값에 따라 지울 수 있게 만들어 보세요.
+        <br>
+        지우기 버튼의 예제 코드는 스도쿠 배열을 만드는 코드와 지우기 버튼 만드는 코드를 참고하세요.
+        <br><br>
+        새 게임 버튼은 새로운 스도쿠 게임 배열을 가져오는 api를 이용해서 기능을 만들어 봅시다.
+        <br><br>
+        답 확인하기 버튼은 답안 배열을 가져오는 api를 이용하면 됩니다.
+<br>
+        답 확인하기 버튼의 기능은 답 확인하기 버튼 만드는 코드를 참고하세요.
+            <br><br>
+
+        새 게임을 누를 때 마다 답이 바뀌니 그 때마다 답안 배열을 가져와 저장해 놓으면 좋습니다.
+        <br><br>
+        자동 완성 버튼은 스도쿠 정답 배열로 스도쿠 게임 보드를 채워주기만 하면 기능이 완성됩니다.
+
+        <br><br>
+        예제 코드입니다.
+        <br><br>
+
+        <pre style = "background-color: rgb(225, 225, 225);">
+            <code>
+        Future<void> fetchSudokuData() async { // 스도쿠 게임(list) 불러오는 함수
+            final response = await http.post(
+                Uri.parse('http://ec2-54-172-150-42.compute-1.amazonaws.com:8080/new/'),
+                headers: {
+                'Content-Type': 'application/json',
+                },
+                body: json.encode({}),
+            );
+        
+            if (response.statusCode == 200) {
+                setState(() {
+                final data = json.decode(response.body);
+                final rawData = data['arr'];
+                var sudokuData = List.generate(9, (_) => List<int>.filled(9, 0));
+        
+                for (int row = 0; row < 9; row++) {
+                    for (int col = 0; col < 9; col++) {
+                    sudokuData[row][col] = rawData[row][col];
+                    }
+                }
+                fillSudokuBoard(sudokuData); // 받아온 스도쿠 데이터로 스도쿠 게임 보드 채우기
+                history = [];
+                });
+            } else {
+                throw Exception('Failed to fetch Sudoku data');
+            }
+            /////////
+            final response2 = await http.post( // 새 게임 버튼을 누르면 그 답안을 받아오도록 함
+                Uri.parse('http://ec2-54-172-150-42.compute-1.amazonaws.com:8080/solve/'),
+                headers: {
+                'Content-Type': 'application/json',
+                },
+                body: json.encode({'arr': json.decode(response.body)['arr']}),
+            );
+            if (response2.statusCode == 200) {
+                setState(() {
+                final data = json.decode(response2.body);
+                var rawData = data['result'];
+                rawData = rawData.split(" ");
+        
+                print(rawData);
+        
+                var sudokuAnswerData = List.generate(9, (_) => List<int>.filled(9, 0)); 변수에 스도쿠 정답 배열 저장
+        
+                for (int row = 0; row < 9; row++) {
+                    for (int col = 0; col < 9; col++) {
+                    sudokuAnswerData[row][col] = int.parse(rawData[row * 9 + col]);
+                    }
+                }
+                sudokuAnswerBoard = sudokuAnswerData;
+                });
+            } else {
+                throw Exception('Failed to fetch Sudoku data');
+            }
+            startTime = DateTime.now();
+            }
+            </code>
+        </pre>
+            <br><br>
+        
+        답 확인버튼을 눌렀을 때 결과를 알려주는 창을 띄우는 함수도 만들어 봅시다.
+        <br><br>
+
+            <pre style = "background-color: rgb(225, 225, 225);">
+                <code>
+        Future<void> showSuccessDialog() async { // 성공시 성공 메시지가 뜨는 미니 창을 띄우는 함수
+            clearTime = endTime.difference(startTime);
+            formattedTime = clearTime.toString();
+        
+            return showDialog<void>(
+                context: context,
+                barrierDismissible: false, 
+                builder: (BuildContext context) {
+                return AlertDialog(
+                    title: const Text('맞았습니다!'),
+                    content: SingleChildScrollView(
+                    child: ListBody(
+                        children: <Widget>[
+                        const Text('시간:'), // 정답시 나타나는 창에 나오게 할 텍스트 
+                        Text(formattedTime),
+                        ],
+                    ),
+                    ),
+                    actions: <Widget>[
+                    TextButton( // 확인 버튼
+                        child: const Text('확인'),
+                        onPressed: () {
+                        Navigator.of(context).pop();
+                        },
+                    ),
+                    ],
+                );
+                },
+            );
+            }
+        
+        Future<void> showFailDialog() async { // 실패 시 실패 메시지가 뜨는 미니 창을 만드는 함수
+        return showDialog<void>(
+            context: context,
+            barrierDismissible: false, 
+            builder: (BuildContext context) {
+            return AlertDialog(
+                title: const Text('틀렸습니다!'),
+                content: const SingleChildScrollView(
+                child: ListBody(
+                    children: <Widget>[
+                    Text('아쉽네요...'), // 실패시 나오는 창에 띄울 텍스트
+                    Text('다시 도전해보세요..'),
+                    ],
+                ),
+                ),
+                actions: <Widget>[
+                TextButton( // 확인 버튼
+                    child: const Text('확인'),
+                    onPressed: () {
+                    Navigator.of(context).pop();
+                    },
+                ),
+                ],
+            );
+            },
+        );
+        }
+                    
+                </code>
+            </pre>
+
+            <br><br>
+            정답일 때는 유저의 데이터를 DB에 저장합시다.
+
+            <br><br>
+            <pre style = "background-color: rgb(225, 225, 225);">
+                <code>
+        Future<void> sendClearTime() async {
+            var SharedPreferences prefs = await SharedPreferences.getInstance();
+            var String? email = prefs.getString('email'); // 유저의 email 받아오기
+
+        
+
+            var dateCleartime = clearTime.toString(); // 클리어 시간 data 가공
+            var splitData = dateCleartime.split(':');
+            splitData[2] = splitData[2].substring(0, 2);
+        
+            List<String> parts = (splitData.join(':')).split(':');
+        
+            int hours = int.parse(parts[0]);
+            String formattedTime =
+                "2023-11-24 ${hours.toString().padLeft(2, '0')}:${parts[1]}:${parts[2]}";
+        
+            final response = await http.post(
+                Uri.parse(
+                    'http://ec2-54-172-150-42.compute-1.amazonaws.com:8080/users/rankingDB'),
+                headers: {
+                'Content-Type': 'application/json',
+                },
+                body: jsonEncode({
+                'email': email,
+                'duration': formattedTime,
+                }),
+            );
+        
+            // 서버 응답이 성공(상태코드 200)이면
+            if (response.statusCode == 200) {
+                print(response.body);
+            } else {
+                // 로그인 실패 시 에러 메시지 출력
+                print('전송 실패, statusCode: ${response.statusCode}');
+            }
+            }
+                </code>
+            </pre>
+            <br><br>
+
+            실행 취소 버튼은 사용자가 입력했던 정보를 저장하는 필드를 만들어 구현해 봅시다.
+            <br><br>
+            다음과 같이 사용자의 입력 데이터를 저장하고 이 데이터를 리스트에 저장하고, 사용자 입력 데이터를 이용해 실행 취소 버튼을 만들어 보세요.
+
+            <br><br>
+            <pre style = "background-color: rgb(225, 225, 225);">
+                <code>
+        class HistoryItem {
+            // 실행 취소를 위해 사용자의 입력을 class를 이용해 저장
+            final int row;
+            final int col;
+            final int value;
+            
+            HistoryItem(this.row, this.col, this.value);
+            }
+        
+           
+        void undoLastAction() {
+            // 실행 취소 기능 함수
+            if (history.isNotEmpty) { // history는 미리 만들어 둔 전역변수(list 타입, HistoryItem타입 객체가 들어있음)
+            final lastAction = history.removeLast();
+            final row = lastAction.row;
+            final col = lastAction.col;
+            final value = lastAction.value;
+        
+            sudokuBoard[row][col] = value; // 실행 취소시 리스트의 마지막 요소를 지우고 그 다음 마지막이 되는 정보로 스도쿠 게임 보트를 업데이트
+            }
+        }    
+                </code>
+            </pre>
+        </p>
+        </div>
+
+
+        <div style="margin: 5% 0%;">
+            <h2>5. 배치 밎 완성</h2>
+            <br><br>
+            <p>이제 모든 요소들이 완성 되었을 겁니다.
+                <br>
+                모든 요소들을 배치하고 자유롭게 꾸며 봅시다. 마음 껏 만들어 보세요!
+                <br>
+                <br>
+                예시 코드입니다.
+                
+                <pre style = "background-color: rgb(225, 225, 225);">
+                    <code>
+        Widget buildButtonRow(List<Widget> buttons, double buttonSize) {
+            // 기능 버튼들 배치하는 함수
+            return Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: buttons.map((button) {
+                return SizedBox(
+                    width: 28 * buttonSize, // 버튼 크기
+                    child: button,
+                );
+                }).toList(),
+            );
+            }
+
+            
+
+
+        
+        @override
+        Widget build(BuildContext context) {
+            // build(전체 요소들 배치)
+            return Scaffold(
+            body: Center(
+                child: Column( // 요소들을 세로로 줄 세워 배치
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                    SizedBox( // 스도쿠 게임 보드
+                    width: 270,
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                        buildSudokuBoard(),
+                        ],
+                    ),
+                    ),
+                    const SizedBox( // 요소 사이의 여백
+                    height: 30, 
+                    ),
+                    SizedBox( // 숫자 패드
+                    width: 120,
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                        buildNumberPad(),
+                        ],
+                    ),
+                    ),
+                ],
+                ),
+            ),
+            );
+        }
+        }
+            
+                    </code>
+                </pre>
+            </p>
+        </div>
+
+        <div a="" style="margin: 5% 0%; background-color: rgb(55, 55, 55); color: rgb(242, 253, 253); padding: 1rem; border-radius: 1.5rem;"> 
+            <p>
+                <h4>잘했습니다!</h3>
+                <br>
+                <h4>궁금하거나 추가로 참고가 필요한 코드, dart로 실행하기 위해서 추가로 필요한 실행 코드는</h3>
+                 
+                <br>
+                <h4>다음 버튼을 눌러 github를 방문해 전체 코드를 확인하고 참고하세요!</h4>
+                <a href="https://github.com/2023-2-UROP/Front/blob/main/lib/sudokugame.dart"><button a="" style="display:inline-block;
+                padding:0.35em 1.2em;
+                border:0.1em solid #FFFFFF;
+                margin:1.5rem 0.3em;
+                border-radius:0.12em;
+                box-sizing: border-box;
+                text-decoration:none;
+                font-family:'Roboto',sans-serif;
+                font-weight:300;
+                color:#404040;
+                text-align:center;">GO GITHUB PAGE</button></a>
+                <br> <h4>전체 코드를 확인 할 수 있습니다.</h3>
+
+            </p>
+        </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    </body>
+</html>
