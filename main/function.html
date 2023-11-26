@@ -96,7 +96,7 @@
             <p class="col-md-12 fs-6 in">1.5 홈 화면 혹은 회원가입 화면으로 이동하기 위한 dart 파일 import</p>
             <br>
             <pre style="width: max-content;">
-                <code class="dart" style="text-align: center;"><br>import 'package:flutter/material.dart';<br>import 'package:http/http.dart' as http;<br>import 'dart:convert';<br>import 'package:shared_preferences/shared_preferences.dart';<br>import 'home.dart';<br>import 'signup.dart';                </code>
+                <code class="dart" style="text-align: center;"><br>import 'package:flutter/material.dart';<br>import 'package:http/http.dart' as http;<br>import 'dart:convert';<br>import 'package:shared_preferences/shared_preferences.dart';<br>import 'home.dart';<br>import 'signup.dart';</code>
             </pre>
 
             <br>
@@ -104,21 +104,319 @@
             <p class="col-md-12 fs-5"><strong>2. 앱의 진입점(main) 및 MyApp 클래스</strong></p>
             <p class="col-md-12 fs-6 in">2.1 ‘main’ 함수에서 앱을 실행시키는 ‘runApp’ 함수를 호출하고, ‘MyApp’ 클래스를 전달하여 앱의 기본 구조를 정의합니다.</p>
             <p class="col-md-12 fs-6 in">2.2 ‘MyApp’ 클래스는 ‘MaterialApp’을 반환하며, 앱의 전반적인 테마와 홈 화면을 설정합니다.</p>
+            <br>
+            <pre>
+                <code>
+                    void main() {
+                        runApp(const MyApp());
+                      }
+                      
+                      class MyApp extends StatelessWidget {
+                        const MyApp({Key? key}) : super(key: key);
+                      
+                        @override
+                        Widget build(BuildContext context) {
+                          return MaterialApp(
+                            title: 'Sudoku',
+                            theme: ThemeData(
+                              primarySwatch: Colors.grey,
+                            ),
+                            home: const MyLogin(), // Home 또는 원하는 위젯으로 대체
+                            routes: const {
+                              // 여기에 라우트 추가
+                            },
+                          );
+                        }
+                      }
+                </code>
+            </pre>
 
+            <br>
             <br>
             <p class="col-md-12 fs-5"><strong>3. MyLogin 클래스</strong></p>
             <p class="col-md-12 fs-6 in">3.1 로그인 페이지를 정의합니다.</p>
             <p class="col-md-12 fs-6 in">3.2 ‘MaterialApp’을 반환하며, 초기 라우트로 로그인 페이지(’LoginPage’)를 설정합니다.</p>
+            <br>
+            <pre>
+                <code>
+                    class MyLogin extends StatelessWidget {
+                        const MyLogin({Key? key}) : super(key: key);
+                      
+                        @override
+                        Widget build(BuildContext context) {
+                          return MaterialApp(
+                            title: 'Login',
+                            theme: ThemeData(
+                              primarySwatch: Colors.grey,
+                            ),
+                            home: const LoginPage(title: 'LOGIN PAGE'),
+                            initialRoute: '/',
+                            routes: {
+                              '/home': (context) => const MyHomePage(title: 'Home'),
+                            },
+                          );
+                        }
+                      }
+                </code>
+            </pre>
             
+            <br>
             <br>
             <p class="col-md-12 fs-5"><strong>4. LoginPage 클래스</strong></p>
             <p class="col-md-12 fs-6 in">4.1 StatefulWidget을 상속받아 로그인 페이지를 구현합니다.</p>
             <p class="col-md-12 fs-6 in">4.2 이 페이지에서는 이메일과 비밀번호를 입력받아 로그인을 시도할 수 있습니다.</p>
+            <br>
+            <pre>
+                <code>
+                    class LoginPage extends StatefulWidget {
+                        const LoginPage({Key? key, required this.title}) : super(key: key);
+                      
+                        final String title;
+                      
+                        @override
+                        _LoginPageState createState() => _LoginPageState();
+                      }
+                </code>
+            </pre>
 
+            <br>
             <br>
             <p class="col-md-12 fs-5"><strong>5. _LoginPageState 클래스</strong></p>
             <p class="col-md-12 fs-6 in">5.1 ‘LoginPage’의 상태를 관리합니다.</p>
             <p class="col-md-12 fs-6 in">5.2 이 클래스에 이메일과 비밀번호를 입력받는 컨트롤러 및 로그인 함수를 정의합니다.</p>
+            <br>
+            <p class="col-md-12 fs-5"><strong>6. showResultDialog 함수</strong></p>
+            <p class="col-md-12 fs-6">로그인 결과를 팝업 창으로 표시하기 위한 함수입니다. 성공 또는 실패에 따라 다른 메시지를 표시합니다. 성공 시에는 홈 화면으로 이동하도록 합니다.</p>
+            <br>
+            <pre>
+                <code>
+                    class _LoginPageState extends State<LoginPage> {
+                        final TextEditingController emailController = TextEditingController();
+                        final TextEditingController passwordController = TextEditingController();
+                      
+                        // 로그인 결과를 팝업으로 표시하는 함수
+                        Future<void> showResultDialog(BuildContext context, String message, bool success) async {
+                          return showDialog<void>(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: Text('로그인 결과'),
+                                content: Text(message), // 로그인 결과 메시지 표시
+                                actions: <Widget>[
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop(); // 팝업 창 닫기
+                      
+                                      if (success) {
+                                        // 로그인이 성공하면 홈 화면으로 이동
+                                        Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => MyHomePage(title: 'Home'),
+                                          ),
+                                        );
+                                      } else {
+                                        // 로그인 실패 또는 오류가 있으면 로그인 화면에 남아 있도록 함
+                                      }
+                                    },
+                                    child: Text('확인'), // 확인 버튼 텍스트
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        }
+                </code>
+            </pre>
+
+            <br>
+            <br>
+            <p class="col-md-12 fs-5"><strong>7. login 함수&nbsp;&nbsp;🔑</strong></p>
+            <p class="col-md-12 fs-6 in">7.1 사용자가 입력한 이메일과 비밀번호를 서버에 전송하여 로그인 요청을 보내고, 그에 대한 응답에 따라 로그인 시도 성공 또는 실패를 처리하는 함수입니다.</p>
+            <p class="col-md-12 fs-6 in">7.2 비동기 함수로, 서버 응답을 기다립니다.</p>
+            <p class="col-md-12 fs-6 in">7.3 이메일 및 비밀번호 추출 : emailController.text와 passwordController.text를 사용하여 사용자가 입력한 이메일과 비밀번호를 가져옵니다.</p>
+            <p class="col-md-12 fs-6 in">7.4 서버로 요청 전송</p>
+            <div class="in">
+                <ul class="in">
+                    <li>7.4.1 ‘http.post’ 함수를 사용하여 서버에 POST 요청을 보냅니다.</li>
+                    <li>7.4.2 ‘Uri.parse’를 사용하여 서버의 URL을 <em style="color: slateblue;">http://ec2-54-172-150-42.compute-1.amazonaws.com:8080/users/login</em>으로 지정하고, 요청 헤더에는 JSON 형식의 데이터를 전송할 것임을 명시합니다.</li>
+                </ul>
+            </div>
+            <p class="col-md-12 fs-6 in">7.5 서버 응답 확인</p>
+            <div class="in">
+                <ul class="in">
+                    <li>7.5.1 서버로부터 받은 응답의 상태 코드를 확인합니다.</li>
+                    <li>7.5.2 statusCode가 200이면 성공적인 응답이므로 로그인 성공 처리를 진행합니다.</li>
+                    <li>7.5.3 그 외의 경우에는 로그인 실패 처리를 진행합니다.</li>
+                </ul>
+            </div>
+            <p class="col-md-12 fs-6 in">7.6 응답 데이터 처리</p>
+            <div class="in">
+                <ul class="in">
+                    <li>7.6.1 성공적인 응답에서는 서버로부터 받은 데이터를 JSON으로 디코딩하여 추출합니다.</li>
+                    <li>7.6.2 로그인 시도 성공 시에만 사용자 이메일을 SharedPreferences를 사용하여 저장합니다.</li>
+                </ul>
+            </div>
+            <p class="col-md-12 fs-6 in">7.7 로그인 결과 출력 및 팝업 표시</p>
+            <div class="in">
+                <ul class="in">
+                    <li>7.7.1 로그인 성공 시에는 콘솔에 성공 메시지를 출력하고, showResultDialog 함수를 호출하여 성공 팝업을 표시합니다.</li>
+                    <li>7.7.2 실패 시에는 에러 메시지를 콘솔에 출력하고, 실패 팝업을 표시합니다.</li>
+                </ul>
+            </div>
+            <p class="col-md-12 fs-6 in">7.8 예외 처리</p>
+            <div class="in">
+                <ul class="in">
+                    <li>7.8.1 try-catch 블록을 사용하여 예외 처리를 수행합니다.</li>
+                    <li>7.8.2 네트워크 에러 또는 기타 예외가 발생하면 에러 메시지를 출력하고, 에러 팝업을 표시합니다.</li>
+                </ul>
+            </div>
+            <br>
+            <pre>
+                <code>
+                    // 로그인을 시도하는 함수
+                    Future<void> login(BuildContext context) async {
+                      String email = emailController.text;
+                      String password = passwordController.text;
+                  
+                      try {
+                        // 서버로 로그인 요청
+                        final response = await http.post(
+                          Uri.parse('http://ec2-54-172-150-42.compute-1.amazonaws.com:8080/users/login'),
+                          headers: {
+                            'Content-Type': 'application/json',
+                          },
+                          body: jsonEncode({
+                            'email': email,
+                            'password': password,
+                          }),
+                        );
+                  
+                        // 서버 응답 확인
+                        if (response.statusCode == 200) {
+                          // 서버 응답 데이터에서 사용자 이메일 추출
+                          final Map<String, dynamic> responseData = jsonDecode(response.body);
+                          final String email = responseData['email'].toString();
+                  
+                          // 사용자 이메일을 SharedPreferences를 사용해 저장
+                          final SharedPreferences prefs = await SharedPreferences.getInstance();
+                          prefs.setString('email', email);
+                  
+                          // 로그인 성공 시 성공 메시지 출력
+                          print('로그인 성공');
+                          // 로그인 성공 시 팝업창 표시
+                          showResultDialog(context, '로그인 성공', true);
+                        } else {
+                          // 로그인 실패 시 에러 메시지 출력
+                          print('로그인 실패, statusCode: ${response.statusCode}');
+                          // 로그인 실패 시 팝업창 표시
+                          showResultDialog(context, '로그인 실패', false);
+                        }
+                      } catch (error) { // 예외 처리 (네트워크 에러 등)
+                        // 예외 발생 시 에러 메시지 출력
+                        print('에러 발생: $error');
+                        // 예외 발생 시 팝업창 표시
+                        showResultDialog(context, '에러 발생: $error', false);
+                      }
+                    }
+                </code>
+            </pre>
+
+            <br>
+            <br>
+            <p class="col-md-12 fs-5"><strong>8. build 함수</strong></p>
+            <p class="col-md-12 fs-6 in">8.1 AppBar를 가진 Scaffold를 반환하며, 이 안에는 이메일과 비밀번호를 받는 TextField들과 회원가입 및 로그인 버튼이 있습니다.</p>
+            <p class="col-md-12 fs-6 in">8.2 AppBar를 가진 Scaffold를 반환하며, 이 안에는 이메일과 비밀번호를 받는 TextField들과 회원가입 및 로그인 버튼이 있습니다.</p>
+            <p class="col-md-12 fs-6 in">8.3 ElevatedButton을 통해 회원가입 및 로그인 버튼을 구성합니다. 회원가입 버튼 클릭 시 ‘SignupPage’로 이동하고, 로그인 버튼 클릭 시 ‘login’ 함수를 호출합니다.</p>
+
+            <br>
+            <p class="col-md-12 fs-5"><strong>9. Widget 구성</strong></p>
+            <p class="col-md-12 fs-6 in">9.1 TextField들은 사용자로부터 입력을 받는 데 사용되며, obscureText 속성을 통해 비밀번호 입력 시 텍스트를 가려줍니다.</p>
+            <p class="col-md-12 fs-6 in">9.2 ElevatedButton은 회원가입 및 로그인 버튼을 나타내며, 클릭 시 회원가입 페이지로 이동 또는 ‘login’ 함수를 호출하여 로그인을 시도합니다.</p>
+
+            <br>
+            <p class="col-md-12 fs-5"><strong>10. AlertDialog 활용</strong></p>
+            <p class="col-md-12 fs-6 in">10.1 로그인 성공 또는 실패 시 결과를 사용자에게 팝업으로 알려주기 위해 AlertDialog를 사용합니다.</p>
+            <p class="col-md-12 fs-6 in">10.2 AlertDialog에는 ‘확인’ 버튼이 있어 팝업을 닫을 수 있습니다.</p>
+
+            <br>
+            <p class="col-md-12 fs-5"><strong>11. 페이지 디자인</strong></p>
+            <p class="col-md-12 fs-6">메인(로그인) 페이지는 Scaffold를 사용하여 구성되었으며, AppBar를 포함하고 입력 필드 및 버튼이 세로로 배치되어 사용자에게 직관적인 UI를 제공합니다.</p>
+            <br>
+            <pre>
+                <code>
+                    @override
+                    Widget build(BuildContext context) {
+                      return Scaffold(
+                        appBar: AppBar(
+                          title: Text(
+                            widget.title,
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        body: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Column(
+                            children: [
+                              // 이메일 입력 필드
+                              TextField(
+                                controller: emailController,
+                                decoration: const InputDecoration(
+                                  labelText: '이메일 입력',
+                                ),
+                              ),
+                              // 비밀번호 입력 필드
+                              TextField(
+                                controller: passwordController,
+                                obscureText: true,
+                                decoration: const InputDecoration(
+                                  labelText: '비밀번호 입력',
+                                ),
+                              ),
+                              const SizedBox(height: 20),
+                              // 회원가입 및 로그인 버튼
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      // 회원가입 페이지로 이동
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => SignupPage(),
+                                        ),
+                                      );
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors.black,
+                                    ),
+                                    child: const Text(
+                                      '회원가입',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 20),
+                                  // 로그인 버튼
+                                  ElevatedButton(
+                                    onPressed: () => login(context), // context를 전달하여 팝업창이 표시될 수 있도록 함
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors.black,
+                                    ), // 버트 클릭 시 login 함수 호출
+                                    child: const Text(
+                                      '로그인',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    }
+                </code>
+            </pre>
 
             
         </div>
