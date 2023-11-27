@@ -84,28 +84,23 @@
             <p class="col-md-12 fs-6">코드의 시작 부분에서 필요한 패키지들을 import 합니다.</p>
             <br>
             <p class="col-md-12 fs-5"><strong>2. main 함수</strong></p>
-            <p class="col-md-12 fs-6 in">1) </p>
-            <p class="col-md-12 fs-6 in">2) </p>
+            <p class="col-md-12 fs-6 in">1) Dart 언어에서는 프로그램의 실행이 main 함수로부터 시작되므로, main 함수를 구현합니다.</p>
             <br>
             <p class="col-md-12 fs-5"><strong>3. MyApp 클래스 (상태 관리)</strong></p>
-            <p class="col-md-12 fs-6 in">1) </p>
+            <p class="col-md-12 fs-6 in">1) 앱의 기본 구성을 정의하기 위해 Flutter 앱의 최상위 위젯인 MyApp 클래스를 구현합니다.</p>
+            <p class="col-md-12 fs-6 in">2) MyApp 클래스는 앱의 기본 구성을 정의하기 때문에, 상태가 변하지 않는 정적인 StatelessWidget을 상속하고 있습니다.</p>
             <br>
             <p class="col-md-12 fs-5"><strong>4. MyHomePage 클래스</strong></p>
-            <p class="col-md-12 fs-6 in">1) </p>
-            <p class="col-md-12 fs-6 in">2) </p>
-            <p class="col-md-12 fs-6 in">3) </p>
+            <p class="col-md-12 fs-6 in">1) 바텀 네비게이션을 클릭할 때마다 페이지는 계속해서 변하기 때문에 Stateless 위젯이 아닌 StatefulWidget 위젯을 사용하여 정의합니다.</p>
             <br>
             <p class="col-md-12 fs-5"><strong>5. _MyHomePageState 클래스 (상태 관리)</strong></p>
-            <p class="col-md-12 fs-6 in">1) </p>
-            <p class="col-md-12 fs-6 in">2) </p>
-            <p class="col-md-12 fs-6 in">3) </p>
+            <p class="col-md-12 fs-6 in">1) MyHomePage 클래스의 상태를 관리하는 _MyHomePageState 클래스를 정의합니다.</p>
             <br>
             <p class="col-md-12 fs-5"><strong>6. build 메서드</strong></p>
-            <p class="col-md-12 fs-6 in">1) </p>
-            <p class="col-md-12 fs-6 in">2) </p>
-            <p class="col-md-12 fs-6 in">3) </p>
-            <p class="col-md-12 fs-6 in">4) </p>
-            <p class="col-md-12 fs-6 in">5) </p>
+            <p class="col-md-12 fs-6 in">1) 화면의 UI를 정의하는 함수를 작성합니다.</p>
+            <p class="col-md-12 fs-6 in">2) Scaffold를 사용하여 앱의 기본 구조를 정의합니다.</p>
+            <p class="col-md-12 fs-6 in">3) 사용자가 탭한 탭에 따라 변경되게 하기 위해, 현재 선택된 페이지의 인덱스를 나타내는 변수인 selectedPage를 정의합니다.</p>
+            <p class="col-md-12 fs-6 in">4) 앱에서 사용될 여러 페이지(위젯)를 나타내는 리스트인 _pageOptions를 정의합니다. 각각의 페이지는 다른 클래스의 인스턴스로 구성합니다. 그렇게 구성한다면 각 페이지에 대한 인스턴스를 미리 생성하여 저장하기 때문에, 기존에 생성된 인스턴스를 사용하여 더 효율적으로 메모리를 관리할 수 있습니다.</p>
             <br>
         </div>
     </div>
