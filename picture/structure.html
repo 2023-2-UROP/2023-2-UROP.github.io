@@ -84,32 +84,29 @@
             <p class="col-md-12 fs-6">코드의 시작 부분에서 필요한 패키지들을 import 합니다.</p>
             <br>
             <p class="col-md-12 fs-5"><strong>2. PicturePage 클래스</strong></p>
-            <p class="col-md-12 fs-6 in">1) </p>
-            <p class="col-md-12 fs-6 in">2) </p>
+            <p class="col-md-12 fs-6 in">1) 사진 페이지를 나타내는 StatefulWidget를 정의합니다. 사진 정보는 계속해서 변할 수 있기 때문에 Stateless 위젯이 아닌 StatefulWidget 위젯을 사용합니다.</p>
             <br>
             <p class="col-md-12 fs-5"><strong>3. _PicturePage 클래스</strong></p>
-            <p class="col-md-12 fs-6 in">1) </p>
+            <p class="col-md-12 fs-6 in">1) PicturePage 클래스의 상태를 관리하는 _PicturePage 클래스를 정의합니다.</p>
             <br>
             <p class="col-md-12 fs-5"><strong>4. getImage 함수</strong></p>
-            <p class="col-md-12 fs-6 in">1) </p>
-            <p class="col-md-12 fs-6 in">2) </p>
-            <p class="col-md-12 fs-6 in">3) </p>
+            <p class="col-md-12 fs-6 in">1) 카메라 또는 갤러리에서 이미지를 선택하여 _image에 저장하는 함수를 정의합니다.</p>
+            <p class="col-md-12 fs-6 in">2) 작업이 완료되면 결과값이나 에러를 반환해야 하기 때문에, 비동기적으로 처리되는 Future를 이용하여 객체를 생성합니다.</p>
+            <p class="col-md-12 fs-6 in">3) 사용자에게 이미지를 선택하도록 요청하고, 선택한 이미지에 대한 정보를 저장하는 부분을 구현합니다.</p>
+            <p class="col-md-12 fs-6 in">4) 이미지 파일을 저장할 수 있는 인스턴스를 정의합니다. 여기서 상태가 변경됨을 알리는 함수도 구현하여야 합니다.</p>
             <br>
             <p class="col-md-12 fs-5"><strong>5. build 메서드</strong></p>
-            <p class="col-md-12 fs-6 in">1) </p>
-            <p class="col-md-12 fs-6 in">2) </p>
-            <p class="col-md-12 fs-6 in">3) </p>
+            <p class="col-md-12 fs-6 in">1) 화면의 UI를 정의하는 함수를 작성합니다.</p>
+            <p class="col-md-12 fs-6 in">2) Scaffold를 사용하여 앱의 기본 구조를 정의합니다.</p>
+            <p class="col-md-12 fs-6 in">3) 밑에서 만들, 이미지를 화면에 표시할 영역을 구성하는 함수와 카메라를 열거나 갤러리에서 이미지를 선택하는 버튼을 호출합니다.</p>
             <br>
             <p class="col-md-12 fs-5"><strong>6. _buildPhotoArea 함수</strong></p>
-            <p class="col-md-12 fs-6 in">1) </p>
-            <p class="col-md-12 fs-6 in">2) </p>
-            <p class="col-md-12 fs-6 in">3) </p>
-            <p class="col-md-12 fs-6 in">4) </p>
-            <p class="col-md-12 fs-6 in">5) </p>
+            <p class="col-md-12 fs-6 in">1) 사용자가 선택한 이미지를 화면에 표시할 영역을 구현합니다.</p>
+            <p class="col-md-12 fs-6 in">2) 이미지의 유무에 따라 다른 작업을 할 수 있게 구현합니다. (ex. 이미지가 존재하지 않을 때는 회색 배경이 나오게)</p>
             <br>
             <p class="col-md-12 fs-5"><strong>7. _buildButton 함수</strong></p>
-            <p class="col-md-12 fs-6 in">1) </p>
-            <p class="col-md-12 fs-6 in">2) </p>
+            <p class="col-md-12 fs-6 in">1) 카메라로 사진을 찍거나 또는 갤러리를 열어 사진을 선택할 수 있게 하는 함수를 정의합니다.</p>
+            <p class="col-md-12 fs-6 in">2) 버튼을 생성하여 위 함수를 호출할 수 있게 구현합니다.</p>
             <br>
         </div>
     </div>
