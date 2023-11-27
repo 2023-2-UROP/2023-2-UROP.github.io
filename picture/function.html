@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>2023-2 UROP</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+        }
+        .navbar-brand, .nav-item {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .form-control, .form-label {
+            font-weight: bold;
+            font-size: 20px;
+        }
+        .bg-light {
+            padding: 20px;
+        }
+        .in {
+            text-indent: 30px;
+        }
+        .container {
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            margin-top: 20px;
+            padding: 20px;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px 50px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        ul{
+            list-style:none;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgb(0,0,0);">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">UROP</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Intro</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            개발 가이드
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">환경설정</a></li>
+                            <li><a class="dropdown-item" href="#">클라이언트</a></li>
+                            <li><a class="dropdown-item" href="#">서버</a></li>
+                            <li><a class="dropdown-item" href="#">알고리즘</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            앱 설명
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">앱 빌드 방법</a></li>
+                            <li><a class="dropdown-item" href="#">앱 구동 모습 설명</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="p-5 mb-4 bg-light rounded-3">
+        <div class="container-fluid py-5">
+            <h3 class="fw-bold">📌&nbsp;&nbsp;PICTURE 주요 구성 요소 및 기능</h3>
+            <br>
+            <h6>→&nbsp;&nbsp;예제 코드는 Flutter 프레임워크를 사용하여 개발된 Dart 코드입니다. </h6>
+            <hr>
+
+            <br>
+            <p class="col-md-12 fs-5"><strong>1. 패키지 import</strong></p>
+            <p class="col-md-12 fs-6">우선, 페이지 구현을 위해 필요한 패키지들을 import 합니다.</p>
+            <p class="col-md-12 fs-6 in">1.1 Flutter에서 UI를 구현하기 위한 기본 패키지 import</p>
+            <p class="col-md-12 fs-6 in">1.2 파일 입출력 및 플랫폼별 기능을 사용하기 위한 패키지 import</p>
+            <p class="col-md-12 fs-6 in">1.3 갤러리에서 이미지를 선택하거나 카메라로 새로운 사진을 찍기 위한 패키지 import</p>
+            <br>
+            <pre style="width: max-content;">
+                <code class="dart" style="text-align: center;"><br>import 'package:flutter/material.dart';<br>import 'dart:io';<br>import 'package:image_picker/image_picker.dart';</code>
+            </pre>
+
+            <br>
+            <br>
+            <p class="col-md-12 fs-5"><strong>2. PicturePage 클래스 (StatefulWidget)</strong></p>
+            <p class="col-md-12 fs-6 in">3.1 사진 페이지를 위한 StatefulWidget입니다. 화면의 상태가 변경될 때마다(사진이 바뀔 때마다) 화면이 다시 그려져야 하기 때문에, StatefulWidget 위젯을 사용하였습니다.</p>
+            <p class="col-md-12 fs-6 in">3.2 이 위젯의 상태는 _PicturePageState에서 관리됩니다.</p>
+            <br>
+            <pre>
+                <code>
+                  class PicturePage extends StatefulWidget {
+                    const PicturePage({Key? key}) : super(key: key);
+                  
+                    @override
+                    _PicturePageState createState() => _PicturePageState();
+                  }
+                </code>
+            </pre>
+            
+            <br>
+            <br>
+            <p class="col-md-12 fs-5"><strong>3. _PicturePage 클래스 (상태 관리)</strong></p>
+            <p class="col-md-12 fs-6 in">3.1 사진 페이지의 상태를 나타내는 함수입니다. _image로 이미지를 담을 변수를 선언하고, ImagePicker를 초기화합니다.</p>
+            <p class="col-md-12 fs-6 in">3.2 _PicturePage 클래스는 PicturePage 위젯의 상태를 관리하기 때문에, State<PicturePage>를 상속합니다.</p>
+            <p class="col-md-12 fs-6 in">3.3 XFile은 이미지 파일을 나타내는 클래스로, _image 변수가 선택된 이미지 파일을 가리킬 수 있도록 선언되어 있습니다. 변수의 타입에 ?가 포함되어 있으므로 이 변수는 nullable하며, 사용자가 아직 이미지를 선택하지 않은 경우에는 null이 될 수 있습니다.</p>
+            <p class="col-md-12 fs-6 in">3.4 picker는 이미지를 선택하는 데 사용되는 ImagePicker 클래스의 인스턴스입니다. final 키워드로 선언되어 있으므로 한 번 초기화되면 변경되지 않습니다.</p>
+
+            <br>
+            <pre>
+                <code>
+                  cclass _PicturePageState extends State<PicturePage> {
+                    XFile? _image;  //이미지를 담을 변수 선언
+                    final ImagePicker picker = ImagePicker();  //ImagePicker 초기화                  
+                    }
+                </code>
+            </pre>
+
+            <br>
+            <br>
+            <p class="col-md-12 fs-5"><strong>4. getImage 함수</strong></p>
+            <p class="col-md-12 fs-6 in">4.1 getImage 함수는 Future를 반환하는 비동기 함수입니다. Future는 비동기적으로 처리되는 작업이 완료되면 결과값이나 에러를 반환하는 객체입니다. 이 함수는 카메라 또는 갤러리에서 이미지를 선택하여 _image에 저장하는 역할을 합니다.</p>
+            <p class="col-md-12 fs-6 in">4.2 picker.pickImage(source: imageSource)는 사용자에게 이미지를 선택하도록 요청하고, 선택한 이미지에 대한 정보를 pickedFile에 저장합니다.</p>
+            <p class="col-md-12 fs-6 in">4.3 await 키워드는 비동기 함수 내에서 작업이 완료될 때까지 기다리도록 합니다.</p>
+            <p class="col-md-12 fs-6 in">4.4 XFile?은 이미지 파일을 나타내는 클래스 XFile의 nullable한 인스턴스입니다. 선택된 이미지가 없는 경우에는 null이 될 수 있습니다. 선택된 이미지가 null이 아니라면, setState 함수가 Flutter에서 상태가 변경되었음을 프레임워크에 알리고, 새로운 상태로 UI를 다시 그리도록 하는 역할을 합니다. 여기서는 _image 변수에 새로운 XFile 객체를 할당하여 사용자가 선택한 이미지를 저장합니다.</p>
+            <p class="col-md-12 fs-6 in">4.5 pickedFile.path는 사용자가 선택한 이미지 파일의 경로입니다. 이렇게 setState 함수를 사용하면 이미지가 선택되면 Flutter는 자동으로 화면을 다시 그리고 선택한 이미지를 표시합니다.</p>
+            <br>
+            <pre>
+                <code>
+                  Future getImage(ImageSource imageSource) async {
+                    //pickedFile에 ImagePicker로 가져온 이미지가 담김
+                    final XFile? pickedFile = await picker.pickImage(source: imageSource);
+                    if (pickedFile != null) {
+                      setState(() {
+                        _image = XFile(pickedFile.path);  //가져온 이미지를 _image에 저장
+                      });
+                    }
+                  }
+                </code>
+            </pre>
+            <br>
+            <p class="col-md-12 fs-5"><strong>5. build 메서드</strong></p>
+            <p class="col-md-12 fs-6">5.1 화면을 렌더링하는 메서드입니다.</p>
+            <p class="col-md-12 fs-6">5.2 _buildPhotoArea와 _buildButton 함수를 호출하여 이미지 영역과 버튼을 구성합니다.</p>
+            <br>
+            <pre>
+                <code>
+                  @override
+                  Widget build(BuildContext context) {
+                    return MaterialApp(
+                      home: Scaffold(
+                        body: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            const SizedBox(height: 100),
+                            _buildPhotoArea(),
+                            const SizedBox(height: 20),
+                            _buildButton(),
+                          ],
+                        ),
+                      ),
+                    );
+                  }
+                </code>
+            </pre>
+
+            <br>
+            <br>
+            <p class="col-md-12 fs-5"><strong>6. _buildPhotoArea 함수</strong></p>
+            <p class="col-md-12 fs-6 in">6.1 사용자가 선택한 이미지를 화면에 표시할 영역을 구성합니다.</p>
+            <p class="col-md-12 fs-6 in">6.2 _image 변수에 따라 이미지를 표시하거나 빈 상자(회색 배경)를 표시하는 작업이 이루어집니다.</p>
+            <br>
+            <pre>
+                <code>
+                  Widget _buildPhotoArea() {
+                    return _image != null
+                        ? SizedBox(
+                            width: 300,
+                            height: 300,
+                            child: Image.file(File(_image!.path)),  // 가져온 이미지를 화면에 띄워줌
+                          )
+                        : Container(
+                            width: 300,
+                            height: 300,
+                            color: Colors.grey,
+                          );
+                  }
+                </code>
+            </pre>
+
+            <br>
+            <br>
+            <p class="col-md-12 fs-5"><strong>7. _buildButton 함수</strong></p>
+            <p class="col-md-12 fs-6 in">7.1 카메라를 열거나 갤러리에서 이미지를 선택하는 버튼을 생성합니다.</p>
+            <p class="col-md-12 fs-6 in">7.2 해당 버튼을 누르면 getImage 함수가 호출되어 카메라 또는 갤러리를 열어 이미지를 찍거나 선택할 수 있게 합니다.</p>
+            <br>
+            <pre>
+                <code>
+                  Widget _buildButton() {
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.grey,
+                        ),
+                          onPressed: () {
+                            getImage(ImageSource.camera);  // 카메라로 찍은 사진 가져오기
+                          },
+                          child: const Text("카메라"),
+                        ),
+                        const SizedBox(width: 30),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.grey,
+                        ),
+                          onPressed: () {
+                            getImage(ImageSource.gallery); // 갤러리에서 사진 가져오기
+                          },
+                          child: const Text("갤러리"),
+                        ),
+                      ],
+                    );
+                  }
+                </code>
+            </pre>
+
+            
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</body>
+</html>
