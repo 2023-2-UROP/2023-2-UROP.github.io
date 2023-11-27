@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>2023-2 UROP</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+        }
+        .navbar-brand, .nav-item {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .form-control, .form-label {
+            font-weight: bold;
+            font-size: 20px;
+        }
+        .bg-light {
+            padding: 20px;
+        }
+        .in {
+            text-indent: 30px;
+        }
+        code {
+            background-color: grey;
+            padding: 2px 4px;
+            border: 1px solid #dee2e6;
+        }
+        .container {
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            margin-top: 20px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgb(0,0,0);">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">UROP</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Intro</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            개발 가이드
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">환경설정</a></li>
+                            <li><a class="dropdown-item" href="#">클라이언트</a></li>
+                            <li><a class="dropdown-item" href="#">서버</a></li>
+                            <li><a class="dropdown-item" href="#">알고리즘</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            앱 설명
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">앱 빌드 방법</a></li>
+                            <li><a class="dropdown-item" href="#">앱 구동 모습 설명</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="p-5 mb-4 bg-light rounded-3">
+        <div class="container-fluid py-5">
+            <h3 class="fw-bold">📌&nbsp;&nbsp;MY 구조 설명 : 코드 작성 단계</h3>
+            <hr>
+            <br>
+            <p class="col-md-12 fs-5"><strong>1. 패키지 import</strong></p>
+            <p class="col-md-12 fs-6">코드의 시작 부분에서 필요한 패키지들을 import 합니다.</p>
+            <br>
+            <p class="col-md-12 fs-5"><strong>2. My 클래스</strong></p>
+            <p class="col-md-12 fs-6 in">1) 사용자 랭킹 정보를 저장하기 위한 클래스를 정의합니다.</p>
+            <p class="col-md-12 fs-6 in">2) 순위(rank), 플레이타임(playtime)을 포함합니다.</p>
+            <br>
+            <p class="col-md-12 fs-5"><strong>3. MyPage 클래스 (StatefulWidget)</strong></p>
+            <p class="col-md-12 fs-6 in">1) 랭킹 페이지를 나타내는 StatefulWidget를 정의합니다. 랭킹 정보는 계속해서 변하기 때문에 Stateless 위젯이 아닌 StatefulWidget 위젯을 사용합니다.</p>
+            <p class="col-md-12 fs-6 in">2) 사용자 랭킹 정보를 서버에서 받아와 화면에 표시합니다.</p>
+            <br>
+            <p class="col-md-12 fs-5"><strong>4. _MyPageState 클래스 (상태 관리)</strong></p>
+            <p class="col-md-12 fs-6 in">1) MyPage 클래스의 상태를 관리하는 _MyPageState 클래스를 정의합니다.</p>
+            <br>
+            <p class="col-md-12 fs-5"><strong>5. initState 메서드</strong></p>
+            <p class="col-md-12 fs-6 in">1) 위젯이 초기화될 때 서버에서 랭킹 데이터를 받아오는 ranking 함수를 호출합니다.</p>
+            <br>
+            <p class="col-md-12 fs-5"><strong>6. ranking 함수 (랭킹 데이터 받아오기)</strong></p>
+            <p class="col-md-12 fs-6 in">1) 서버에서 랭킹 데이터를 받아오는 비동기 함수입니다.</p>
+            <p class="col-md-12 fs-6 in">2) HTTP POST를 사용하여 서버에 요청을 보내고 응답에 따라 데이터를 처리합니다.</p>
+            <br>
+            <p class="col-md-12 fs-5"><strong>7. updateRankingList 메서드 (데이터 업데이트)</strong></p>
+            <p class="col-md-12 fs-6 in">1) 받아온 데이터로 myRankingList 업데이트합니다.</p>
+            <br>
+            <p class="col-md-12 fs-5"><strong>8. parseRankingData 메서드 (랭킹 데이터 파싱)</strong></p>
+            <p class="col-md-12 fs-6 in">1) 서버에서 받아온 데이터를 My 객체로 파싱합니다.</p>
+            <br>
+            <p class="col-md-12 fs-5"><strong>9. build 함수</strong></p>
+            <p class="col-md-12 fs-6 in">1) 화면의 UI를 정의하는 함수를 작성합니다.</p>
+            <p class="col-md-12 fs-6 in">2) Scaffold를 사용하여 앱의 기본 구조를 정의합니다.</p>
+            <p class="col-md-12 fs-6 in">3) DataTable을 사용하여 랭킹 정보를 표시합니다.</p>
+            <br>            
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</body>
+</html>
