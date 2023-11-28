@@ -86,6 +86,30 @@
  
         </p>
 </div>
+
+<div>
+    <h2>0. 환경설정</h2>
+        <p>
+            먼저 스도쿠 게임에 필요한 환경설정을 해야 합니다.
+            <br>
+            pubspec.yaml 파일의 dependencies를 찾아 밑 코드를 추가합니다.
+            <br>
+            <pre style="background-color: rgb(225, 225, 225);">
+                <code>
+                    dependencies:
+                    flutter:
+                      sdk: flutter
+                        http: ^0.13.3  # 서버와 통신하고, 서버에 http 요청을 보내기 위한 패키지
+                        collection: ^1.15.0
+                        shared_preferences: ^2.0.10  # 파일 입출력 및 플랫폼별 기능을 사용하기 위한 패키지
+                </code>
+            </pre>
+            <br>
+            터미널에서 flutter pub get 명령어를 사용하여 프로젝트의 의존성을 최신 버전으로 업그레이드합니다.
+            <br>
+            각 버전은 예시이며, 최신 버전은 플러터 공식 홈페이지를 참고해주세요.
+            </p>
+</div>
 <div>
         <h2>1. 스도쿠 게임 보드 만들기</h2>
         <p>
