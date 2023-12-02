@@ -1,680 +1,839 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>베겐드 디비</title><style>
-/* cspell:disable-file */
-/* webkit printing magic: print all background colors */
-html {
-	-webkit-print-color-adjust: exact;
-}
-* {
-	box-sizing: border-box;
-	-webkit-print-color-adjust: exact;
-}
-
-html,
-body {
-	margin: 0;
-	padding: 0;
-}
-@media only screen {
-	body {
-		margin: 2em auto;
-		max-width: 900px;
-		color: rgb(55, 53, 47);
-	}
-}
-
-body {
-	line-height: 1.5;
-	white-space: pre-wrap;
-}
-
-a,
-a.visited {
-	color: inherit;
-	text-decoration: underline;
-}
-
-.pdf-relative-link-path {
-	font-size: 80%;
-	color: #444;
-}
-
-h1,
-h2,
-h3 {
-	letter-spacing: -0.01em;
-	line-height: 1.2;
-	font-weight: 600;
-	margin-bottom: 0;
-}
-
-.page-title {
-	font-size: 2.5rem;
-	font-weight: 700;
-	margin-top: 0;
-	margin-bottom: 0.75em;
-}
-
-h1 {
-	font-size: 1.875rem;
-	margin-top: 1.875rem;
-}
-
-h2 {
-	font-size: 1.5rem;
-	margin-top: 1.5rem;
-}
-
-h3 {
-	font-size: 1.25rem;
-	margin-top: 1.25rem;
-}
-
-.source {
-	border: 1px solid #ddd;
-	border-radius: 3px;
-	padding: 1.5em;
-	word-break: break-all;
-}
-
-.callout {
-	border-radius: 3px;
-	padding: 1rem;
-}
-
-figure {
-	margin: 1.25em 0;
-	page-break-inside: avoid;
-}
-
-figcaption {
-	opacity: 0.5;
-	font-size: 85%;
-	margin-top: 0.5em;
-}
-
-mark {
-	background-color: transparent;
-}
-
-.indented {
-	padding-left: 1.5em;
-}
-
-hr {
-	background: transparent;
-	display: block;
-	width: 100%;
-	height: 1px;
-	visibility: visible;
-	border: none;
-	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
-}
-
-img {
-	max-width: 100%;
-}
-
-@media only print {
-	img {
-		max-height: 100vh;
-		object-fit: contain;
-	}
-}
-
-@page {
-	margin: 1in;
-}
-
-.collection-content {
-	font-size: 0.875rem;
-}
-
-.column-list {
-	display: flex;
-	justify-content: space-between;
-}
-
-.column {
-	padding: 0 1em;
-}
-
-.column:first-child {
-	padding-left: 0;
-}
-
-.column:last-child {
-	padding-right: 0;
-}
-
-.table_of_contents-item {
-	display: block;
-	font-size: 0.875rem;
-	line-height: 1.3;
-	padding: 0.125rem;
-}
-
-.table_of_contents-indent-1 {
-	margin-left: 1.5rem;
-}
-
-.table_of_contents-indent-2 {
-	margin-left: 3rem;
-}
-
-.table_of_contents-indent-3 {
-	margin-left: 4.5rem;
-}
-
-.table_of_contents-link {
-	text-decoration: none;
-	opacity: 0.7;
-	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
-}
-
-table,
-th,
-td {
-	border: 1px solid rgba(55, 53, 47, 0.09);
-	border-collapse: collapse;
-}
-
-table {
-	border-left: none;
-	border-right: none;
-}
-
-th,
-td {
-	font-weight: normal;
-	padding: 0.25em 0.5em;
-	line-height: 1.5;
-	min-height: 1.5em;
-	text-align: left;
-}
-
-th {
-	color: rgba(55, 53, 47, 0.6);
-}
-
-ol,
-ul {
-	margin: 0;
-	margin-block-start: 0.6em;
-	margin-block-end: 0.6em;
-}
-
-li > ol:first-child,
-li > ul:first-child {
-	margin-block-start: 0.6em;
-}
-
-ul > li {
-	list-style: disc;
-}
-
-ul.to-do-list {
-	padding-inline-start: 0;
-}
-
-ul.to-do-list > li {
-	list-style: none;
-}
-
-.to-do-children-checked {
-	text-decoration: line-through;
-	opacity: 0.375;
-}
-
-ul.toggle > li {
-	list-style: none;
-}
-
-ul {
-	padding-inline-start: 1.7em;
-}
-
-ul > li {
-	padding-left: 0.1em;
-}
-
-ol {
-	padding-inline-start: 1.6em;
-}
-
-ol > li {
-	padding-left: 0.2em;
-}
-
-.mono ol {
-	padding-inline-start: 2em;
-}
-
-.mono ol > li {
-	text-indent: -0.4em;
-}
-
-.toggle {
-	padding-inline-start: 0em;
-	list-style-type: none;
-}
-
-/* Indent toggle children */
-.toggle > li > details {
-	padding-left: 1.7em;
-}
-
-.toggle > li > details > summary {
-	margin-left: -1.1em;
-}
-
-.selected-value {
-	display: inline-block;
-	padding: 0 0.5em;
-	background: rgba(206, 205, 202, 0.5);
-	border-radius: 3px;
-	margin-right: 0.5em;
-	margin-top: 0.3em;
-	margin-bottom: 0.3em;
-	white-space: nowrap;
-}
-
-.collection-title {
-	display: inline-block;
-	margin-right: 1em;
-}
-
-.page-description {
-    margin-bottom: 2em;
-}
-
-.simple-table {
-	margin-top: 1em;
-	font-size: 0.875rem;
-	empty-cells: show;
-}
-.simple-table td {
-	height: 29px;
-	min-width: 120px;
-}
-
-.simple-table th {
-	height: 29px;
-	min-width: 120px;
-}
-
-.simple-table-header-color {
-	background: rgb(247, 246, 243);
-	color: black;
-}
-.simple-table-header {
-	font-weight: 500;
-}
-
-time {
-	opacity: 0.5;
-}
-
-.icon {
-	display: inline-block;
-	max-width: 1.2em;
-	max-height: 1.2em;
-	text-decoration: none;
-	vertical-align: text-bottom;
-	margin-right: 0.5em;
-}
-
-img.icon {
-	border-radius: 3px;
-}
-
-.user-icon {
-	width: 1.5em;
-	height: 1.5em;
-	border-radius: 100%;
-	margin-right: 0.5rem;
-}
-
-.user-icon-inner {
-	font-size: 0.8em;
-}
-
-.text-icon {
-	border: 1px solid #000;
-	text-align: center;
-}
-
-.page-cover-image {
-	display: block;
-	object-fit: cover;
-	width: 100%;
-	max-height: 30vh;
-}
-
-.page-header-icon {
-	font-size: 3rem;
-	margin-bottom: 1rem;
-}
-
-.page-header-icon-with-cover {
-	margin-top: -0.72em;
-	margin-left: 0.07em;
-}
-
-.page-header-icon img {
-	border-radius: 3px;
-}
-
-.link-to-page {
-	margin: 1em 0;
-	padding: 0;
-	border: none;
-	font-weight: 500;
-}
-
-p > .user {
-	opacity: 0.5;
-}
-
-td > .user,
-td > time {
-	white-space: nowrap;
-}
-
-input[type="checkbox"] {
-	transform: scale(1.5);
-	margin-right: 0.6em;
-	vertical-align: middle;
-}
-
-p {
-	margin-top: 0.5em;
-	margin-bottom: 0.5em;
-}
-
-.image {
-	border: none;
-	margin: 1.5em 0;
-	padding: 0;
-	border-radius: 0;
-	text-align: center;
-}
-
-.code,
-code {
-	background: rgba(135, 131, 120, 0.15);
-	border-radius: 3px;
-	padding: 0.2em 0.4em;
-	border-radius: 3px;
-	font-size: 85%;
-	tab-size: 2;
-}
-
-code {
-	color: #eb5757;
-}
-
-.code {
-	padding: 1.5em 1em;
-}
-
-.code-wrap {
-	white-space: pre-wrap;
-	word-break: break-all;
-}
-
-.code > code {
-	background: none;
-	padding: 0;
-	font-size: 100%;
-	color: inherit;
-}
-
-blockquote {
-	font-size: 1.25em;
-	margin: 1em 0;
-	padding-left: 1em;
-	border-left: 3px solid rgb(55, 53, 47);
-}
-
-.bookmark {
-	text-decoration: none;
-	max-height: 8em;
-	padding: 0;
-	display: flex;
-	width: 100%;
-	align-items: stretch;
-}
-
-.bookmark-title {
-	font-size: 0.85em;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	height: 1.75em;
-	white-space: nowrap;
-}
-
-.bookmark-text {
-	display: flex;
-	flex-direction: column;
-}
-
-.bookmark-info {
-	flex: 4 1 180px;
-	padding: 12px 14px 14px;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-}
-
-.bookmark-image {
-	width: 33%;
-	flex: 1 1 180px;
-	display: block;
-	position: relative;
-	object-fit: cover;
-	border-radius: 1px;
-}
-
-.bookmark-description {
-	color: rgba(55, 53, 47, 0.6);
-	font-size: 0.75em;
-	overflow: hidden;
-	max-height: 4.5em;
-	word-break: break-word;
-}
-
-.bookmark-href {
-	font-size: 0.75em;
-	margin-top: 0.25em;
-}
-
-.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
-.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
-.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
-.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
-.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
-.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
-.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
-.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
-.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
-.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
-.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
-.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
-.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
-.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
-.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
-.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
-.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
-.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
-.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
-.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
-.highlight-default {
-	color: rgba(55, 53, 47, 1);
-}
-.highlight-gray {
-	color: rgba(120, 119, 116, 1);
-	fill: rgba(120, 119, 116, 1);
-}
-.highlight-brown {
-	color: rgba(159, 107, 83, 1);
-	fill: rgba(159, 107, 83, 1);
-}
-.highlight-orange {
-	color: rgba(217, 115, 13, 1);
-	fill: rgba(217, 115, 13, 1);
-}
-.highlight-yellow {
-	color: rgba(203, 145, 47, 1);
-	fill: rgba(203, 145, 47, 1);
-}
-.highlight-teal {
-	color: rgba(68, 131, 97, 1);
-	fill: rgba(68, 131, 97, 1);
-}
-.highlight-blue {
-	color: rgba(51, 126, 169, 1);
-	fill: rgba(51, 126, 169, 1);
-}
-.highlight-purple {
-	color: rgba(144, 101, 176, 1);
-	fill: rgba(144, 101, 176, 1);
-}
-.highlight-pink {
-	color: rgba(193, 76, 138, 1);
-	fill: rgba(193, 76, 138, 1);
-}
-.highlight-red {
-	color: rgba(212, 76, 71, 1);
-	fill: rgba(212, 76, 71, 1);
-}
-.highlight-gray_background {
-	background: rgba(241, 241, 239, 1);
-}
-.highlight-brown_background {
-	background: rgba(244, 238, 238, 1);
-}
-.highlight-orange_background {
-	background: rgba(251, 236, 221, 1);
-}
-.highlight-yellow_background {
-	background: rgba(251, 243, 219, 1);
-}
-.highlight-teal_background {
-	background: rgba(237, 243, 236, 1);
-}
-.highlight-blue_background {
-	background: rgba(231, 243, 248, 1);
-}
-.highlight-purple_background {
-	background: rgba(244, 240, 247, 0.8);
-}
-.highlight-pink_background {
-	background: rgba(249, 238, 243, 0.8);
-}
-.highlight-red_background {
-	background: rgba(253, 235, 236, 1);
-}
-.block-color-default {
-	color: inherit;
-	fill: inherit;
-}
-.block-color-gray {
-	color: rgba(120, 119, 116, 1);
-	fill: rgba(120, 119, 116, 1);
-}
-.block-color-brown {
-	color: rgba(159, 107, 83, 1);
-	fill: rgba(159, 107, 83, 1);
-}
-.block-color-orange {
-	color: rgba(217, 115, 13, 1);
-	fill: rgba(217, 115, 13, 1);
-}
-.block-color-yellow {
-	color: rgba(203, 145, 47, 1);
-	fill: rgba(203, 145, 47, 1);
-}
-.block-color-teal {
-	color: rgba(68, 131, 97, 1);
-	fill: rgba(68, 131, 97, 1);
-}
-.block-color-blue {
-	color: rgba(51, 126, 169, 1);
-	fill: rgba(51, 126, 169, 1);
-}
-.block-color-purple {
-	color: rgba(144, 101, 176, 1);
-	fill: rgba(144, 101, 176, 1);
-}
-.block-color-pink {
-	color: rgba(193, 76, 138, 1);
-	fill: rgba(193, 76, 138, 1);
-}
-.block-color-red {
-	color: rgba(212, 76, 71, 1);
-	fill: rgba(212, 76, 71, 1);
-}
-.block-color-gray_background {
-	background: rgba(241, 241, 239, 1);
-}
-.block-color-brown_background {
-	background: rgba(244, 238, 238, 1);
-}
-.block-color-orange_background {
-	background: rgba(251, 236, 221, 1);
-}
-.block-color-yellow_background {
-	background: rgba(251, 243, 219, 1);
-}
-.block-color-teal_background {
-	background: rgba(237, 243, 236, 1);
-}
-.block-color-blue_background {
-	background: rgba(231, 243, 248, 1);
-}
-.block-color-purple_background {
-	background: rgba(244, 240, 247, 0.8);
-}
-.block-color-pink_background {
-	background: rgba(249, 238, 243, 0.8);
-}
-.block-color-red_background {
-	background: rgba(253, 235, 236, 1);
-}
-.select-value-color-interactiveBlue { background-color: rgba(35, 131, 226, .07); }
-.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
-.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
-.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
-.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
-.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
-.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
-.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
-.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
-.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
-.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
-.select-value-color-pageGlass { background-color: undefined; }
-.select-value-color-washGlass { background-color: undefined; }
-
-.checkbox {
-	display: inline-flex;
-	vertical-align: text-bottom;
-	width: 16;
-	height: 16;
-	background-size: 16px;
-	margin-left: 2px;
-	margin-right: 5px;
-}
-
-.checkbox-on {
-	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
-}
-
-.checkbox-off {
-	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
-}
-	
-</style></head><body><article id="00b84709-e32b-4ec8-85bd-bc69dfe8573d" class="page sans"><header><h1 class="page-title">베겐드 디비</h1><p class="page-description"></p></header><div class="page-body"><p id="cd581640-6132-46d0-8e36-ff16e79a2009" class="">이제 로그인&amp;회원가입을 위한 accounts 테이블을 만들고 각각의 유저는 여러개의 playtime을 가질 수 있으니 일대다 관계로 playtime 테이블을 만들어 봅시다.</p><p id="3404af90-e291-4cb0-bdb8-e06d27b5a1cf" class="">아래 명령어를 이용해 users app을 생성합니다.</p><pre id="9c6b40a0-4464-4611-9d8b-8b86ec4e0c52" class="code"><code>$ cd mysite
-$ python3 manage.py startapp users</code></pre><p id="55b82d32-ebc0-48b8-a17b-beb0c4999e95" class="">users/models.py에서 코드를 작성해 봅시다.</p><pre id="b915a78b-6e20-47e4-b396-1c2af2a33f88" class="code"><code># Account 모델 정의
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>베겐드 디비</title>
+	<style>
+		/* cspell:disable-file */
+		/* webkit printing magic: print all background colors */
+		html {
+			-webkit-print-color-adjust: exact;
+		}
+
+		* {
+			box-sizing: border-box;
+			-webkit-print-color-adjust: exact;
+		}
+
+		html,
+		body {
+			margin: 0;
+			padding: 0;
+		}
+
+		@media only screen {
+			body {
+				margin: 2em auto;
+				max-width: 900px;
+				color: rgb(55, 53, 47);
+			}
+		}
+
+		body {
+			line-height: 1.5;
+			white-space: pre-wrap;
+		}
+
+		a,
+		a.visited {
+			color: inherit;
+			text-decoration: underline;
+		}
+
+		.pdf-relative-link-path {
+			font-size: 80%;
+			color: #444;
+		}
+
+		h1,
+		h2,
+		h3 {
+			letter-spacing: -0.01em;
+			line-height: 1.2;
+			font-weight: 600;
+			margin-bottom: 0;
+		}
+
+		.page-title {
+			font-size: 2.5rem;
+			font-weight: 700;
+			margin-top: 0;
+			margin-bottom: 0.75em;
+		}
+
+		h1 {
+			font-size: 1.875rem;
+			margin-top: 1.875rem;
+		}
+
+		h2 {
+			font-size: 1.5rem;
+			margin-top: 1.5rem;
+		}
+
+		h3 {
+			font-size: 1.25rem;
+			margin-top: 1.25rem;
+		}
+
+		.source {
+			border: 1px solid #ddd;
+			border-radius: 3px;
+			padding: 1.5em;
+			word-break: break-all;
+		}
+
+		.callout {
+			border-radius: 3px;
+			padding: 1rem;
+		}
+
+		figure {
+			margin: 1.25em 0;
+			page-break-inside: avoid;
+		}
+
+		figcaption {
+			opacity: 0.5;
+			font-size: 85%;
+			margin-top: 0.5em;
+		}
+
+		mark {
+			background-color: transparent;
+		}
+
+		.indented {
+			padding-left: 1.5em;
+		}
+
+		hr {
+			background: transparent;
+			display: block;
+			width: 100%;
+			height: 1px;
+			visibility: visible;
+			border: none;
+			border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+		}
+
+		img {
+			max-width: 100%;
+		}
+
+		@media only print {
+			img {
+				max-height: 100vh;
+				object-fit: contain;
+			}
+		}
+
+		@page {
+			margin: 1in;
+		}
+
+		.collection-content {
+			font-size: 0.875rem;
+		}
+
+		.column-list {
+			display: flex;
+			justify-content: space-between;
+		}
+
+		.column {
+			padding: 0 1em;
+		}
+
+		.column:first-child {
+			padding-left: 0;
+		}
+
+		.column:last-child {
+			padding-right: 0;
+		}
+
+		.table_of_contents-item {
+			display: block;
+			font-size: 0.875rem;
+			line-height: 1.3;
+			padding: 0.125rem;
+		}
+
+		.table_of_contents-indent-1 {
+			margin-left: 1.5rem;
+		}
+
+		.table_of_contents-indent-2 {
+			margin-left: 3rem;
+		}
+
+		.table_of_contents-indent-3 {
+			margin-left: 4.5rem;
+		}
+
+		.table_of_contents-link {
+			text-decoration: none;
+			opacity: 0.7;
+			border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+		}
+
+		table,
+		th,
+		td {
+			border: 1px solid rgba(55, 53, 47, 0.09);
+			border-collapse: collapse;
+		}
+
+		table {
+			border-left: none;
+			border-right: none;
+		}
+
+		th,
+		td {
+			font-weight: normal;
+			padding: 0.25em 0.5em;
+			line-height: 1.5;
+			min-height: 1.5em;
+			text-align: left;
+		}
+
+		th {
+			color: rgba(55, 53, 47, 0.6);
+		}
+
+		ol,
+		ul {
+			margin: 0;
+			margin-block-start: 0.6em;
+			margin-block-end: 0.6em;
+		}
+
+		li>ol:first-child,
+		li>ul:first-child {
+			margin-block-start: 0.6em;
+		}
+
+		ul>li {
+			list-style: disc;
+		}
+
+		ul.to-do-list {
+			padding-inline-start: 0;
+		}
+
+		ul.to-do-list>li {
+			list-style: none;
+		}
+
+		.to-do-children-checked {
+			text-decoration: line-through;
+			opacity: 0.375;
+		}
+
+		ul.toggle>li {
+			list-style: none;
+		}
+
+		ul {
+			padding-inline-start: 1.7em;
+		}
+
+		ul>li {
+			padding-left: 0.1em;
+		}
+
+		ol {
+			padding-inline-start: 1.6em;
+		}
+
+		ol>li {
+			padding-left: 0.2em;
+		}
+
+		.mono ol {
+			padding-inline-start: 2em;
+		}
+
+		.mono ol>li {
+			text-indent: -0.4em;
+		}
+
+		.toggle {
+			padding-inline-start: 0em;
+			list-style-type: none;
+		}
+
+		/* Indent toggle children */
+		.toggle>li>details {
+			padding-left: 1.7em;
+		}
+
+		.toggle>li>details>summary {
+			margin-left: -1.1em;
+		}
+
+		.selected-value {
+			display: inline-block;
+			padding: 0 0.5em;
+			background: rgba(206, 205, 202, 0.5);
+			border-radius: 3px;
+			margin-right: 0.5em;
+			margin-top: 0.3em;
+			margin-bottom: 0.3em;
+			white-space: nowrap;
+		}
+
+		.collection-title {
+			display: inline-block;
+			margin-right: 1em;
+		}
+
+		.page-description {
+			margin-bottom: 2em;
+		}
+
+		.simple-table {
+			margin-top: 1em;
+			font-size: 0.875rem;
+			empty-cells: show;
+		}
+
+		.simple-table td {
+			height: 29px;
+			min-width: 120px;
+		}
+
+		.simple-table th {
+			height: 29px;
+			min-width: 120px;
+		}
+
+		.simple-table-header-color {
+			background: rgb(247, 246, 243);
+			color: black;
+		}
+
+		.simple-table-header {
+			font-weight: 500;
+		}
+
+		time {
+			opacity: 0.5;
+		}
+
+		.icon {
+			display: inline-block;
+			max-width: 1.2em;
+			max-height: 1.2em;
+			text-decoration: none;
+			vertical-align: text-bottom;
+			margin-right: 0.5em;
+		}
+
+		img.icon {
+			border-radius: 3px;
+		}
+
+		.user-icon {
+			width: 1.5em;
+			height: 1.5em;
+			border-radius: 100%;
+			margin-right: 0.5rem;
+		}
+
+		.user-icon-inner {
+			font-size: 0.8em;
+		}
+
+		.text-icon {
+			border: 1px solid #000;
+			text-align: center;
+		}
+
+		.page-cover-image {
+			display: block;
+			object-fit: cover;
+			width: 100%;
+			max-height: 30vh;
+		}
+
+		.page-header-icon {
+			font-size: 3rem;
+			margin-bottom: 1rem;
+		}
+
+		.page-header-icon-with-cover {
+			margin-top: -0.72em;
+			margin-left: 0.07em;
+		}
+
+		.page-header-icon img {
+			border-radius: 3px;
+		}
+
+		.link-to-page {
+			margin: 1em 0;
+			padding: 0;
+			border: none;
+			font-weight: 500;
+		}
+
+		p>.user {
+			opacity: 0.5;
+		}
+
+		td>.user,
+		td>time {
+			white-space: nowrap;
+		}
+
+		input[type="checkbox"] {
+			transform: scale(1.5);
+			margin-right: 0.6em;
+			vertical-align: middle;
+		}
+
+		p {
+			margin-top: 0.5em;
+			margin-bottom: 0.5em;
+		}
+
+		.image {
+			border: none;
+			margin: 1.5em 0;
+			padding: 0;
+			border-radius: 0;
+			text-align: center;
+		}
+
+		.code,
+		code {
+			background: rgba(135, 131, 120, 0.15);
+			border-radius: 3px;
+			padding: 0.2em 0.4em;
+			border-radius: 3px;
+			font-size: 85%;
+			tab-size: 2;
+		}
+
+		code {
+			color: #eb5757;
+		}
+
+		.code {
+			padding: 1.5em 1em;
+		}
+
+		.code-wrap {
+			white-space: pre-wrap;
+			word-break: break-all;
+		}
+
+		.code>code {
+			background: none;
+			padding: 0;
+			font-size: 100%;
+			color: inherit;
+		}
+
+		blockquote {
+			font-size: 1.25em;
+			margin: 1em 0;
+			padding-left: 1em;
+			border-left: 3px solid rgb(55, 53, 47);
+		}
+
+		.bookmark {
+			text-decoration: none;
+			max-height: 8em;
+			padding: 0;
+			display: flex;
+			width: 100%;
+			align-items: stretch;
+		}
+
+		.bookmark-title {
+			font-size: 0.85em;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			height: 1.75em;
+			white-space: nowrap;
+		}
+
+		.bookmark-text {
+			display: flex;
+			flex-direction: column;
+		}
+
+		.bookmark-info {
+			flex: 4 1 180px;
+			padding: 12px 14px 14px;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+		}
+
+		.bookmark-image {
+			width: 33%;
+			flex: 1 1 180px;
+			display: block;
+			position: relative;
+			object-fit: cover;
+			border-radius: 1px;
+		}
+
+		.bookmark-description {
+			color: rgba(55, 53, 47, 0.6);
+			font-size: 0.75em;
+			overflow: hidden;
+			max-height: 4.5em;
+			word-break: break-word;
+		}
+
+		.bookmark-href {
+			font-size: 0.75em;
+			margin-top: 0.25em;
+		}
+
+		.sans {
+			font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+		}
+
+		.code {
+			font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace;
+		}
+
+		.serif {
+			font-family: Lyon-Text, Georgia, ui-serif, serif;
+		}
+
+		.mono {
+			font-family: iawriter-mono, Nitti, Menlo, Courier, monospace;
+		}
+
+		.pdf .sans {
+			font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP';
+		}
+
+		.pdf:lang(zh-CN) .sans {
+			font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC';
+		}
+
+		.pdf:lang(zh-TW) .sans {
+			font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC';
+		}
+
+		.pdf:lang(ko-KR) .sans {
+			font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR';
+		}
+
+		.pdf .code {
+			font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP';
+		}
+
+		.pdf:lang(zh-CN) .code {
+			font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC';
+		}
+
+		.pdf:lang(zh-TW) .code {
+			font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC';
+		}
+
+		.pdf:lang(ko-KR) .code {
+			font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR';
+		}
+
+		.pdf .serif {
+			font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP';
+		}
+
+		.pdf:lang(zh-CN) .serif {
+			font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC';
+		}
+
+		.pdf:lang(zh-TW) .serif {
+			font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC';
+		}
+
+		.pdf:lang(ko-KR) .serif {
+			font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR';
+		}
+
+		.pdf .mono {
+			font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP';
+		}
+
+		.pdf:lang(zh-CN) .mono {
+			font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC';
+		}
+
+		.pdf:lang(zh-TW) .mono {
+			font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC';
+		}
+
+		.pdf:lang(ko-KR) .mono {
+			font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR';
+		}
+
+		.highlight-default {
+			color: rgba(55, 53, 47, 1);
+		}
+
+		.highlight-gray {
+			color: rgba(120, 119, 116, 1);
+			fill: rgba(120, 119, 116, 1);
+		}
+
+		.highlight-brown {
+			color: rgba(159, 107, 83, 1);
+			fill: rgba(159, 107, 83, 1);
+		}
+
+		.highlight-orange {
+			color: rgba(217, 115, 13, 1);
+			fill: rgba(217, 115, 13, 1);
+		}
+
+		.highlight-yellow {
+			color: rgba(203, 145, 47, 1);
+			fill: rgba(203, 145, 47, 1);
+		}
+
+		.highlight-teal {
+			color: rgba(68, 131, 97, 1);
+			fill: rgba(68, 131, 97, 1);
+		}
+
+		.highlight-blue {
+			color: rgba(51, 126, 169, 1);
+			fill: rgba(51, 126, 169, 1);
+		}
+
+		.highlight-purple {
+			color: rgba(144, 101, 176, 1);
+			fill: rgba(144, 101, 176, 1);
+		}
+
+		.highlight-pink {
+			color: rgba(193, 76, 138, 1);
+			fill: rgba(193, 76, 138, 1);
+		}
+
+		.highlight-red {
+			color: rgba(212, 76, 71, 1);
+			fill: rgba(212, 76, 71, 1);
+		}
+
+		.highlight-gray_background {
+			background: rgba(241, 241, 239, 1);
+		}
+
+		.highlight-brown_background {
+			background: rgba(244, 238, 238, 1);
+		}
+
+		.highlight-orange_background {
+			background: rgba(251, 236, 221, 1);
+		}
+
+		.highlight-yellow_background {
+			background: rgba(251, 243, 219, 1);
+		}
+
+		.highlight-teal_background {
+			background: rgba(237, 243, 236, 1);
+		}
+
+		.highlight-blue_background {
+			background: rgba(231, 243, 248, 1);
+		}
+
+		.highlight-purple_background {
+			background: rgba(244, 240, 247, 0.8);
+		}
+
+		.highlight-pink_background {
+			background: rgba(249, 238, 243, 0.8);
+		}
+
+		.highlight-red_background {
+			background: rgba(253, 235, 236, 1);
+		}
+
+		.block-color-default {
+			color: inherit;
+			fill: inherit;
+		}
+
+		.block-color-gray {
+			color: rgba(120, 119, 116, 1);
+			fill: rgba(120, 119, 116, 1);
+		}
+
+		.block-color-brown {
+			color: rgba(159, 107, 83, 1);
+			fill: rgba(159, 107, 83, 1);
+		}
+
+		.block-color-orange {
+			color: rgba(217, 115, 13, 1);
+			fill: rgba(217, 115, 13, 1);
+		}
+
+		.block-color-yellow {
+			color: rgba(203, 145, 47, 1);
+			fill: rgba(203, 145, 47, 1);
+		}
+
+		.block-color-teal {
+			color: rgba(68, 131, 97, 1);
+			fill: rgba(68, 131, 97, 1);
+		}
+
+		.block-color-blue {
+			color: rgba(51, 126, 169, 1);
+			fill: rgba(51, 126, 169, 1);
+		}
+
+		.block-color-purple {
+			color: rgba(144, 101, 176, 1);
+			fill: rgba(144, 101, 176, 1);
+		}
+
+		.block-color-pink {
+			color: rgba(193, 76, 138, 1);
+			fill: rgba(193, 76, 138, 1);
+		}
+
+		.block-color-red {
+			color: rgba(212, 76, 71, 1);
+			fill: rgba(212, 76, 71, 1);
+		}
+
+		.block-color-gray_background {
+			background: rgba(241, 241, 239, 1);
+		}
+
+		.block-color-brown_background {
+			background: rgba(244, 238, 238, 1);
+		}
+
+		.block-color-orange_background {
+			background: rgba(251, 236, 221, 1);
+		}
+
+		.block-color-yellow_background {
+			background: rgba(251, 243, 219, 1);
+		}
+
+		.block-color-teal_background {
+			background: rgba(237, 243, 236, 1);
+		}
+
+		.block-color-blue_background {
+			background: rgba(231, 243, 248, 1);
+		}
+
+		.block-color-purple_background {
+			background: rgba(244, 240, 247, 0.8);
+		}
+
+		.block-color-pink_background {
+			background: rgba(249, 238, 243, 0.8);
+		}
+
+		.block-color-red_background {
+			background: rgba(253, 235, 236, 1);
+		}
+
+		.select-value-color-interactiveBlue {
+			background-color: rgba(35, 131, 226, .07);
+		}
+
+		.select-value-color-pink {
+			background-color: rgba(245, 224, 233, 1);
+		}
+
+		.select-value-color-purple {
+			background-color: rgba(232, 222, 238, 1);
+		}
+
+		.select-value-color-green {
+			background-color: rgba(219, 237, 219, 1);
+		}
+
+		.select-value-color-gray {
+			background-color: rgba(227, 226, 224, 1);
+		}
+
+		.select-value-color-translucentGray {
+			background-color: rgba(255, 255, 255, 0.0375);
+		}
+
+		.select-value-color-orange {
+			background-color: rgba(250, 222, 201, 1);
+		}
+
+		.select-value-color-brown {
+			background-color: rgba(238, 224, 218, 1);
+		}
+
+		.select-value-color-red {
+			background-color: rgba(255, 226, 221, 1);
+		}
+
+		.select-value-color-yellow {
+			background-color: rgba(253, 236, 200, 1);
+		}
+
+		.select-value-color-blue {
+			background-color: rgba(211, 229, 239, 1);
+		}
+
+		.select-value-color-pageGlass {
+			background-color: undefined;
+		}
+
+		.select-value-color-washGlass {
+			background-color: undefined;
+		}
+
+		.checkbox {
+			display: inline-flex;
+			vertical-align: text-bottom;
+			width: 16;
+			height: 16;
+			background-size: 16px;
+			margin-left: 2px;
+			margin-right: 5px;
+		}
+
+		.checkbox-on {
+			background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+		}
+
+		.checkbox-off {
+			background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+		}
+	</style>
+</head>
+
+<body>
+	<article id="00b84709-e32b-4ec8-85bd-bc69dfe8573d" class="page sans">
+		<header>
+			<h1 class="page-title">베겐드 디비</h1>
+			<p class="page-description"></p>
+		</header>
+		<div class="page-body">
+			<p id="cd581640-6132-46d0-8e36-ff16e79a2009" class="">이제 로그인&amp;회원가입을 위한 accounts 테이블을 만들고 각각의 유저는 여러개의
+				playtime을 가질 수 있으니 일대다 관계로 playtime 테이블을 만들어 봅시다.</p>
+			<p id="3404af90-e291-4cb0-bdb8-e06d27b5a1cf" class="">아래 명령어를 이용해 users app을 생성합니다.</p>
+			<pre id="9c6b40a0-4464-4611-9d8b-8b86ec4e0c52" class="code"><code>$ cd mysite
+$ python3 manage.py startapp users</code></pre>
+			<p id="55b82d32-ebc0-48b8-a17b-beb0c4999e95" class="">users/models.py에서 코드를 작성해 봅시다.</p>
+			<pre id="b915a78b-6e20-47e4-b396-1c2af2a33f88" class="code"><code># Account 모델 정의
 class Account(models.Model):
     # 이메일 필드 (이메일 형식 검사 포함)
     email = models.EmailField()
@@ -694,7 +853,9 @@ class Account(models.Model):
 
     # 메타데이터 설정. 여기서는 데이터베이스 테이블 이름을 &#x27;accounts&#x27;로 지정
     class Meta:
-        db_table = &#x27;accounts&#x27;</code></pre><p id="0012f6c9-641a-49f8-b31c-88ae86439c5e" class="">이제 playtime 테이블 코드를 작성해 봅시다.(users/models.py)</p><pre id="f1f7cf95-0940-4bf7-86dc-b2cbb63ff4c8" class="code"><code>class PlayTime(models.Model):
+        db_table = &#x27;accounts&#x27;</code></pre>
+			<p id="0012f6c9-641a-49f8-b31c-88ae86439c5e" class="">이제 playtime 테이블 코드를 작성해 봅시다.(users/models.py)</p>
+			<pre id="f1f7cf95-0940-4bf7-86dc-b2cbb63ff4c8" class="code"><code>class PlayTime(models.Model):
     objects = None
     start_time = models.DateTimeField(auto_now_add=True)
     end_time = models.DateTimeField(null=True, blank=True)
@@ -706,8 +867,23 @@ class Account(models.Model):
     def __str__(self):
         return f&#x27;{self.start_time}, {self.end_time}, {self.duration}&#x27;
     class Meta:
-        db_table = &#x27;playtime&#x27;</code></pre><p id="91a9992c-9c53-4da6-8f69-40b6933043b6" class="">앞서 설명했듯이 한명의 유저는 여러개의 플레이타임을 가질 수 있으므로 일대다 관계를 설정해줘야 합니다.</p><p id="0391e7a0-1916-4fac-aed4-a4d8239007e9" class="">이제 변경사항을 적용하기 위해 아래 명령어를 <a href="http://manage.py">manage.py</a>가 있는 위치에서 터미널에 입력해줍니다.</p><pre id="0874e1ba-181b-4c8d-8d12-22ad154dbec2" class="code"><code>$ python3 manage.py makemigrations
-$ python3 manage.py migrate</code></pre><p id="20935e01-1a5f-4fc6-89b3-cff28b503c33" class="">MySQL workbench에 들어가 보면</p><figure id="d4b7946e-82b5-49d0-b689-f368bb41251a" class="image"><a href="%E1%84%87%E1%85%A6%E1%84%80%E1%85%A6%E1%86%AB%E1%84%83%E1%85%B3%20%E1%84%83%E1%85%B5%E1%84%87%E1%85%B5%2000b84709e32b4ec885bdbc69dfe8573d/Untitled.png"><img style="width:498px" src="%E1%84%87%E1%85%A6%E1%84%80%E1%85%A6%E1%86%AB%E1%84%83%E1%85%B3%20%E1%84%83%E1%85%B5%E1%84%87%E1%85%B5%2000b84709e32b4ec885bdbc69dfe8573d/Untitled.png"/></a></figure><p id="5c2118fb-2d4a-4ae8-a94f-0367579be503" class="">테이블을 확인할 수 있습니다.</p><p id="d53109ef-cdf9-4817-a758-392c0cdbc5da" class="">이제 로그인 회원가입 기능을 구현하기 위한 코드를 작성해야 합니다.</p><p id="134cad3c-1da7-45eb-8ebe-615416a38b62" class="">users/views.py ← 아래의 모든 코드는 해당 파일에서 작업합니다.</p><pre id="0dbf02f2-5fc6-4f7c-93a8-4474fc68e8f3" class="code"><code>import json, re, traceback, bcrypt, jwt  # 각종 Python 라이브러리
+        db_table = &#x27;playtime&#x27;</code></pre>
+			<p id="91a9992c-9c53-4da6-8f69-40b6933043b6" class="">앞서 설명했듯이 한명의 유저는 여러개의 플레이타임을 가질 수 있으므로 일대다 관계를 설정해줘야
+				합니다.</p>
+			<p id="0391e7a0-1916-4fac-aed4-a4d8239007e9" class="">이제 변경사항을 적용하기 위해 아래 명령어를 <a
+					href="http://manage.py">manage.py</a>가 있는 위치에서 터미널에 입력해줍니다.</p>
+			<pre id="0874e1ba-181b-4c8d-8d12-22ad154dbec2" class="code"><code>$ python3 manage.py makemigrations
+$ python3 manage.py migrate</code></pre>
+			<p id="20935e01-1a5f-4fc6-89b3-cff28b503c33" class="">MySQL workbench에 들어가 보면</p>
+			<figure id="d4b7946e-82b5-49d0-b689-f368bb41251a" class="image"><a
+					href="%E1%84%87%E1%85%A6%E1%84%80%E1%85%A6%E1%86%AB%E1%84%83%E1%85%B3%20%E1%84%83%E1%85%B5%E1%84%87%E1%85%B5%2000b84709e32b4ec885bdbc69dfe8573d/Untitled.png"><img
+						style="width:498px"
+						src="%E1%84%87%E1%85%A6%E1%84%80%E1%85%A6%E1%86%AB%E1%84%83%E1%85%B3%20%E1%84%83%E1%85%B5%E1%84%87%E1%85%B5%2000b84709e32b4ec885bdbc69dfe8573d/Untitled.png" /></a>
+			</figure>
+			<p id="5c2118fb-2d4a-4ae8-a94f-0367579be503" class="">테이블을 확인할 수 있습니다.</p>
+			<p id="d53109ef-cdf9-4817-a758-392c0cdbc5da" class="">이제 로그인 회원가입 기능을 구현하기 위한 코드를 작성해야 합니다.</p>
+			<p id="134cad3c-1da7-45eb-8ebe-615416a38b62" class="">users/views.py ← 아래의 모든 코드는 해당 파일에서 작업합니다.</p>
+			<pre id="0dbf02f2-5fc6-4f7c-93a8-4474fc68e8f3" class="code"><code>import json, re, traceback, bcrypt, jwt  # 각종 Python 라이브러리
 from django.http import JsonResponse  # Django의 JsonResponse 클래스
 from django.views import View  # Django의 View 클래스
 from django.db.models import Q  # Django의 쿼리 생성기
@@ -715,11 +891,16 @@ from .models import Account, PlayTime
 from django.db.models import Min
 from django.db.models.functions import Trunc
 from django.core.exceptions import ObjectDoesNotExist
-import datetime</code></pre><pre id="49cccb26-d13c-41ac-a27d-bff03945cc15" class="code"><code>$ pip3 install json
+import datetime</code></pre>
+			<pre id="49cccb26-d13c-41ac-a27d-bff03945cc15" class="code"><code>$ pip3 install json
 $ pip3 install re
 $ pip3 install traceback
 $ pip3 install bcrypt
-$ pip3 install jwt</code></pre><p id="727d6ed7-f0f4-43d2-a910-a8676eec4b1f" class="">필요한 라이브러리들을 설치해 주시고 models에서 Account와 PlayTime을 import해 줍니다.</p><p id="1ff455ae-7125-49f2-9d1c-80816295362d" class="">이메일과 패스워드 유효성 검사를 위한 함수 코드 입니다.</p><pre id="26b8185f-5ba0-4c62-ae67-8f278a09f6ef" class="code"><code>def valid_email(email):
+$ pip3 install jwt</code></pre>
+			<p id="727d6ed7-f0f4-43d2-a910-a8676eec4b1f" class="">필요한 라이브러리들을 설치해 주시고 models에서 Account와 PlayTime을
+				import해 줍니다.</p>
+			<p id="1ff455ae-7125-49f2-9d1c-80816295362d" class="">이메일과 패스워드 유효성 검사를 위한 함수 코드 입니다.</p>
+			<pre id="26b8185f-5ba0-4c62-ae67-8f278a09f6ef" class="code"><code>def valid_email(email):
     # 이메일 정규 표현식 패턴
     pattern = re.compile(&#x27;^.+@+.+\.+.+$&#x27;)
     # 정규 표현식에 맞지 않으면 유효하지 않은 이메일
@@ -733,7 +914,34 @@ def valid_password(password):
     # 패스워드 길이가 최소 길이보다 짧으면 유효하지 않음
     if len(password) &lt; minimum_password_length:
         return False, JsonResponse({&#x27;message&#x27;: &#x27;SHORT_PASSWORD&#x27;}, status=400)
-    return True, None</code></pre><p id="2357bbab-4549-47b5-a0f5-53c808040729" class="">회원가입을 처리하는 클래스 코드입니다. 이 클래스는 사용자의 가입 요청을 처리하기 위해 다음과 같은 단계로 작동합니다.</p><ol type="1" id="68e55195-5226-47e5-822a-b1ecf2f0cb14" class="numbered-list" start="1"><li>POST 요청 처리: post 메서드는 클라이언트로부터 post 요청을 받아 처리합니다. </li></ol><ol type="1" id="935735e1-4ca8-4bc4-b086-344d90f938b0" class="numbered-list" start="2"><li>데이터 파싱: 클라이언트로부터 받은 JSON 데이터(이메일, 패스워드)를 파싱합니다. 이는 섭버가 이해할 수 있는 형태로 데이터를 변환하는 과정입니다.</li></ol><ol type="1" id="454e1d3c-f383-4cae-badd-3152f0da7ef3" class="numbered-list" start="3"><li>데이터 검증: 입력된 이메일과 비밀번호가 제대로 제공되었는지 확인합니다. 만약 필수 데이터가 누락되었다면, 400 에러와 함께 오류 메세지를 반환합니다.</li></ol><ol type="1" id="db356ea7-114b-44e4-93cf-9d3ae7575ca8" class="numbered-list" start="4"><li>유효성 검사: 이메일과 비밀번호 형식이 유효한지 valid_email, vaild_password를 호출하여 검사합니다. 유효하지 않다면 오류 메세지와 함께 응답을 반환합니다.</li></ol><ol type="1" id="d7618c87-2872-4e0e-8898-fe53cee93335" class="numbered-list" start="5"><li>중복 계정 검사: 이미 존재하는 이메일로 가입을 시도할 경우, DB에서 동일한 이메일을 가진 계정이 있는지 검사합니다. 이미 계정이 있다면 409에러와 오류 메세지를 반환합니다.</li></ol><ol type="1" id="e5875370-813b-47be-b317-b16d573c8953" class="numbered-list" start="6"><li>계정 생성: 모든 검증이 통과하면, 새로운 계정을 생성합니다. 이때 비밀번호는 bcrypt라이브러리를 사용하여 해시 처리하여 암호화해 저장합니다. </li></ol><ol type="1" id="d3fa4d4f-a998-42d8-b708-a2611e1e8b9e" class="numbered-list" start="7"><li>예외 처리: 코드에서는 KeyError 예외를 처리하고 있습니다. 이는 JSON 데이터에서 필요한 키(ex: email 또는 password)를 찾지 못했을 때 발생합니다.</li></ol><pre id="e96e4117-304b-4a03-965e-e3b0e7bca95f" class="code"><code># 회원가입을 처리하는 클래스
+    return True, None</code></pre>
+			<p id="2357bbab-4549-47b5-a0f5-53c808040729" class="">회원가입을 처리하는 클래스 코드입니다. 이 클래스는 사용자의 가입 요청을 처리하기 위해 다음과
+				같은 단계로 작동합니다.</p>
+			<ol type="1" id="68e55195-5226-47e5-822a-b1ecf2f0cb14" class="numbered-list" start="1">
+				<li>POST 요청 처리: post 메서드는 클라이언트로부터 post 요청을 받아 처리합니다. </li>
+			</ol>
+			<ol type="1" id="935735e1-4ca8-4bc4-b086-344d90f938b0" class="numbered-list" start="2">
+				<li>데이터 파싱: 클라이언트로부터 받은 JSON 데이터(이메일, 패스워드)를 파싱합니다. 이는 섭버가 이해할 수 있는 형태로 데이터를 변환하는 과정입니다.</li>
+			</ol>
+			<ol type="1" id="454e1d3c-f383-4cae-badd-3152f0da7ef3" class="numbered-list" start="3">
+				<li>데이터 검증: 입력된 이메일과 비밀번호가 제대로 제공되었는지 확인합니다. 만약 필수 데이터가 누락되었다면, 400 에러와 함께 오류 메세지를 반환합니다.</li>
+			</ol>
+			<ol type="1" id="db356ea7-114b-44e4-93cf-9d3ae7575ca8" class="numbered-list" start="4">
+				<li>유효성 검사: 이메일과 비밀번호 형식이 유효한지 valid_email, vaild_password를 호출하여 검사합니다. 유효하지 않다면 오류 메세지와 함께 응답을 반환합니다.
+				</li>
+			</ol>
+			<ol type="1" id="d7618c87-2872-4e0e-8898-fe53cee93335" class="numbered-list" start="5">
+				<li>중복 계정 검사: 이미 존재하는 이메일로 가입을 시도할 경우, DB에서 동일한 이메일을 가진 계정이 있는지 검사합니다. 이미 계정이 있다면 409에러와 오류 메세지를 반환합니다.
+				</li>
+			</ol>
+			<ol type="1" id="e5875370-813b-47be-b317-b16d573c8953" class="numbered-list" start="6">
+				<li>계정 생성: 모든 검증이 통과하면, 새로운 계정을 생성합니다. 이때 비밀번호는 bcrypt라이브러리를 사용하여 해시 처리하여 암호화해 저장합니다. </li>
+			</ol>
+			<ol type="1" id="d3fa4d4f-a998-42d8-b708-a2611e1e8b9e" class="numbered-list" start="7">
+				<li>예외 처리: 코드에서는 KeyError 예외를 처리하고 있습니다. 이는 JSON 데이터에서 필요한 키(ex: email 또는 password)를 찾지 못했을 때 발생합니다.
+				</li>
+			</ol>
+			<pre id="e96e4117-304b-4a03-965e-e3b0e7bca95f" class="code"><code># 회원가입을 처리하는 클래스
 class SignUpView(View):
     # POST 요청을 처리하는 메서드
     def post(self, request):
@@ -769,7 +977,39 @@ class SignUpView(View):
 
         except KeyError:
             # KeyError 예외 처리
-            return JsonResponse({&quot;message&quot;: &quot;KEY_ERROR&quot;}, status=400)</code></pre><p id="5af303f7-39d7-4dcb-9788-5406892b9b73" class="">로그인을 처리하는 클래스 코드입니다. 이 클래스는 사용자의 로그인 요청으 처리하기 위해 다음과 같은 단계로 작동합니다.</p><ol type="1" id="45424aae-002c-4a64-ba00-04d3e8f61af7" class="numbered-list" start="1"><li>POST 요청 처리: post 메서드는 클라이언트로부터 post 요청을 받아 처리합니다. 이는 사용자가 로그인 폼에 입력한 데이터(이메일과 패스워드)를 서버로 전송할 때 사용됩니다.</li></ol><ol type="1" id="7900b730-a83c-4a2d-b1ad-d1339077b307" class="numbered-list" start="2"><li>데이터 파싱: 클라이언트로부터 받은 JSON 데이터를 파싱합니다. 이 데이터는 사용자의 이메일과 패스워드를 포함합니다.</li></ol><ol type="1" id="cacaee9a-a771-4d64-a0ed-e6f5b6008f56" class="numbered-list" start="3"><li>계정 찾기:데이터베이스에서 클라이언트로 부터 받은 이메일을 가진 계정을 찾습니다. 이메일을 기반으로 계정 검색을 진행합니다.</li></ol><ol type="1" id="9387f69d-e032-472c-8a65-e3d59b0230d2" class="numbered-list" start="4"><li>비밀번호 검증: 데이터베이스에 저장된 해시된 비밀번호와 사용자가 입력한 비밀번호를 비교합니다. 이 과정에서 bcrypt 라이브러리가 사용됩니다.</li></ol><ol type="1" id="d3242598-e7a6-4f92-8bc6-e199685a8e0b" class="numbered-list" start="5"><li>JWT 토큰 생성: 로그인이 성공하면 JWT 토큰을 생성합니다. 이 토큰은 사용자의 세션을 관리하는 데 사용됩니다. 토큰에는 사용자의 이메일과 서버의 secret-key가 포함되어 있으며, 이는 서버와 클라이언트 간 안전한 통신을 보장합니다.</li></ol><ol type="1" id="bb9daf36-2a63-4bda-9c9d-30c87f4e3e24" class="numbered-list" start="6"><li>성공 응답: 사용자에게 JWT 토큰, 이메일, 성공 메세지를 반환합니다. 이는 사용자가 성공적으로 로그인했음을 나타냅니다.</li></ol><ol type="1" id="0c514ac5-723d-4942-9e42-d7898a8cbac5" class="numbered-list" start="7"><li>비밀번호 불일치 처리: 입력된 패스워드가 데이터베이스에 저장된 패스워드와 일치하지 않는 경우, 401 에러와 함께 메세지를 반환합니다.</li></ol><ol type="1" id="f112cb32-abfe-4338-9eb8-078f3b3c9531" class="numbered-list" start="8"><li>계정 미존재 처리: 제공된 계정을 찾지 못한 경우 401에러와 메세지를 반환합니다. 이는 사용자 계정이 존재하지 않음을 의미합니다.</li></ol><ol type="1" id="422d3ab1-ca0a-4293-8e3b-9da341d07a14" class="numbered-list" start="9"><li>예외 처리: JSON 데이터에서 필요한 키를 찾지 못하면 400에러와 함께 메세지를 반환합니다.</li></ol><pre id="95fca7d7-ec7d-4f51-9005-a8ae175c6d92" class="code"><code># 로그인을 처리하는 클래스
+            return JsonResponse({&quot;message&quot;: &quot;KEY_ERROR&quot;}, status=400)</code></pre>
+			<p id="5af303f7-39d7-4dcb-9788-5406892b9b73" class="">로그인을 처리하는 클래스 코드입니다. 이 클래스는 사용자의 로그인 요청으 처리하기 위해 다음과
+				같은 단계로 작동합니다.</p>
+			<ol type="1" id="45424aae-002c-4a64-ba00-04d3e8f61af7" class="numbered-list" start="1">
+				<li>POST 요청 처리: post 메서드는 클라이언트로부터 post 요청을 받아 처리합니다. 이는 사용자가 로그인 폼에 입력한 데이터(이메일과 패스워드)를 서버로 전송할 때
+					사용됩니다.</li>
+			</ol>
+			<ol type="1" id="7900b730-a83c-4a2d-b1ad-d1339077b307" class="numbered-list" start="2">
+				<li>데이터 파싱: 클라이언트로부터 받은 JSON 데이터를 파싱합니다. 이 데이터는 사용자의 이메일과 패스워드를 포함합니다.</li>
+			</ol>
+			<ol type="1" id="cacaee9a-a771-4d64-a0ed-e6f5b6008f56" class="numbered-list" start="3">
+				<li>계정 찾기:데이터베이스에서 클라이언트로 부터 받은 이메일을 가진 계정을 찾습니다. 이메일을 기반으로 계정 검색을 진행합니다.</li>
+			</ol>
+			<ol type="1" id="9387f69d-e032-472c-8a65-e3d59b0230d2" class="numbered-list" start="4">
+				<li>비밀번호 검증: 데이터베이스에 저장된 해시된 비밀번호와 사용자가 입력한 비밀번호를 비교합니다. 이 과정에서 bcrypt 라이브러리가 사용됩니다.</li>
+			</ol>
+			<ol type="1" id="d3242598-e7a6-4f92-8bc6-e199685a8e0b" class="numbered-list" start="5">
+				<li>JWT 토큰 생성: 로그인이 성공하면 JWT 토큰을 생성합니다. 이 토큰은 사용자의 세션을 관리하는 데 사용됩니다. 토큰에는 사용자의 이메일과 서버의 secret-key가 포함되어
+					있으며, 이는 서버와 클라이언트 간 안전한 통신을 보장합니다.</li>
+			</ol>
+			<ol type="1" id="bb9daf36-2a63-4bda-9c9d-30c87f4e3e24" class="numbered-list" start="6">
+				<li>성공 응답: 사용자에게 JWT 토큰, 이메일, 성공 메세지를 반환합니다. 이는 사용자가 성공적으로 로그인했음을 나타냅니다.</li>
+			</ol>
+			<ol type="1" id="0c514ac5-723d-4942-9e42-d7898a8cbac5" class="numbered-list" start="7">
+				<li>비밀번호 불일치 처리: 입력된 패스워드가 데이터베이스에 저장된 패스워드와 일치하지 않는 경우, 401 에러와 함께 메세지를 반환합니다.</li>
+			</ol>
+			<ol type="1" id="f112cb32-abfe-4338-9eb8-078f3b3c9531" class="numbered-list" start="8">
+				<li>계정 미존재 처리: 제공된 계정을 찾지 못한 경우 401에러와 메세지를 반환합니다. 이는 사용자 계정이 존재하지 않음을 의미합니다.</li>
+			</ol>
+			<ol type="1" id="422d3ab1-ca0a-4293-8e3b-9da341d07a14" class="numbered-list" start="9">
+				<li>예외 처리: JSON 데이터에서 필요한 키를 찾지 못하면 400에러와 함께 메세지를 반환합니다.</li>
+			</ol>
+			<pre id="95fca7d7-ec7d-4f51-9005-a8ae175c6d92" class="code"><code># 로그인을 처리하는 클래스
 class LoginView(View):
     # POST 요청을 처리하는 메서드
     def post(self, request):
@@ -799,7 +1039,44 @@ class LoginView(View):
 
         except KeyError:
             # KeyError 예외 처리
-            return JsonResponse({&quot;message&quot;: &quot;KEY_ERROR&quot;}, status=400)</code></pre><p id="4d1eef0d-5c82-4917-92f0-4eb29eb3a52a" class="">이제부터는 유저의 playtime을 DB에 저장하기 위한 코드를 작성해 봅시다. 이 코드는 다음과 같은 단계로 작동합니다.</p><ol type="1" id="a9acd610-5285-4067-9cb2-a7d199e2d972" class="numbered-list" start="1"><li>post 요청 처리: psot 메서드는 클라이언트로부터 post 요청을 받아 처리합니다. 이는 사용자가 게임 플레이 시간과 관련된 데이터를 서버로 보낼 때 사용됩니다.</li></ol><ol type="1" id="1414c870-745c-4850-bef7-d7d736f46023" class="numbered-list" start="2"><li>데이터 파싱: 클라이언트로부터 받은 JSON 데이터를 파싱합니다. 이 데이터는 사용자의 이메일과 게임 플레이 시간을 포함합니다.</li></ol><ol type="1" id="092e6297-8f0b-4c58-8771-311e5efeae7d" class="numbered-list" start="3"><li>이메일 유효성 검사: 제공된 이메일이 유효한 형식인지 검사합니다. 유효하지 않다면 404에러와 메세지를 반환합니다.</li></ol><ol type="1" id="a3fc5310-2da7-42df-b661-688ca5c53bc0" class="numbered-list" start="4"><li>사용자 조회: 데이터베이스에서 제공된 이메일을 가진 계정을 찾습니다. 계정이 존재하면 해당 계정 정보를 가져옵니다.</li></ol><ol type="1" id="fd37c3eb-cfff-4bb8-9ecd-687142b857e6" class="numbered-list" start="5"><li>시간 데이터 처리: 제공된 게임 플레이 시간(문자열 형태)을 datetime 객체로 변환합니다. 이는 날짜와 시간을 표현하는 파이썬의 표준 객체입니다.</li></ol><ol type="1" id="db7257b4-12d3-4506-9346-acbbc7b8a215" class="numbered-list" start="6"><li>게임 플레이 시간 기록: PlayTime 인스턴스를 생성하여 사용자의 게임 플레이 시간을 데이터베이스에 저장합니다. 여기서 account_id 는 사용자 계정의 고유 식별자이며, duration은 게임 플레이 시간을 나타냅니다.</li></ol><ol type="1" id="2d853c8b-476e-4696-a58b-a5ebf6cb4db8" class="numbered-list" start="7"><li>성공 응답: 모든 과정이 정상적으로 완료되면, 메세지와 함께 200 상태 코드를 반환합니다.</li></ol><ol type="1" id="8a4a1482-5c33-414b-ba8e-db45da502f35" class="numbered-list" start="8"><li>예외 처리:<ol type="a" id="81b2a63e-8a49-4526-b632-f04476484627" class="numbered-list" start="1"><li>KeyError: 필요한 키를 JSON 데이터에서 찾지 못할 때 발생합니다.</li></ol><ol type="a" id="71711689-7244-4e1d-b60f-703a4b213f02" class="numbered-list" start="2"><li>ValueError: 제공된 날짜 형식이 올바르지 않을 때 발생합니다.</li></ol><ol type="a" id="b1e0dd33-e463-4e4f-8fdd-16c5387c0701" class="numbered-list" start="3"><li>Exception: 기타 예외가 발생할 경우</li></ol></li></ol><pre id="32c616ff-7833-4662-a891-39e9699d1a1e" class="code"><code>class RankingDB(View):
+            return JsonResponse({&quot;message&quot;: &quot;KEY_ERROR&quot;}, status=400)</code></pre>
+			<p id="4d1eef0d-5c82-4917-92f0-4eb29eb3a52a" class="">이제부터는 유저의 playtime을 DB에 저장하기 위한 코드를 작성해 봅시다. 이 코드는 다음과
+				같은 단계로 작동합니다.</p>
+			<ol type="1" id="a9acd610-5285-4067-9cb2-a7d199e2d972" class="numbered-list" start="1">
+				<li>post 요청 처리: psot 메서드는 클라이언트로부터 post 요청을 받아 처리합니다. 이는 사용자가 게임 플레이 시간과 관련된 데이터를 서버로 보낼 때 사용됩니다.</li>
+			</ol>
+			<ol type="1" id="1414c870-745c-4850-bef7-d7d736f46023" class="numbered-list" start="2">
+				<li>데이터 파싱: 클라이언트로부터 받은 JSON 데이터를 파싱합니다. 이 데이터는 사용자의 이메일과 게임 플레이 시간을 포함합니다.</li>
+			</ol>
+			<ol type="1" id="092e6297-8f0b-4c58-8771-311e5efeae7d" class="numbered-list" start="3">
+				<li>이메일 유효성 검사: 제공된 이메일이 유효한 형식인지 검사합니다. 유효하지 않다면 404에러와 메세지를 반환합니다.</li>
+			</ol>
+			<ol type="1" id="a3fc5310-2da7-42df-b661-688ca5c53bc0" class="numbered-list" start="4">
+				<li>사용자 조회: 데이터베이스에서 제공된 이메일을 가진 계정을 찾습니다. 계정이 존재하면 해당 계정 정보를 가져옵니다.</li>
+			</ol>
+			<ol type="1" id="fd37c3eb-cfff-4bb8-9ecd-687142b857e6" class="numbered-list" start="5">
+				<li>시간 데이터 처리: 제공된 게임 플레이 시간(문자열 형태)을 datetime 객체로 변환합니다. 이는 날짜와 시간을 표현하는 파이썬의 표준 객체입니다.</li>
+			</ol>
+			<ol type="1" id="db7257b4-12d3-4506-9346-acbbc7b8a215" class="numbered-list" start="6">
+				<li>게임 플레이 시간 기록: PlayTime 인스턴스를 생성하여 사용자의 게임 플레이 시간을 데이터베이스에 저장합니다. 여기서 account_id 는 사용자 계정의 고유 식별자이며,
+					duration은 게임 플레이 시간을 나타냅니다.</li>
+			</ol>
+			<ol type="1" id="2d853c8b-476e-4696-a58b-a5ebf6cb4db8" class="numbered-list" start="7">
+				<li>성공 응답: 모든 과정이 정상적으로 완료되면, 메세지와 함께 200 상태 코드를 반환합니다.</li>
+			</ol>
+			<ol type="1" id="8a4a1482-5c33-414b-ba8e-db45da502f35" class="numbered-list" start="8">
+				<li>예외 처리:<ol type="a" id="81b2a63e-8a49-4526-b632-f04476484627" class="numbered-list" start="1">
+						<li>KeyError: 필요한 키를 JSON 데이터에서 찾지 못할 때 발생합니다.</li>
+					</ol>
+					<ol type="a" id="71711689-7244-4e1d-b60f-703a4b213f02" class="numbered-list" start="2">
+						<li>ValueError: 제공된 날짜 형식이 올바르지 않을 때 발생합니다.</li>
+					</ol>
+					<ol type="a" id="b1e0dd33-e463-4e4f-8fdd-16c5387c0701" class="numbered-list" start="3">
+						<li>Exception: 기타 예외가 발생할 경우</li>
+					</ol>
+				</li>
+			</ol>
+			<pre id="32c616ff-7833-4662-a891-39e9699d1a1e" class="code"><code>class RankingDB(View):
     def post(self, request):
         data = json.loads(request.body)
         try:
@@ -832,7 +1109,40 @@ class LoginView(View):
         except ValueError:
             return JsonResponse({&quot;message&quot;: &quot;Invalid date format&quot;}, status=400)
         except Exception as e:
-            return JsonResponse({&quot;message&quot;: str(e)}, status=500)</code></pre><p id="d093a452-944f-4b4e-811d-cee1ad43c629" class="">각 유저마다의 플레이타임을 조회하는 코드입니다. 이 클래스는 사용자의 게임 플레이 기록을 조회하고 순위를 반환한느 기능을 수행하며, 다음과 같은 단계로 작동합니다.</p><ol type="1" id="c16522dc-f5b4-4e86-9414-e7a2eca6dcba" class="numbered-list" start="1"><li>post 요청 처리: 사용자가 자신의 게임 플레이 기록을 조회하고자 할 때 사용됩니다.</li></ol><ol type="1" id="6f2cf10b-d191-4406-9684-e5cfd4dfca94" class="numbered-list" start="2"><li>데이터 파싱: 클라이언트로부터 받은 JSON 데이터를 파싱합니다. 이 데이터는 사용자의 이메일을 포함합니다.</li></ol><ol type="1" id="a189594c-1dd0-463d-beae-1b3ad2a09dd4" class="numbered-list" start="3"><li>이메일 유효성 검사: 이메일이 제공되었는지 확인합니다. 제공되지 않은 경우, 400 에러와 메세지를 반환합니다.</li></ol><ol type="1" id="12581b8f-73c6-416f-b8ec-30ee928189f8" class="numbered-list" start="4"><li>사용자 조회: 데이터베이스에서 제공된 이메일을 가진 계정을 찾습니다. 계정이 존재하면 해당 계정 정보를 가져옵니다.</li></ol><ol type="1" id="4f917fe6-0c50-4b35-a739-4179c12ca01a" class="numbered-list" start="5"><li>게임 플레이 시간 조회: PlayTime 모델을 사용하여 해당 계정의 게임 플레이 시간 기록을 조회합니다.</li></ol><ol type="1" id="4cd85055-b9dd-48c5-98e3-b619d12248a8" class="numbered-list" start="6"><li>시간 기록 정렬 및 추출: 조회된 게임 플레이 시간을 정렬하고, 상위 5개의 기록을 선택합니다. 이때, 각 기록은 ‘시:분:초’ 형식으로 변환됩니다.</li></ol><ol type="1" id="6747e7db-14cb-4ac5-9f20-489908546cc7" class="numbered-list" start="7"><li>예외 처리: <ol type="a" id="21a7bed0-2513-4a33-b0e9-a688f7889ed9" class="numbered-list" start="1"><li>KeyError: 필요한 키를 JSON 데이터에 찾지 못할 경우 발생합니다.</li></ol><ol type="a" id="9fbc063d-2075-40c4-90bd-5c008ea22cc2" class="numbered-list" start="2"><li>ObjectDoesNotExist: 지정된 객체(계정)을 찾지 못했을 때 발생합니다.</li></ol><ol type="a" id="78b70b3a-db49-4f15-826d-08007c52041d" class="numbered-list" start="3"><li>Exception: 기타 예외가 발생할 경우</li></ol></li></ol><pre id="efe4ad6d-014f-4b0a-ad9c-e78eb54ed88a" class="code"><code>class RankingView(View):
+            return JsonResponse({&quot;message&quot;: str(e)}, status=500)</code></pre>
+			<p id="d093a452-944f-4b4e-811d-cee1ad43c629" class="">각 유저마다의 플레이타임을 조회하는 코드입니다. 이 클래스는 사용자의 게임 플레이 기록을 조회하고
+				순위를 반환한느 기능을 수행하며, 다음과 같은 단계로 작동합니다.</p>
+			<ol type="1" id="c16522dc-f5b4-4e86-9414-e7a2eca6dcba" class="numbered-list" start="1">
+				<li>post 요청 처리: 사용자가 자신의 게임 플레이 기록을 조회하고자 할 때 사용됩니다.</li>
+			</ol>
+			<ol type="1" id="6f2cf10b-d191-4406-9684-e5cfd4dfca94" class="numbered-list" start="2">
+				<li>데이터 파싱: 클라이언트로부터 받은 JSON 데이터를 파싱합니다. 이 데이터는 사용자의 이메일을 포함합니다.</li>
+			</ol>
+			<ol type="1" id="a189594c-1dd0-463d-beae-1b3ad2a09dd4" class="numbered-list" start="3">
+				<li>이메일 유효성 검사: 이메일이 제공되었는지 확인합니다. 제공되지 않은 경우, 400 에러와 메세지를 반환합니다.</li>
+			</ol>
+			<ol type="1" id="12581b8f-73c6-416f-b8ec-30ee928189f8" class="numbered-list" start="4">
+				<li>사용자 조회: 데이터베이스에서 제공된 이메일을 가진 계정을 찾습니다. 계정이 존재하면 해당 계정 정보를 가져옵니다.</li>
+			</ol>
+			<ol type="1" id="4f917fe6-0c50-4b35-a739-4179c12ca01a" class="numbered-list" start="5">
+				<li>게임 플레이 시간 조회: PlayTime 모델을 사용하여 해당 계정의 게임 플레이 시간 기록을 조회합니다.</li>
+			</ol>
+			<ol type="1" id="4cd85055-b9dd-48c5-98e3-b619d12248a8" class="numbered-list" start="6">
+				<li>시간 기록 정렬 및 추출: 조회된 게임 플레이 시간을 정렬하고, 상위 5개의 기록을 선택합니다. 이때, 각 기록은 ‘시:분:초’ 형식으로 변환됩니다.</li>
+			</ol>
+			<ol type="1" id="6747e7db-14cb-4ac5-9f20-489908546cc7" class="numbered-list" start="7">
+				<li>예외 처리: <ol type="a" id="21a7bed0-2513-4a33-b0e9-a688f7889ed9" class="numbered-list" start="1">
+						<li>KeyError: 필요한 키를 JSON 데이터에 찾지 못할 경우 발생합니다.</li>
+					</ol>
+					<ol type="a" id="9fbc063d-2075-40c4-90bd-5c008ea22cc2" class="numbered-list" start="2">
+						<li>ObjectDoesNotExist: 지정된 객체(계정)을 찾지 못했을 때 발생합니다.</li>
+					</ol>
+					<ol type="a" id="78b70b3a-db49-4f15-826d-08007c52041d" class="numbered-list" start="3">
+						<li>Exception: 기타 예외가 발생할 경우</li>
+					</ol>
+				</li>
+			</ol>
+			<pre id="efe4ad6d-014f-4b0a-ad9c-e78eb54ed88a" class="code"><code>class RankingView(View):
     def post(self, request):
         data = json.loads(request.body)  # JSON 데이터 로드
         try:
@@ -857,7 +1167,23 @@ class LoginView(View):
         except ObjectDoesNotExist:
             return JsonResponse({&quot;message&quot;: &quot;ACCOUNT_NOT&quot;}, status=403)
         except Exception as e:
-            return JsonResponse({&quot;message&quot;: str(e)}, status=500)</code></pre><p id="2c5890ae-8dd6-42fa-8f86-e9fa63dc95da" class="">모든 유저중에서 가장 플레이 타임이 짧은 상위 5명을 조회하는 코드입니다. 이 클래스는 전체 사용자 중 게임 플레이 시간 순위를 반환하는 기능을 수행하며, 다음과 같은 단계로 작동합니다.</p><ol type="1" id="0eb699e3-986c-4cb7-b230-e2c7de5632b2" class="numbered-list" start="1"><li>post 요청 처리: 전체 사용자의 게임 플레이 시간 순위를 조회하고자 할 때 사용됩니다.</li></ol><ol type="1" id="9b6eb19b-9e79-4822-868a-c3526655c4b1" class="numbered-list" start="2"><li>최단 플레이 시간 조회: PlayTime 모델을 사용하여 각 사용자별로 가장 짧은 게임 플레이 시간을 찾고, 관련된 Account 모델의 정보(사용자 이메일)와 함께 조회합니다.</li></ol><ol type="1" id="b187b964-f177-4d88-8f09-8a58af4cd91b" class="numbered-list" start="3"><li>상위 사용자 선정: 조회된 데이터 중에서 가장 짧은 시간을 기록한 상위 5명의 사용자를 선택합니다. 이때, 시간 데이터는 ‘시:분:초’ 형식으로 표시되도록 변환합니다.</li></ol><ol type="1" id="e10f5f85-ecda-47d2-964a-a36e7ea7cb9a" class="numbered-list" start="4"><li>결과 포맷팅: 선택된 상위 5명의 사용자 정보를 리스트 형태로 만들어, 각 사용자의 이메일과 플레이 시간을 포함시킵니다.</li></ol><pre id="a943c6a4-a244-4ca7-b9cb-b88d0e85e513" class="code"><code>class Ranking_all_View(View): 
+            return JsonResponse({&quot;message&quot;: str(e)}, status=500)</code></pre>
+			<p id="2c5890ae-8dd6-42fa-8f86-e9fa63dc95da" class="">모든 유저중에서 가장 플레이 타임이 짧은 상위 5명을 조회하는 코드입니다. 이 클래스는 전체
+				사용자 중 게임 플레이 시간 순위를 반환하는 기능을 수행하며, 다음과 같은 단계로 작동합니다.</p>
+			<ol type="1" id="0eb699e3-986c-4cb7-b230-e2c7de5632b2" class="numbered-list" start="1">
+				<li>post 요청 처리: 전체 사용자의 게임 플레이 시간 순위를 조회하고자 할 때 사용됩니다.</li>
+			</ol>
+			<ol type="1" id="9b6eb19b-9e79-4822-868a-c3526655c4b1" class="numbered-list" start="2">
+				<li>최단 플레이 시간 조회: PlayTime 모델을 사용하여 각 사용자별로 가장 짧은 게임 플레이 시간을 찾고, 관련된 Account 모델의 정보(사용자 이메일)와 함께 조회합니다.
+				</li>
+			</ol>
+			<ol type="1" id="b187b964-f177-4d88-8f09-8a58af4cd91b" class="numbered-list" start="3">
+				<li>상위 사용자 선정: 조회된 데이터 중에서 가장 짧은 시간을 기록한 상위 5명의 사용자를 선택합니다. 이때, 시간 데이터는 ‘시:분:초’ 형식으로 표시되도록 변환합니다.</li>
+			</ol>
+			<ol type="1" id="e10f5f85-ecda-47d2-964a-a36e7ea7cb9a" class="numbered-list" start="4">
+				<li>결과 포맷팅: 선택된 상위 5명의 사용자 정보를 리스트 형태로 만들어, 각 사용자의 이메일과 플레이 시간을 포함시킵니다.</li>
+			</ol>
+			<pre id="a943c6a4-a244-4ca7-b9cb-b88d0e85e513" class="code"><code>class Ranking_all_View(View): 
     # 뷰 클래스 선언 (장고의 View 클래스를 상속받음)
 
     def post(self, request): 
@@ -890,7 +1216,10 @@ class LoginView(View):
 
         except Exception as e:
             # 예외 발생시 JsonResponse로 예외 메시지 반환, 상태 코드 500
-            return JsonResponse({&quot;message&quot;: str(e)}, status=500)</code></pre><p id="4bd3772f-1617-4ff4-ada1-7c0d4954d4eb" class="">이제 urlpatterns를 설정해줍니다. </p><p id="04871dbd-83e6-420d-abfb-afd25b2d1156" class="">users/urls.py 에서 코드를 작성해 봅시다.</p><pre id="cd07134e-61ca-4ff1-bab6-27a7d989c516" class="code"><code>from django.urls import path
+            return JsonResponse({&quot;message&quot;: str(e)}, status=500)</code></pre>
+			<p id="4bd3772f-1617-4ff4-ada1-7c0d4954d4eb" class="">이제 urlpatterns를 설정해줍니다. </p>
+			<p id="04871dbd-83e6-420d-abfb-afd25b2d1156" class="">users/urls.py 에서 코드를 작성해 봅시다.</p>
+			<pre id="cd07134e-61ca-4ff1-bab6-27a7d989c516" class="code"><code>from django.urls import path
 from users.views import SignUpView, LoginView, RankingView, RankingDB, Ranking_all_View
 
 urlpatterns = [
@@ -900,11 +1229,20 @@ urlpatterns = [
     path(&#x27;rankingDB&#x27;, RankingDB.as_view()),
     path(&#x27;ranking_all&#x27;, Ranking_all_View.as_view()),
 
-]</code></pre><p id="ea0ba999-32bf-461c-a00a-c067af4d67a6" class="">users/urls.py 에서 작성한 urlpatterns을 연결해줍시다.</p><p id="8e1340a8-7e3b-41fd-8ff3-7dcab3451e83" class="">mysite/urls.py에서 코드를 아래와 같이 작성합니다.</p><pre id="55b42829-39fa-412d-a318-77b1298bc167" class="code"><code>from django.contrib import admin
+]</code></pre>
+			<p id="ea0ba999-32bf-461c-a00a-c067af4d67a6" class="">users/urls.py 에서 작성한 urlpatterns을 연결해줍시다.</p>
+			<p id="8e1340a8-7e3b-41fd-8ff3-7dcab3451e83" class="">mysite/urls.py에서 코드를 아래와 같이 작성합니다.</p>
+			<pre id="55b42829-39fa-412d-a318-77b1298bc167" class="code"><code>from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
     path(&#x27;users/&#x27;, include(&#x27;users.urls&#x27;)),
     path(&#x27;admin/&#x27;, admin.site.urls),
-]</code></pre><p id="85c48001-48ee-44c6-9dac-95b17fcee685" class="">
-</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
+]</code></pre>
+			<p id="85c48001-48ee-44c6-9dac-95b17fcee685" class="">
+			</p>
+		</div>
+	</article><span class="sans" style="font-size:14px;padding-top:2em"></span>
+</body>
+
+</html>
