@@ -58,24 +58,77 @@
         </div>
     </nav>
 
-    <!-- 페이지 상단 부분 디자인 -->
-    <div class="p-5 mb-4 bg-light rounded-3">
+    <!-- 페이지 상단 부분 디자인
+    <div class="p-5 mb-4 top-section">
         <div class="container-fluid py-5">
-            <!-- 페이지 제목 및 부제목 -->
-            <h4 class="display-5 fw-bold">Server Part</h4>
-            <p class="col-md-8 fs-4">Sudoku 게임을 만들기 위해 필요한 백엔드 학습은 아래의 개발 가이드를 따라 주세요.
-                <br>
-                선태된 학습 분야에 따라 개발 환경을 제공하고 특정 분야에 대한 실습을 진행할 수 있습니다.
-                <br>
-                😎😎백엔드 학습자를 위한 상세한 가이드
-                <br>
-                왕초보도 가능🤭🤭
-            </p>
+            <div class="image-container">
+                <div class="col-md-8">
+                    <img src="dogdog.png" alt="설명 텍스트"/>
+                    <h4 class="display-5 fw-bold">Server Part</h4>
+                    <p class="col-md-8 fs-4">Sudoku 게임을 만들기 위해 필요한 백엔드 학습은 아래의 개발 가이드를 따라 주세요.
+                        <br>
+                        선태된 학습 분야에 따라 개발 환경을 제공하고 특정 분야에 대한 실습을 진행할 수 있습니다.
+                        <br>
+                        😎😎백엔드 학습자를 위한 상세한 가이드
+                        <br>
+                        왕초보도 가능🤭🤭
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <!-- 페이지 상단 부분 디자인 -->
+<!-- 페이지 상단 부분 디자인 -->
+    <div class="top-section">
+        <div class="container-fluid py-5 d-flex align-items-center justify-content-start">
+            <!-- 텍스트를 이미지 왼쪽에 배치 -->
+            <div class="text-content me-4">
+                <h4 class="display-5 fw-bold">Server Part</h4>
+                <p class="fs-4">
+                    Sudoku 게임을 만들기 위해 필요한 백엔드 학습은 아래의 개발 가이드를 따라 주세요.
+                    <br>
+                    선태된 학습 분야에 따라 개발 환경을 제공하고 특정 분야에 대한 실습을 진행할 수 있습니다.
+                    <br>
+                    😎😎백엔드 학습자를 위한 상세한 가이드
+                    <br>
+                    왕초보도 가능🤭🤭
+                </p>
+            </div>
+            <!-- 이미지를 텍스트 오른쪽에 배치 -->
+            <div class="image-container flex-shrink-0">
+                <img src="dogdog.png" alt="설명 텍스트"/>
+            </div>
         </div>
     </div>
 
+
+
     <!-- 페이지 내 스타일 설정 -->
     <style>
+        .top-section {
+            background-color: #EDEFFE; 
+            border-radius: 10px;
+            margin: auto; 
+            width: 95%;
+            padding: 20px;
+        }
+
+        .image-container img {
+            width: auto; /* 이미지 원래 크기 유지 */
+            height: 200px; /* 이미지 높이 설정 */
+            margin-right: 120px; /* 이미지와 텍스트 사이 간격 */
+        }
+
+        /* Flexbox를 사용하여 수평 정렬 */
+        .container-fluid {
+            display: flex;
+            align-items: center;
+        }
+
+        .text-content {
+            flex-grow: 1; /* 텍스트 컨텐츠가 남은 공간을 차지하도록 설정 */
+        }
+
         .navbar-brand {
             font-size: 20px;
             font-weight: bold;
@@ -108,6 +161,7 @@
         .custom-card {
             width: 18rem;
             margin: 10px;
+            margin-top: 60px;
             position: relative;
             overflow: hidden;
             background-color: #EDEFFE; /* 배경색 지정 */
@@ -143,6 +197,41 @@
         .custom-card:active a {
             opacity: 0.5; /* 투명도를 0.5로 변경 */
         }
+
+        .top-section {
+            border-radius: 10px;
+            width: 95%;
+            margin-bottom: 20px;
+            margin-top: 32px;
+            background-color: #EDEFFE;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+        }
+
+        .start-btn {
+            appearance: none;
+            display: inline-block;
+            text-align: center;
+            padding-left: 16px;
+            padding-right: 16px;
+            padding-top: 8px;
+            padding-bottom: 8px;
+            color: white;
+            border: 0;
+            border-radius: 4px;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 14px;
+            padding: 2px 15px 4px;
+            height: 42px;
+            background-color: #6C75F1;
+        }
+
+        .p-5 {
+            padding: 20px !important;
+        }
     </style>
 
     <!-- 페이지 내용 - 카드 형식으로 각 페이지로 이동하는 버튼 추가 -->
@@ -174,11 +263,13 @@
         <div class="card custom-card">
             <div class="card-body">
                 <h5 class="card-title">Backend-Picture</h5>
-                <p class="card-text">백엔드-Picture 페이지로 이동합니다.<br>🤭사진 처리 가이드</p>
-                <a href="picture_server.html" class="custom-arrow">&#8594;</a>
+                <p class="card-text">백엔드-Picture 페이지로 이동합니다.<br>😱사진 처리 가이드</p>
+                <a href="backend-db.html" class="custom-arrow">&#8594;</a>
             </div>
         </div>
     </div>
 </body>
 
 </html>
+    
+    
