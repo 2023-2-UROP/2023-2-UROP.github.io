@@ -1,0 +1,1143 @@
+<html><head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>2023-2 UROP</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+		
+	
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>에이알</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+
+
+body {
+	line-height: 1.5;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-interactiveBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+body {
+            font-family: 'Arial', sans-serif;
+        }
+        .navbar-brand, .nav-item {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .form-control, .form-label {
+            font-weight: bold;
+            font-size: 20px;
+        }
+        .bg-light {
+            padding: 20px;
+        }
+        .in {
+            text-indent: 30px;
+        }
+        .container {
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            margin-top: 20px;
+            padding: 20px;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px 50px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        ul{
+            list-style:none;
+        }
+</style></head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgb(0,0,0);">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">UROP</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="list-style: none;">
+                    <li class="nav-item dropdown" style="list-style: none;">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            개발 가이드
+                        </a>
+                        <ul class="dropdown-menu" style="list-style: none;">
+                            <li style="list-style: none;"><a class="dropdown-item" href="#">환경설정</a></li>
+                            <li style="list-style: none;"><a class="dropdown-item" href="#">클라이언트</a></li>
+                            <li style="list-style: none;"><a class="dropdown-item" href="#">서버</a></li>
+                            <li style="list-style: none;"><a class="dropdown-item" href="#">알고리즘</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown" style="list-style: none;">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            앱 설명
+                        </a>
+                        <ul class="dropdown-menu" style="list-style: none;">
+                            <li style="list-style: none;"><a class="dropdown-item" href="#">앱 빌드 방법</a></li>
+                            <li style="list-style: none;"><a class="dropdown-item" href="#">앱 구동 모습 설명</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="p-5 mb-4 bg-light rounded-3">
+        <div class="container-fluid py-5">
+            <h3 class="fw-bold">📌&nbsp;&nbsp;AR 주요 구성 요소 및 기능</h3>
+            <br>
+            <h6>→&nbsp;&nbsp;예제 코드는 python을 사용하여 개발된 코드입니다. </h6>
+            <hr>	
+	
+	
+	<article id="f8f0357b-fcb3-4752-b1c1-371f8db7630a" class="page sans"><header><p class="page-description"></p></header><div class="page-body"><p id="d5ab0a6f-53f0-4ea5-977b-525b83d8d3b9" class=""><strong>opencv-python</strong>을 이용해 카메라로 스도쿠를 찍고 있으면 정답을 풀고 그 정답을 카메라 화면에 오버레이 하는 코드를 작성합니다.</p><h6 id="fd6b749e-99cd-4069-858b-a03013ea53dd" class=""><strong>예측에 수행되는 모델은</strong> <a href="https://github.com/2023-2-UROP/AR/blob/main/AR_CV_sudoku/model3.h5">https://github.com/2023-2-UROP/AR/blob/main/AR_CV_sudoku/model3.h5</a> <strong>에서 다운받을 수 있습니다.</strong></h3><p id="d94af7ab-c000-4d3c-98af-153b4cf62456" class=""><strong>perprocessing_and_contour_extraction.py</strong></p><ul id="32a59e87-f778-4540-82ab-ff49db6400f4" class="bulleted-list"><li style="list-style-type:disc">이미지를 전처리 합니다. (<strong>preprocess </strong>함수)</li></ul><ul id="4a29c125-fa1d-48f5-9154-65f2899e8ab6" class="bulleted-list"><li style="list-style-type:disc">이미지에서 윤곽선을 더 잘 찾기 위해 이미지를 회색조로 변환하고 선명하게 만듭니다.<ul id="9342b59e-0bfd-45a1-a708-1580310bcb95" class="bulleted-list"><li style="list-style-type:circle"><strong>cv2.GaussianBlur:</strong> 이미지에 흐림 효과를 주어 잡음을 제거합니다. 이는 윤곽선을 찾는데 도움이 됩니다.</li></ul><ul id="db3d2802-a9ff-4763-a4bf-6d8765a81715" class="bulleted-list"><li style="list-style-type:circle"><strong>cv2.cvtColor</strong>: 컬러 이미지를 회색조 이미지로 바꿉니다. 회색조 이미지는 윤곽선 처리에 더 적합합니다.</li></ul></li></ul><ul id="23aac2e1-1666-4ba5-951b-72939a4d92bd" class="bulleted-list"><li style="list-style-type:disc">가장 큰 사각형 영역 추출 (<strong>extract_frame</strong> 함수)<ul id="28a4e399-b879-43bd-a1a1-df6dc1caeee4" class="bulleted-list"><li style="list-style-type:circle"><strong>cv2.adaptiveThreshold</strong>: 이미지를 검은색과 흰색 두 가지 색상으로 구분하여, 윤곽선을 더 뚜렷하게 만듭니다.</li></ul><ul id="02eec2e6-80f0-4da1-b504-b13478a0a1b2" class="bulleted-list"><li style="list-style-type:circle"><strong>cv2.findContours:</strong> 처리된 이미지에서 윤곽선을 찾습니다.<ul id="1549e1f6-2805-40f9-9705-41b295a6dae3" class="bulleted-list"><li style="list-style-type:square">윤곽선 분석</li></ul><ul id="632c856f-d779-4428-95e6-746480021006" class="bulleted-list"><li style="list-style-type:square"><strong>cv2.contourArea</strong>: 주어진 윤곽선의 면적을 계산합니다.</li></ul><ul id="91a2bc91-6b87-4df6-8a3a-0b1a0c112df7" class="bulleted-list"><li style="list-style-type:square"><strong>cv2.arcLength</strong>: 윤곽선의 둘레 길이를 계산합니다.</li></ul><ul id="990f06b6-02bb-4fce-8f39-955df97a80f1" class="bulleted-list"><li style="list-style-type:square"><strong>cv2.approxPolyDP:</strong> <strong>Douglas-Peucker</strong>: 알고리즘을 사용하여 윤곽선을 근사화(단순화)합니다. 첫 번째 인자는 윤곽선, 두 번째 인자는 근사 정확도를 나태냅니다. 이 값이 작을수록 더 많은 점이 제거되고 윤곽선이 더 단순해집니다. 세 번째 인자는 윤곽선이 닫혀 있는지 여부를 나타냅니다.</li></ul></li></ul></li></ul><p id="e46f29de-1aef-444a-a8b1-035722f1a1aa" class="">아래는 해당 코드입니다.</p><pre id="64c5baf3-bda5-43a0-a631-5bb5adcdde43" class="code"><code>import cv2
+import numpy as np
+# 스도쿠 이미지 전처리 이진화
+def preprocess(img):
+    blurred = cv2.GaussianBlur(img, (3,3), 0)
+    gray = cv2.cvtColor(blurred, cv2.COLOR_BGR2GRAY)
+    return gray
+def extract_frame(img):
+    # 이미지에서 가장 큰 사각형 영역 추출하는 함수 정의
+    mask = np.zeros(img.shape, np.uint8)  # 동일한 크기의 검은색 마스크 생성
+
+    threshold_img = cv2.adaptiveThreshold(img, 255, 0, 1, 9, 5)
+    # 이미지에 적응형 임계값 적용하여 이진화
+
+    contours, hier = cv2.findContours(threshold_img, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    # 이진화된 이미지에서 윤곽선 찾기
+
+    largest_contour = []  # 가장 큰 윤곽선을 저장할 리스트 초기화
+    largest_rectangle = []  # 최종 사각형 영역을 저장할 리스트 초기화
+    max_area = 0  # 최대 면적 값을 저장할 변수 초기화
+    for contour in contours:  # 모든 윤곽선에 대해 반복
+        area = cv2.contourArea(contour)  # 윤곽선 면적 계산
+        perimeter = cv2.arcLength(contour, True)  # 윤곽선 둘레 길이 계산
+        approx = cv2.approxPolyDP(contour, 0.01 * perimeter, True)
+        # 윤곽선을 근사하여 간단한 형태로 변환
+
+        # 사각형 윤곽선이고, 면적이 최대이며, 40000보다 큰 경우
+        if len(approx) == 4 and area &gt; max_area and area &gt; 40000:
+            max_area = area  # 최대 면적 갱신
+            largest_contour = approx  # 가장 큰 윤곽선 갱신
+
+    if len(largest_contour) &gt; 0:  # 가장 큰 윤곽선이 존재하는 경우
+        cv2.drawContours(mask, [largest_contour], 0, 255, -1)
+        # 가장 큰 윤곽선 내부를 흰색으로 채움
+        cv2.drawContours(mask, [largest_contour], 0, 0, 2)
+        # 가장 큰 윤곽선 외곽선을 검은색으로 그림
+        largest_rectangle = cv2.bitwise_and(img, mask)
+        # 원본 이미지와 가장 큰 윤곽선을 AND 연산하여 결과 이미지 생성
+
+    return largest_rectangle, largest_contour, mask, threshold_img
+    # 결과 이미지, 가장 큰 윤곽선, 윤곽선 마스크 이미지, 임계값 적용 이미지 반환</code></pre><p id="67a1ad6b-ef08-446a-8249-35adb21655d3" class=""><strong>number_extraction_and_centering.py</strong></p><ul id="131279b6-96ae-409a-9203-2c3a43430bae" class="bulleted-list"><li style="list-style-type:disc">이미지에서 숫자를 추출하고 가운데 정렬합니다. (<strong>extract_num</strong> 함수)</li></ul><ul id="0e233142-a6e0-4029-bb9a-f66097e8da3b" class="bulleted-list"><li style="list-style-type:disc">조건에 따라 숫자로 간주되는 컴포넌트를 찾아내고, 중심점과 통계 정보를 리스트에 저장합니다. 이 정보는 나중에 숫자를 격자에 정렬할 때 사용됩니다.<ul id="74870d2e-d3d1-4c08-9c2d-a951e5721ea9" class="bulleted-list"><li style="list-style-type:circle"><strong>preprocess_numbers</strong>: 이미지를 이진화하고 노이즈를 제거합니다.</li></ul><ul id="6f12f2bc-eafa-4bd9-8c3b-2294ed568926" class="bulleted-list"><li style="list-style-type:circle"><strong>cv2.connectedComponetsWithStats</strong>: 연결된 컴포넌트(이 경우 숫자)를 찾고, 각 컴포넌트에 대한 통계 정보와 중심점을 반환합니다.</li></ul></li></ul><ul id="e1b5c50d-b0bb-42da-bd13-13143af9e003" class="bulleted-list"><li style="list-style-type:disc">이미지에서 숫자를 더 쉽게 식별할 수 있도록 전처리합니다. (preprocess_numbers 함수)<ul id="e4c36f94-678c-4ea3-95f0-0314e1a6aad1" class="bulleted-list"><li style="list-style-type:circle"><strong>cv2.adaptiveThreshold</strong>: 이미지를 이진화하여 숫자와 배경을 구분합니다.</li></ul><ul id="51a5896d-8cc0-49d7-8fd1-fc07b8787d42" class="bulleted-list"><li style="list-style-type:circle"><strong>cv2.morphologyEx</strong>: 모폴로지 연산을 사용하여 작은 노이즈를 제거합니다.</li></ul></li></ul><ul id="3a3c2ea0-7e10-477e-961e-9c5db99640c0" class="bulleted-list"><li style="list-style-type:disc">숫자를 이미지의 한 셀에 해당하는 작은 정사각형 격자에 정렬합니다. (<strong>center_numbers</strong> 함수)<ul id="19f0071d-3c71-403e-96cd-a84e7ad24c95" class="bulleted-list"><li style="list-style-type:circle"><strong>calculate_centered_position</strong>: 각 숫자의 위치를 계산하여 격자에 가운데 정렬합니다.<ul id="529413c1-3a0d-4ada-ac28-6637f687f014" class="bulleted-list"><li style="list-style-type:square">숫자의 현재 위치와 크기를 바탕으로, 격자 내에서 중앙에 위치하도록 새로운 위치를 계산합니다.</li></ul></li></ul><ul id="994dd442-da26-43ed-a235-d1cc7a1f4c6d" class="bulleted-list"><li style="list-style-type:circle"><strong>calculatee_grid_position</strong>: 숫자가 위치할 격자의 좌표를 계산합니다.<ul id="4f615c2c-80ff-4e15-a564-0b6c040fac3e" class="bulleted-list"><li style="list-style-type:square">각 숫자의 현재 위치와 크기와 중심점으로부터 격자 내의 x,y좌표를 계산하고, 재배치 합니다.</li></ul></li></ul></li></ul><p id="3b901070-d3f7-4778-bd98-17188d44b4e1" class="">아래는 해당 코드입니다.</p><pre id="d68a204e-8942-4298-873e-cb3849d8d994" class="code"><code>import cv2
+import numpy as np
+# 숫자를 추출하고 가운데 정렬
+def extract_num(img):
+    # 숫자를 전처리하는 함수를 호출
+    result = preprocess_numbers(img)
+    # 연결된 컴포넌트를 분석하여 레이블링, 통계 및 중심점을 반환
+    retval, labels, stats, centroids = cv2.connectedComponentsWithStats(result)
+    # 시각화를 위한 빈 이미지를 생성
+    viz = np.zeros_like(result, np.uint8)
+
+    centroidy = []  # 중심점을 저장할 리스트를 초기화
+    stats_numbers = []  # 통계를 저장할 리스트를 초기화
+
+    # 통계 배열을 순회하면서 조건에 맞는 객체(숫자)를 찾음
+    for i, stat in enumerate(stats):
+        if i == 0:  # 레이블 0은 배경을 나타내므로 건너뜀
+            continue
+        # 면적이 50 이상이고, 너비와 높이가 5에서 40 사이, 비율이 1:1부터 1:4 사이인 컴포넌트를 숫자로 간주
+        if stat[4] &gt; 50 and stat[2] in range(5,40) and stat[3] in range(5,40) and stat[0] &gt; 0 and stat[
+            1] &gt; 0 and (int(stat[3] / stat[2])) in range(1,5):
+            viz[labels == i] = 255  # 해당 컴포넌트를 시각화 이미지에 표시
+            centroidy.append(centroids[i])  # 중심점을 리스트에 추가
+            stats_numbers.append(stat)  # 통계를 리스트에 추가
+
+    # 리스트를 NumPy 배열로 변환
+    stats_numbers = np.array(stats_numbers)
+    centroidy = np.array(centroidy)
+    return viz, stats_numbers, centroidy  # 결과 이미지, 통계 배열, 중심점 배열을 반환
+def preprocess_numbers(img):
+    # 이진화
+    img = cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV, 9, 2)
+    # 노이즈 제거를 위한 커널을 생성
+    kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (3, 3))
+    # 모폴로지 연산을 통해 작은 노이즈를 제거
+    img = cv2.morphologyEx(img, cv2.MORPH_CLOSE, kernel, iterations=1)
+
+    return img
+def center_numbers(img, stats, centroids):
+    # 이미지에서 추출된 숫자를 가운데 정렬하고, 정렬된 숫자의 격자 위치를 표시하는 함수
+    centered_num_grid = np.zeros_like(img, np.uint8)  # 숫자를 정렬할 빈 이미지 생성
+    matrix_mask = np.zeros((9, 9), dtype=&#x27;uint8&#x27;)  # 숫자의 격자 위치를 표시할 행렬 생성
+
+    for stat, centroid in zip(stats, centroids):  # 각 숫자의 통계와 중심점에 대해 반복
+        img_left, img_top, width, height = calculate_centered_position(stat, centroid)  # 숫자를 정렬할 위치 계산
+        centered_num_grid[img_top:img_top + height, img_left: img_left + width] = \
+            img[stat[1]:stat[1] + height, stat[0]:stat[0] + width]  # 추출된 숫자를 새 위치에 복사
+        x, y = calculate_grid_position(centroid)  # 숫자의 격자 위치 계산
+        matrix_mask[y, x] = 1  # 격자 위치에 숫자 존재 표시
+
+    return centered_num_grid, matrix_mask  # 정렬된 숫자 이미지와 격자 위치 행렬 반환
+
+def calculate_centered_position(stat, centroid):
+    # 추출된 숫자를 정렬할 위치를 계산하는 함수
+    left, top, width, height = stat[0], stat[1], stat[2], stat[3]  # 숫자의 위치와 크기 정보
+    img_left = int((left // 50) * 50 + (50 - width) / 2)  # 숫자를 격자 가운데 정렬할 왼쪽 위치 계산
+    img_top = int((top // 50) * 50 + (50 - height) / 2)  # 숫자를 격자 가운데 정렬할 상단 위치 계산
+    return img_left, img_top, width, height  # 계산된 위치와 크기 반환
+
+def calculate_grid_position(centroid):
+    # 숫자의 격자 위치를 계산하는 함수
+    x = int(np.round((centroid[0] + 5) / 50, 1))  # 격자 내에서 숫자의 x 좌표 계산
+    y = int(np.round((centroid[1] + 5) / 50, 1))  # 격자 내에서 숫자의 y 좌표 계산
+    return x, y  # 계산된 격자 위치 반환</code></pre><p id="a8059cc1-4efa-485f-8e14-0dd85844b4f3" class=""><strong>corner_detection_and_perspective_transform.py</strong></p><ul id="2f53d016-a211-4d51-814a-5035731fefac" class="bulleted-list"><li style="list-style-type:disc">윤곽선에서 4개의 모서리(코너)를 찾아냅니다. (<strong>get_corners</strong> 함수)<ul id="9491bd05-f6e7-425f-a127-5e6c5b7a1c31" class="bulleted-list"><li style="list-style-type:circle"><strong>biggest_contour = contour.reshape(len(contour), 2)</strong>: 윤곽선 좌표를 2차원 배열로 재구성합니다.</li></ul><ul id="29eb8fd5-d305-49a4-ac5f-a3729ad4fa58" class="bulleted-list"><li style="list-style-type:circle"><strong>add_points = biggest_contour.sum(1)</strong>: 각 점의 x,y 좌표 합을 계산합니다.</li></ul><ul id="8da6536e-ea27-400b-9cde-1ca90ab57f5a" class="bulleted-list"><li style="list-style-type:circle"><strong>delete_index</strong>: x,y 좌표 합이 가장 작은 값(왼쪽 상단 코너)과 가장 큰 값(오른쪽 하단 코너)의 인덱스를 찾아 제거합니다.</li></ul><ul id="9f3dc202-867a-4595-993e-01b2b8eacd9e" class="bulleted-list"><li style="list-style-type:circle"><strong>corners</strong>: 남은 두 점 중 x 좌표가 가장 큰 점(오른쪽 상단 코너)과 가장 작은 점(왼쪽 하단 코너)을 찾아 4개의 코너 좌표를 구성합니다.</li></ul></li></ul><ul id="85bddd50-e138-462d-8f05-f14558f7ad7d" class="bulleted-list"><li style="list-style-type:disc">주어진 모서리 좌표를 사용하여 원근 변환을 적용합니다. (<strong>perspective_transform</strong> 함수)</li></ul><p id="6e2fb2a3-ca68-45e9-bbe8-c69237ab14ef" class="">아래는 해당 코드입니다.</p><pre id="b41f45cb-bd0c-41ec-805b-8e4a444266c3" class="code"><code>import cv2
+import numpy as np
+# 코너 찾기, 원근 변환 코드
+def get_corners(contour):
+    # 윤곽선 리스트를 2차원 좌표로 재구성
+    biggest_contour = contour.reshape(len(contour), 2)
+    # 각 점의 x,y 좌표 합을 게산
+    add_points = biggest_contour.sum(1)
+    # 가장 큰 값과 가장 작은 값을 제외한 나머지 점들을 제거
+    delete_index = [np.argmin(add_points), np.argmax(add_points)]
+    new_points = np.delete(biggest_contour, delete_index, axis=0)
+
+    corners = np.float32([
+        biggest_contour[np.argmin(add_points)],  # 왼쪽 상단 코너
+        # 모든 x좌표 중 가장 큰 값
+        new_points[np.argmax(new_points[:, 0])],  # 오른쪽 상단 코너
+        # 모든 x좌표 중 가장 작은 값
+        new_points[np.argmin(new_points[:, 0])],  # 왼쪽 하단 코너
+        biggest_contour[np.argmax(add_points)]  # 오른쪽 하단 코너
+    ])
+    return corners
+
+
+def perspective_transform(img, shape, corners):
+    # 원본 이미지에서의 모서리 4개
+    pts1 = corners
+    # np.float32() &lt;- 안에 들어간 인자는 각각 왼쪽 상단, 오른쪽 상단, 왼쪽 하단, 오른쪽 하단 모서리를 의미
+    pts2 = np.float32([[0, 0], [shape[0], 0], [0, shape[1]], [shape[0], shape[1]]])
+    # 꼭짓점 좌표를 이용하여 변환 행렬 계산
+    matrix = cv2.getPerspectiveTransform(pts1, pts2)
+    # 계산된 변환 행렬을 이용하여 원근 투영 변환 적용
+    warp = cv2.warpPerspective(img, matrix, (shape[0], shape[1]))
+
+    return warp</code></pre><p id="7684d8cd-d4f5-47f2-8d07-2b8dae72142f" class=""><strong>cell_processing_and_number_prediction.py</strong></p><ul id="9c3fe328-b172-425f-a95d-84924e35b75d" class="bulleted-list"><li style="list-style-type:disc">스도쿠 퍼즐의 한 셀 이미지를 전처리 합니다. (<strong>procces_cel</strong>l 함수)<ul id="82051146-4791-4fe6-9137-3ca2163014ce" class="bulleted-list"><li style="list-style-type:circle"><strong>cropped_img = img[5:img.shape[0] - 5, 5:img.shape[0] -5]</strong>: 이미지의 테두리 부분을 제거하여 중앙 부분만 잘라냅니다.</li></ul><ul id="e44eb341-0702-4946-a88a-484064854525" class="bulleted-list"><li style="list-style-type:circle"><strong>cv2.resize(cropped_img, (40,40))</strong>: 잘라낸 이미지의 크기를 40x40으로 조정합니다. 이는 모델이 40x40으로 학습되어 있기 때문에 예측하기에 적합한 크기입니다.</li></ul></li></ul><ul id="099488d4-a9ed-46e0-bcc4-af3efd9f0643" class="bulleted-list"><li style="list-style-type:disc">스도쿠 퍼즐의 각 셀에 대해 숫자를 예측합니다. (<strong>predict_numbers </strong>함수)<ul id="af39c61b-46fd-4c15-be27-630727a2a92a" class="bulleted-list"><li style="list-style-type:circle">스도쿠 퍼즐의 모든 셀을 순회하면서 비어 있지 않은 셀을 찾습니다.</li></ul><ul id="d7ece83a-6dbb-4cb3-9c4f-3e472bd75c92" class="bulleted-list"><li style="list-style-type:circle">비어 있지 않은 셀의 이미지를 ‘procces_cell’ 함수를 통해 전처리하고, 모델에 입력하기 적합한 형태로 변환합니다.</li></ul><ul id="1e61ba34-7b2c-4b86-92f6-fabd86147a5f" class="bulleted-list"><li style="list-style-type:circle"><strong>model.predict</strong>: 전처리된 셀 이미지에 대해 숫자 예측을 수행합니다.</li></ul><ul id="b8c58b72-3270-44ba-aa93-04b380abfb0a" class="bulleted-list"><li style="list-style-type:circle"><strong>probability 와 correct</strong>: 각 셀에 대한 예측 확률과 예측된 숫자를 계산합니다.</li></ul><ul id="1b1363f1-2e96-40d4-91f2-a924da561d0f" class="bulleted-list"><li style="list-style-type:circle"><strong>flat_matrix</strong>: 스도쿠 퍼즐을 1차원 배열로 변환하고, 각 숫자가 들어갈 위치에 예측된 숫자를 채워 넣습니다. </li></ul><ul id="a6b8e601-153f-4159-b1aa-5710bd1bc384" class="bulleted-list"><li style="list-style-type:circle">마지막으로 9x9 형태의 2차원 배열로 다시 변환하여 완성된 스도쿠 퍼즐을 반환합니다.</li></ul></li></ul><p id="3cbc3a05-8137-45b6-8510-39bfd72aea2d" class="">아래는 해당 코드입니다.</p><pre id="1c9916bb-c7dd-4c6c-8678-c1d7299e6749" class="code"><code>import cv2
+import numpy as np
+import tensorflow as tf
+# 전처리, 숫자 예측 코드
+def procces_cell(img):
+    # 셀 이미지의 테두리를 제거
+    cropped_img = img[5:img.shape[0] - 5, 5:img.shape[0] - 5]
+    # 이미지의 크기를 조정
+    resized = cv2.resize(cropped_img, (40, 40))
+    return resized
+
+def predict_numbers(numbers, matrix, model):
+    pred_list = []
+    for row in range(9):
+        for col in range(9):
+            # 숫자가 있는 셀만 처리
+            if matrix[row, col] == 1:
+                # 셀 이미지를 추출
+                slice = numbers[50 * row: (50 * row) + 50, 50 * col: (50 * col) + 50]
+                # 셀 이미지 전처리
+                slice = procces_cell(slice)
+                # 이미지 정규화
+                slice = slice/255
+                pred_list.append(slice.reshape(1, 40, 40, 1))
+
+    all_predictions = model.predict(tf.reshape(np.array(pred_list), (np.sum(matrix), 40, 40, 1)))
+    probability = [np.max(prediction) for prediction in all_predictions] # 각 예측의 최대 확률
+    correct = list(map(np.argmax, all_predictions)) # 각 예측 결과 중 최대값의 인덱스를 선택
+    flat_matrix = matrix.flatten() # 행렬을 1차원 리스트로 평탄화
+    flat_matrix[flat_matrix == 1] = correct  # flat_matrix 내에서 값이 1인 모든 위치를 correct 리스트의 값으로 바꿈
+
+    return flat_matrix.reshape(9, 9)  # 1차원 배열인 flat_matrix를 9x9 형태의 2차원 배열로 다시 형태를 변환하여 반환</code></pre><p id="bf863dec-f44d-47c2-bc3e-f039eb01d258" class=""><strong>result_visualization.py</strong></p><ul id="ca32f176-ec4f-4725-b8d1-876c402015db" class="bulleted-list"><li style="list-style-type:disc">스도쿠 퍼즐 이미지에 해결된 숫자를 표시합니다. (<strong>display_sudoku_solution</strong> 함수)<ul id="db21afb5-b537-4641-888f-6b0bf2d95933" class="bulleted-list"><li style="list-style-type:circle">각 셀의 크기를 계산합니다.</li></ul><ul id="404f52c9-5ab5-4033-ba8a-9c300ee60cb7" class="bulleted-list"><li style="list-style-type:circle">그레이스케일 이미지일 경우 컬러 이미지로 변환합니다.</li></ul><ul id="3f3355ab-c521-4944-b3da-d0031775c06c" class="bulleted-list"><li style="list-style-type:circle">9x9 격자를 순회하면서 빈 셀(숫자가 없는 즉, 0인 셀)에 해결된 숫자를 표시합니다.</li></ul></li></ul><ul id="2c59da1b-f16b-4055-91a1-affa7f2aac2a" class="bulleted-list"><li style="list-style-type:disc">원근 변환된 스도쿠 이미지를 원본 이미지로 되돌리는 변환을 적용합니다. (<strong>apply_inverse_perspective</strong> 함수)<ul id="a0302498-dc58-4ec2-b302-459ffe20c270" class="bulleted-list"><li style="list-style-type:circle">원본 이미지와 원근 변환된 이미지의 모서리 좌표를 사용하여 변환 행렬을 계산합니다.</li></ul><ul id="0e171370-e7b8-4836-9c99-f57c32408056" class="bulleted-list"><li style="list-style-type:circle"><strong>cv2.warpPerspective</strong>: 원본 이미지의 크기에 맞게 결과 이미지를 변환합니다.</li></ul></li></ul><ul id="1eb3a91e-1d6e-4ec2-830c-6f376bd06725" class="bulleted-list"><li style="list-style-type:disc">스도쿠 퍼즐의 모서리에 작은 원을 그려 모서리를 표시합니다. (<strong>draw_corners </strong>함수)<ul id="4071e3d3-5257-485a-9477-b3f7cf941892" class="bulleted-list"><li style="list-style-type:circle">각 모서리 좌표에 초록색 원을 그립니다.</li></ul></li></ul><ul id="31e1df24-93e9-41a9-b0dd-06ded3cc4191" class="bulleted-list"><li style="list-style-type:disc">스도쿠 퍼즐을 찾기 위해 이미지에 탐색 사각형을 그립니다. (<strong>draw_searching_rectangle</strong> 함수)<ul id="eaa8aa83-018a-4e52-91f0-55f02e498e19" class="bulleted-list"><li style="list-style-type:circle">반복될 때마다 크기가 변하는 사각형을 이미지에 그립니다.</li></ul></li></ul><p id="7a8a3a15-b620-42b8-a244-91e4a7ab9238" class="">아래는 해당 코드입니다.</p><pre id="6ae6721c-8bbb-4a42-a37f-ffa9fcb1cccd" class="code"><code>import cv2
+import numpy as np
+
+# 스도쿠 퍼즐 이미지에 해결된 숫자를 표시하는 함수
+def display_sudoku_solution(img, numbers, solved_numbers, color=(0, 255, 0)):
+    cell_width = int(img.shape[1] / 9)  # 셀의 너비 계산
+    cell_height = int(img.shape[0] / 9)  # 셀의 높이 계산
+
+    if len(img.shape) == 2 or (len(img.shape) &gt; 2 and img.shape[2] == 1):
+        img_colored = cv2.cvtColor(img, cv2.COLOR_GRAY2BGR)  # 그레이스케일 이미지를 컬러로 변환
+    else:
+        img_colored = img.copy()  # 이미 컬러 이미지인 경우 복사
+
+    for i in range(9):
+        for j in range(9):
+            if numbers[j, i] == 0:  # 빈 셀에 숫자를 표시
+                position = (i * cell_width + int(cell_width / 4), int((j + 0.7) * cell_height))
+                cv2.putText(img_colored, str(solved_numbers[j, i]), position,
+                            cv2.FONT_HERSHEY_COMPLEX, 1, color, 1, cv2.LINE_AA)
+
+    return img_colored  # 숫자가 표시된 이미지 반환
+
+# 원근 변환된 이미지를 원본 이미지 크기로 되돌리는 함수
+def apply_inverse_perspective(img, sudoku_num, corners, height=450, width=450):
+    pts1 = np.float32([[0, 0], [width, 0], [0, height], [width, height]])  # 원근 변환된 이미지의 모서리 좌표
+    pts2 = np.float32([corners[0], corners[1], corners[2], corners[3]])  # 원본 이미지의 모서리 좌표
+    matrix = cv2.getPerspectiveTransform(pts1, pts2)  # 변환 행렬 계산
+    result = cv2.warpPerspective(sudoku_num, matrix, (img.shape[1], img.shape[0]))  # 변환 적용
+
+    return result  # 변환된 이미지 반환
+
+# 스도쿠 퍼즐의 모서리에 원을 그리는 함수
+def draw_corners(img, corners):
+    for corner in corners:
+        cv2.circle(img, (int(corner[0]), int(corner[1])), 2, (0, 255, 0), -1)  # 모서리 좌표에 초록색 원을 그림
+
+    return img  # 원이 그려진 이미지 반환
+
+# 스도쿠 퍼즐을 찾기 위한 사각형을 그리는 함수
+def draw_searching_rectangle(img, counter):
+    top_left = (75 + 2 * counter, 75 + 2 * counter)  # 사각형의 왼쪽 상단 좌표
+    bottom_right = (img.shape[1] - 75 - 2 * counter, img.shape[0] - 75 - 2 * counter)  # 사각형의 오른쪽 하단 좌표
+    cv2.rectangle(img, top_left, bottom_right, (0, 0, 255), 2)  # 빨간색 사각형을 그림
+
+    return img, top_left[0]  # 사각형이 그려진 이미지와 사각형의 왼쪽 상단 x좌표 반환</code></pre><p id="b0366b31-eaa0-4aa2-9cf6-cec66d6a4843" class=""><strong><a href="http://processing.py">processing.py</a></strong><strong> :</strong> 이 코드는 전체적인 프로세스 관리 코드입니다.</p><pre id="eb916d98-43b0-4dc4-bdfc-d8df53bd649f" class="code"><code>from preprocessing_and_contour_extraction import preprocess, extract_frame
+from number_extraction_and_centering import *
+from cell_processing_and_number_prediction import *
+from result_visualization import *
+from Solver_final import solve_wrapper
+
+# 이미지에서 스도쿠 퍼즐의 윤곽선을 찾고, 윤곽선이 존재하는지 확인하는 함수
+def check_contour(img):
+    prep_img = preprocess(img)  # 이미지 전처리
+    frame, contour, contour_line, thresh = extract_frame(prep_img)  # 윤곽선 추출
+    contour_exist = len(contour) == 4  # 윤곽선이 4개의 모서리를 갖는지 확인
+    return contour_exist, prep_img, frame, contour, contour_line, thresh  # 윤곽선 존재 여부 및 관련 데이터 반환
+
+# 스도쿠 퍼즐의 숫자를 예측하고 퍼즐을 해결하는 함수
+def predict_and_solve(img, model):
+    img_nums, stats, centroids = extract_num(img)  # 숫자 추출
+    centered_numbers, matrix_mask = center_numbers(img_nums, stats, centroids)  # 숫자 중심 정렬
+    predicted_matrix = predict_numbers(centered_numbers, matrix_mask, model)  # 숫자 예측
+    solved_matrix, solve_time = solve_wrapper(predicted_matrix.copy())  # 퍼즐 해결
+    return img_nums, centered_numbers, predicted_matrix, solved_matrix, solve_time  # 해결 결과 반환
+
+# 해결된 스도쿠 퍼즐 결과를 원본 이미지에 적용하는 함수
+def apply_solution_on_image(mask, img, predicted_matrix, solved_matrix, corners):
+    img_solved = display_sudoku_solution(mask, predicted_matrix, solved_matrix)  # 해결된 숫자 시각화
+    inv = apply_inverse_perspective(img, img_solved, corners)  # 원근 변환 적용
+    img = cv2.addWeighted(img, 1, inv, 1, 0, -1)  # 원본 이미지에 합성
+    return img, img_solved  # 최종 이미지 반환</code></pre><p id="57fc18eb-0d65-4f27-8837-b37cc3a368d8" class=""><strong>Ontext.py</strong></p><ul id="76001344-2901-4983-b493-b5c49b0176ed" class="bulleted-list"><li style="list-style-type:disc">현재 상태에 따라 표시할 텍스트와 위치, 색상을 결정합니다.<ul id="b603ce83-93de-45fb-b724-08124a4b0473" class="bulleted-list"><li style="list-style-type:circle"><strong>seen, solved, bad_read, out_corners_check </strong>변수를 기반으로 현재 상태를 판단합니다.</li></ul><ul id="13e4ec86-264b-492b-bd34-a460f07e7bbe" class="bulleted-list"><li style="list-style-type:circle">스도쿠 퍼즐이 인식되고 해결되었으며 읽기 오류가 없는 경우, 해결된 텍스트와 초록색 위치를 반환합니다.</li></ul><ul id="1823e41d-63ba-4077-af06-066f1caf3534" class="bulleted-list"><li style="list-style-type:circle">그 외에 경우에는 빈 문자열과 빨간색 위치를 반환합니다.</li></ul></li></ul><p id="ce66e923-d254-4c62-b865-5d3007a8aa2d" class="">아래는 해당 코드입니다.</p><pre id="f1ac4391-888c-4c7a-b11f-cb12bb9676fa" class="code"><code>def get_vars(out_corners_check, solved, bad_read,time_on_corners,seen,solved_text):
+    if seen and solved and not bad_read and not out_corners_check:
+        return solved_text, (285, 30),(0, 255, 0)
+
+    return &#x27;&#x27;, (320, 30) ,(0, 0, 255)
+
+# def dots(time_out_corners):
+#     multiplier = int(time_out_corners // 1)
+#     nasobek = int(multiplier/5) +1
+#     if multiplier &gt; (5 * nasobek):
+#         nasobek += 1
+#     tecky = 5 + multiplier - (5 * nasobek)
+#     return &#x27;.&#x27; * tecky</code></pre><p id="4dc3cd5a-9131-4a39-8a49-071a508cd344" class="">다음은 스도쿠 퍼즐 해결 알고리즘입니다. 이 솔루션은 GNU General Public License(GNU 일반 공중 사용 허가서)에 따라 <a href="https://www.cs.mcgill.ca/">https://www.cs.mcgill.ca/</a> ~assaf9/ python/ sudoku.txt에서 가져온 것입니다.</p><pre id="cb83ac43-01d2-4d4b-a5dd-5edbbf18fd1c" class="code"><code>import time
+import numpy as np
+
+from itertools import product
+# 스도쿠 푸는 알고리즘
+&#x27;&#x27;&#x27;
+This solver was taken from https://www.cs.mcgill.ca/~aassaf9/python/sudoku.txt under the GNU General Public License.
+It expects input in the form of a 2D array, and will return the answer as a 2D array. If it is unsolvable, it will
+raise an exception.
+&#x27;&#x27;&#x27;
+
+
+def solve_sudoku(size, grid):
+    R, C = size
+    N = R * C
+    X = ([(&quot;rc&quot;, rc) for rc in product(range(N), range(N))] +
+         [(&quot;rn&quot;, rn) for rn in product(range(N), range(1, N + 1))] +
+         [(&quot;cn&quot;, cn) for cn in product(range(N), range(1, N + 1))] +
+         [(&quot;bn&quot;, bn) for bn in product(range(N), range(1, N + 1))])
+
+    Y = dict()
+    for r, c, n in product(range(N), range(N), range(1, N + 1)):
+        b = (r // R) * R + (c // C)  # Box number
+        Y[(r, c, n)] = [
+            (&quot;rc&quot;, (r, c)),
+            (&quot;rn&quot;, (r, n)),
+            (&quot;cn&quot;, (c, n)),
+            (&quot;bn&quot;, (b, n))]
+    X, Y = exact_cover(X, Y)
+    for i, row in enumerate(grid):
+        for j, n in enumerate(row):
+            if n:
+                select(X, Y, (i, j, n))
+    for solution in solve(X, Y, []):
+        for (r, c, n) in solution:
+            grid[r][c] = n
+        yield grid
+
+
+def exact_cover(X, Y):
+    X = {j: set() for j in X}
+    for i, row in Y.items():
+        for j in row:
+            X[j].add(i)
+    return X, Y
+
+
+def solve(X, Y, solution):
+    if not X:
+        yield list(solution)
+    else:
+        c = min(X, key=lambda c: len(X[c]))
+        for r in list(X[c]):
+            solution.append(r)
+            cols = select(X, Y, r)
+            for s in solve(X, Y, solution):
+                yield s
+            deselect(X, Y, r, cols)
+            solution.pop()
+
+
+def select(X, Y, r):
+    cols = []
+    for j in Y[r]:
+        for i in X[j]:
+            for k in Y[i]:
+                if k != j:
+                    X[k].remove(i)
+        cols.append(X.pop(j))
+    return cols
+
+
+def deselect(X, Y, r, cols):
+    for j in reversed(Y[r]):
+        X[j] = cols.pop()
+        for i in X[j]:
+            for k in Y[i]:
+                if k != j:
+                    X[k].add(i)
+
+
+def solve_wrapper(arr):
+
+    start = time.time()
+
+    try:
+        ans = list(solve_sudoku(size=(3, 3), grid=arr))[0]
+        s = np.array(ans).reshape(9,9)
+        return s, &quot;Solved in %.4fs&quot; % (time.time() - start)
+    except:
+        return arr, None</code></pre><p id="af1b5301-8558-4400-ac91-53ded2999292" class="">마지막으로 카메라를 통해 스도쿠 퍼즐을 실시간으로 인식하고 해결하는 프로세스를 구현한 코드입니다.</p><p id="ff923ef6-049e-4815-9245-a46b63452ff3" class=""><strong>App.camera.py</strong></p><p id="c915eea9-440d-46f7-a875-cffef5f4d11f" class="">코드의 작동 방식은 다음과 같습니다.</p><ul id="39e8fe78-b4b4-4359-81f9-16d2a058b3c3" class="bulleted-list"><li style="list-style-type:disc"><strong>카메라 설정 및 변수 초기화</strong>: 카메라를 연결하고, 스도쿠 퍼즐의 인식 및 해결 상태를 추적하기 위한 변수들(<strong>seen, bad_read, solved </strong>등)을 초기화합니다.</li></ul><ul id="0645b6be-a2b1-46f1-b08f-f8606f5eb3be" class="bulleted-list"><li style="list-style-type:disc"><strong>카메라에서 이미지 읽기</strong>: 무한 루프를 통해 카메라에서 지속적으로 이미지를 읽어들입니다. 각 이미지는 설정된 크기(<strong>output_size</strong>)로 조정됩니다.</li></ul><ul id="d4f371a0-1b48-4bcc-b574-71dd828a8660" class="bulleted-list"><li style="list-style-type:disc"><strong>윤곽선 확인</strong>: <strong>check_contour</strong> 함수를 사용하여 현재 이미지에서 스도쿠 퍼즐의 윤곽선을 찾습니다. 윤곽선이 존재하는 경우, 해당 윤곽선의 모서리(<strong>corners)</strong>를 구합니다.</li></ul><ul id="28729e8e-b8b1-4eec-8c59-c7d6c7d976bd" class="bulleted-list"><li style="list-style-type:disc"><strong>스도쿠 퍼즐 해결 시도</strong>: 윤곽선이 발견되면, 원근 변환(<strong>perspective_transform</strong>)을 적용하여 퍼즐을 평면으로 변환합니다. 그런 다음 <strong>predict_and_solve </strong>함수를 통해 퍼즐을 해석하고 해결합니다.</li></ul><ul id="59291de1-b74e-409c-827b-ae8a4649570f" class="bulleted-list"><li style="list-style-type:disc"><strong>해결된 퍼즐의 시각적 표현</strong>: 해결된 퍼즐의 결과는 원본 이미지 위에 오버레이되어 시각적으로 표현됩니다. 이는 <strong>apply_solution_on_image</strong> 함수를 통해 처리됩니다.</li></ul><ul id="94d1a1e9-9357-4b0c-b81b-713b17143052" class="bulleted-list"><li style="list-style-type:disc"><strong>사용자 인터페이스</strong>: 스도쿠 퍼즐이 인식되지 않거나, 해석에 실패한 경우에는 탐색 사각형을 그려 사용자에게 시각적 피드백을 제공합니다.</li></ul><ul id="aa555a21-7b1c-4ad2-8aa1-87b760d8c7a2" class="bulleted-list"><li style="list-style-type:disc"><strong></strong><strong>프로그램</strong><strong> </strong><strong>종료</strong>: 사용자가 &#x27;q&#x27; 키를 누르면 카메라 연결을 해제하고 프로그램을 종료합니다.</li></ul><p id="6e4e373b-ff82-4092-ae0f-f48c91701dbc" class="">아래는 해당 코드입니다.</p><pre id="962e4af5-c623-4c55-9839-d7f3d3127f56" class="code"><code>import time
+from corner_detection_and_perspective_transform import *
+from processing import *
+
+output_size = (800, 600)  # 출력 이미지의 크기를 설정
+model = tf.keras.models.load_model(&#x27;/Users/zsu/PycharmProjects/pythonProject2/AR_CV_sudoku/model3.h5&#x27;)  # 텐서플로우 모델을 불러옴
+
+seen = False  # 스도쿠가 인식되었는지 여부
+bad_read = False  # 스도쿠 읽기가 실패했는지 여부
+solved = False  # 스도쿠가 해결되었는지 여부
+seen_corners = 0  # 스도쿠 모서리가 인식된 시간
+rectangle_counter = 0  # 탐색 사각형의 카운터
+
+cap = cv2.VideoCapture(0)  # 카메라 캡처 시작
+
+while cap.isOpened():  # 카메라가 열려있는 동안 반복
+    success, img = cap.read()  # 카메라에서 이미지를 읽음
+    img = cv2.resize(img, output_size)  # 이미지의 크기를 조정
+    img_result = img.copy()  # 결과 이미지를 복사
+
+    contour_exist, _, frame, contour, _, _ = check_contour(img_result)  # 이미지에서 윤곽선을 확인
+
+    if contour_exist:  # 윤곽선이 존재하는 경우
+        corners = get_corners(contour)  # 모서리를 찾음
+
+        if not solved:  # 스도쿠가 해결되지 않은 경우
+            color = (0, 0, 255) if bad_read else (0, 255, 0)  # 읽기 실패시 빨간색, 아니면 초록색으로 설정
+            cv2.drawContours(img_result, [contour], -1, color, 2)  # 윤곽선을 그림
+
+        if time.time() - seen_corners &gt; 0.4:  # 지정된 시간이 지난 경우
+            result = perspective_transform(frame, (450, 450), corners)  # 원근 변환을 적용
+            if not seen:  # 스도쿠를 처음 보는 경우
+                _, _, predicted_matrix, solved_matrix, _ = predict_and_solve(result, model)  # 스도쿠를 해결
+                bad_read = np.any(solved_matrix == 0)  # 해결 실패 여부 확인
+                solved = not bad_read  # 해결 여부 설정
+                seen = solved  # 인식 여부 설정
+
+            if not bad_read:  # 읽기 실패가 아닌 경우
+                mask = np.zeros_like(result)  # 마스크 생성
+                img_result, _ = apply_solution_on_image(mask, img_result, predicted_matrix, solved_matrix, corners)  # 해결 결과 적용
+
+    else:  # 윤곽선이 보이지 않는 경우
+        if time.time() - seen_corners &gt; 0.2:  # 일정 시간이 지난 경우
+            seen = False  # 인식 여부 초기화
+            seen_corners = 0  # 인식 시간 초기화
+            bad_read = False  # 읽기 실패 초기화
+            solved = False  # 해결 여부 초기화
+            img_result, corner_rect = draw_searching_rectangle(img_result, rectangle_counter)  # 탐색 사각형 그리기
+            rectangle_counter = -1 if corner_rect &gt; 200 else rectangle_counter + 1  # 사각형 카운터 조정
+
+    cv2.imshow(&#x27;sudoku solver&#x27;, img_result)  # 결과 이미지 표시
+    if cv2.waitKey(1) == ord(&#x27;q&#x27;):  # &#x27;q&#x27; 키를 누르면 종료
+        break
+
+cap.release()  # 카메라 해제
+cv2.destroyAllWindows()  # 모든 창 닫기</code></pre></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span>    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</body></html>

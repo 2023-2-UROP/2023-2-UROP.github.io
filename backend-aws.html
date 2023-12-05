@@ -1,833 +1,167 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>베겐드 AWS</title><style>
-/* cspell:disable-file */
-/* webkit printing magic: print all background colors */
-html {
-	-webkit-print-color-adjust: exact;
-}
-* {
-	box-sizing: border-box;
-	-webkit-print-color-adjust: exact;
-}
-
-html,
-body {
-	margin: 0;
-	padding: 0;
-}
-@media only screen {
-	body {
-		margin: 2em auto;
-		max-width: 900px;
-		color: rgb(55, 53, 47);
-	}
-}
-
-body {
-	line-height: 1.5;
-	white-space: pre-wrap;
-}
-
-a,
-a.visited {
-	color: inherit;
-	text-decoration: underline;
-}
-
-.pdf-relative-link-path {
-	font-size: 80%;
-	color: #444;
-}
-
-h1,
-h2,
-h3 {
-	letter-spacing: -0.01em;
-	line-height: 1.2;
-	font-weight: 600;
-	margin-bottom: 0;
-}
-
-.page-title {
-	font-size: 2.5rem;
-	font-weight: 700;
-	margin-top: 0;
-	margin-bottom: 0.75em;
-}
-
-h1 {
-	font-size: 1.875rem;
-	margin-top: 1.875rem;
-}
-
-h2 {
-	font-size: 1.5rem;
-	margin-top: 1.5rem;
-}
-
-h3 {
-	font-size: 1.25rem;
-	margin-top: 1.25rem;
-}
-
-.source {
-	border: 1px solid #ddd;
-	border-radius: 3px;
-	padding: 1.5em;
-	word-break: break-all;
-}
-
-.callout {
-	border-radius: 3px;
-	padding: 1rem;
-}
-
-figure {
-	margin: 1.25em 0;
-	page-break-inside: avoid;
-}
-
-figcaption {
-	opacity: 0.5;
-	font-size: 85%;
-	margin-top: 0.5em;
-}
-
-mark {
-	background-color: transparent;
-}
-
-.indented {
-	padding-left: 1.5em;
-}
-
-hr {
-	background: transparent;
-	display: block;
-	width: 100%;
-	height: 1px;
-	visibility: visible;
-	border: none;
-	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
-}
-
-img {
-	max-width: 100%;
-}
-
-@media only print {
-	img {
-		max-height: 100vh;
-		object-fit: contain;
-	}
-}
-
-@page {
-	margin: 1in;
-}
-
-.collection-content {
-	font-size: 0.875rem;
-}
-
-.column-list {
-	display: flex;
-	justify-content: space-between;
-}
-
-.column {
-	padding: 0 1em;
-}
-
-.column:first-child {
-	padding-left: 0;
-}
-
-.column:last-child {
-	padding-right: 0;
-}
-
-.table_of_contents-item {
-	display: block;
-	font-size: 0.875rem;
-	line-height: 1.3;
-	padding: 0.125rem;
-}
-
-.table_of_contents-indent-1 {
-	margin-left: 1.5rem;
-}
-
-.table_of_contents-indent-2 {
-	margin-left: 3rem;
-}
-
-.table_of_contents-indent-3 {
-	margin-left: 4.5rem;
-}
-
-.table_of_contents-link {
-	text-decoration: none;
-	opacity: 0.7;
-	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
-}
-
-table,
-th,
-td {
-	border: 1px solid rgba(55, 53, 47, 0.09);
-	border-collapse: collapse;
-}
-
-table {
-	border-left: none;
-	border-right: none;
-}
-
-th,
-td {
-	font-weight: normal;
-	padding: 0.25em 0.5em;
-	line-height: 1.5;
-	min-height: 1.5em;
-	text-align: left;
-}
-
-th {
-	color: rgba(55, 53, 47, 0.6);
-}
-
-ol,
-ul {
-	margin: 0;
-	margin-block-start: 0.6em;
-	margin-block-end: 0.6em;
-}
-
-li > ol:first-child,
-li > ul:first-child {
-	margin-block-start: 0.6em;
-}
-
-ul > li {
-	list-style: disc;
-}
-
-ul.to-do-list {
-	padding-inline-start: 0;
-}
-
-ul.to-do-list > li {
-	list-style: none;
-}
-
-.to-do-children-checked {
-	text-decoration: line-through;
-	opacity: 0.375;
-}
-
-ul.toggle > li {
-	list-style: none;
-}
-
-ul {
-	padding-inline-start: 1.7em;
-}
-
-ul > li {
-	padding-left: 0.1em;
-}
-
-ol {
-	padding-inline-start: 1.6em;
-}
-
-ol > li {
-	padding-left: 0.2em;
-}
-
-.mono ol {
-	padding-inline-start: 2em;
-}
-
-.mono ol > li {
-	text-indent: -0.4em;
-}
-
-.toggle {
-	padding-inline-start: 0em;
-	list-style-type: none;
-}
-
-/* Indent toggle children */
-.toggle > li > details {
-	padding-left: 1.7em;
-}
-
-.toggle > li > details > summary {
-	margin-left: -1.1em;
-}
-
-.selected-value {
-	display: inline-block;
-	padding: 0 0.5em;
-	background: rgba(206, 205, 202, 0.5);
-	border-radius: 3px;
-	margin-right: 0.5em;
-	margin-top: 0.3em;
-	margin-bottom: 0.3em;
-	white-space: nowrap;
-}
-
-.collection-title {
-	display: inline-block;
-	margin-right: 1em;
-}
-
-.page-description {
-    margin-bottom: 2em;
-}
-
-.simple-table {
-	margin-top: 1em;
-	font-size: 0.875rem;
-	empty-cells: show;
-}
-.simple-table td {
-	height: 29px;
-	min-width: 120px;
-}
-
-.simple-table th {
-	height: 29px;
-	min-width: 120px;
-}
-
-.simple-table-header-color {
-	background: rgb(247, 246, 243);
-	color: black;
-}
-.simple-table-header {
-	font-weight: 500;
-}
-
-time {
-	opacity: 0.5;
-}
-
-.icon {
-	display: inline-block;
-	max-width: 1.2em;
-	max-height: 1.2em;
-	text-decoration: none;
-	vertical-align: text-bottom;
-	margin-right: 0.5em;
-}
-
-img.icon {
-	border-radius: 3px;
-}
-
-.user-icon {
-	width: 1.5em;
-	height: 1.5em;
-	border-radius: 100%;
-	margin-right: 0.5rem;
-}
-
-.user-icon-inner {
-	font-size: 0.8em;
-}
-
-.text-icon {
-	border: 1px solid #000;
-	text-align: center;
-}
-
-.page-cover-image {
-	display: block;
-	object-fit: cover;
-	width: 100%;
-	max-height: 30vh;
-}
-
-.page-header-icon {
-	font-size: 3rem;
-	margin-bottom: 1rem;
-}
-
-.page-header-icon-with-cover {
-	margin-top: -0.72em;
-	margin-left: 0.07em;
-}
-
-.page-header-icon img {
-	border-radius: 3px;
-}
-
-.link-to-page {
-	margin: 1em 0;
-	padding: 0;
-	border: none;
-	font-weight: 500;
-}
-
-p > .user {
-	opacity: 0.5;
-}
-
-td > .user,
-td > time {
-	white-space: nowrap;
-}
-
-input[type="checkbox"] {
-	transform: scale(1.5);
-	margin-right: 0.6em;
-	vertical-align: middle;
-}
-
-p {
-	margin-top: 0.5em;
-	margin-bottom: 0.5em;
-}
-
-.image {
-	border: none;
-	margin: 1.5em 0;
-	padding: 0;
-	border-radius: 0;
-	text-align: center;
-}
-
-.code,
-code {
-	background: rgba(135, 131, 120, 0.15);
-	border-radius: 3px;
-	padding: 0.2em 0.4em;
-	border-radius: 3px;
-	font-size: 85%;
-	tab-size: 2;
-}
-
-code {
-	color: #eb5757;
-}
-
-.code {
-	padding: 1.5em 1em;
-}
-
-.code-wrap {
-	white-space: pre-wrap;
-	word-break: break-all;
-}
-
-.code > code {
-	background: none;
-	padding: 0;
-	font-size: 100%;
-	color: inherit;
-}
-
-blockquote {
-	font-size: 1.25em;
-	margin: 1em 0;
-	padding-left: 1em;
-	border-left: 3px solid rgb(55, 53, 47);
-}
-
-.bookmark {
-	text-decoration: none;
-	max-height: 8em;
-	padding: 0;
-	display: flex;
-	width: 100%;
-	align-items: stretch;
-}
-
-.bookmark-title {
-	font-size: 0.85em;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	height: 1.75em;
-	white-space: nowrap;
-}
-
-.bookmark-text {
-	display: flex;
-	flex-direction: column;
-}
-
-.bookmark-info {
-	flex: 4 1 180px;
-	padding: 12px 14px 14px;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-}
-
-.bookmark-image {
-	width: 33%;
-	flex: 1 1 180px;
-	display: block;
-	position: relative;
-	object-fit: cover;
-	border-radius: 1px;
-}
-
-.bookmark-description {
-	color: rgba(55, 53, 47, 0.6);
-	font-size: 0.75em;
-	overflow: hidden;
-	max-height: 4.5em;
-	word-break: break-word;
-}
-
-.bookmark-href {
-	font-size: 0.75em;
-	margin-top: 0.25em;
-}
-
-.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
-.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
-.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
-.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
-.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
-.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
-.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
-.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
-.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
-.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
-.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
-.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
-.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
-.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
-.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
-.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
-.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
-.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
-.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
-.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
-.highlight-default {
-	color: rgba(55, 53, 47, 1);
-}
-.highlight-gray {
-	color: rgba(120, 119, 116, 1);
-	fill: rgba(120, 119, 116, 1);
-}
-.highlight-brown {
-	color: rgba(159, 107, 83, 1);
-	fill: rgba(159, 107, 83, 1);
-}
-.highlight-orange {
-	color: rgba(217, 115, 13, 1);
-	fill: rgba(217, 115, 13, 1);
-}
-.highlight-yellow {
-	color: rgba(203, 145, 47, 1);
-	fill: rgba(203, 145, 47, 1);
-}
-.highlight-teal {
-	color: rgba(68, 131, 97, 1);
-	fill: rgba(68, 131, 97, 1);
-}
-.highlight-blue {
-	color: rgba(51, 126, 169, 1);
-	fill: rgba(51, 126, 169, 1);
-}
-.highlight-purple {
-	color: rgba(144, 101, 176, 1);
-	fill: rgba(144, 101, 176, 1);
-}
-.highlight-pink {
-	color: rgba(193, 76, 138, 1);
-	fill: rgba(193, 76, 138, 1);
-}
-.highlight-red {
-	color: rgba(212, 76, 71, 1);
-	fill: rgba(212, 76, 71, 1);
-}
-.highlight-gray_background {
-	background: rgba(241, 241, 239, 1);
-}
-.highlight-brown_background {
-	background: rgba(244, 238, 238, 1);
-}
-.highlight-orange_background {
-	background: rgba(251, 236, 221, 1);
-}
-.highlight-yellow_background {
-	background: rgba(251, 243, 219, 1);
-}
-.highlight-teal_background {
-	background: rgba(237, 243, 236, 1);
-}
-.highlight-blue_background {
-	background: rgba(231, 243, 248, 1);
-}
-.highlight-purple_background {
-	background: rgba(244, 240, 247, 0.8);
-}
-.highlight-pink_background {
-	background: rgba(249, 238, 243, 0.8);
-}
-.highlight-red_background {
-	background: rgba(253, 235, 236, 1);
-}
-.block-color-default {
-	color: inherit;
-	fill: inherit;
-}
-.block-color-gray {
-	color: rgba(120, 119, 116, 1);
-	fill: rgba(120, 119, 116, 1);
-}
-.block-color-brown {
-	color: rgba(159, 107, 83, 1);
-	fill: rgba(159, 107, 83, 1);
-}
-.block-color-orange {
-	color: rgba(217, 115, 13, 1);
-	fill: rgba(217, 115, 13, 1);
-}
-.block-color-yellow {
-	color: rgba(203, 145, 47, 1);
-	fill: rgba(203, 145, 47, 1);
-}
-.block-color-teal {
-	color: rgba(68, 131, 97, 1);
-	fill: rgba(68, 131, 97, 1);
-}
-.block-color-blue {
-	color: rgba(51, 126, 169, 1);
-	fill: rgba(51, 126, 169, 1);
-}
-.block-color-purple {
-	color: rgba(144, 101, 176, 1);
-	fill: rgba(144, 101, 176, 1);
-}
-.block-color-pink {
-	color: rgba(193, 76, 138, 1);
-	fill: rgba(193, 76, 138, 1);
-}
-.block-color-red {
-	color: rgba(212, 76, 71, 1);
-	fill: rgba(212, 76, 71, 1);
-}
-.block-color-gray_background {
-	background: rgba(241, 241, 239, 1);
-}
-.block-color-brown_background {
-	background: rgba(244, 238, 238, 1);
-}
-.block-color-orange_background {
-	background: rgba(251, 236, 221, 1);
-}
-.block-color-yellow_background {
-	background: rgba(251, 243, 219, 1);
-}
-.block-color-teal_background {
-	background: rgba(237, 243, 236, 1);
-}
-.block-color-blue_background {
-	background: rgba(231, 243, 248, 1);
-}
-.block-color-purple_background {
-	background: rgba(244, 240, 247, 0.8);
-}
-.block-color-pink_background {
-	background: rgba(249, 238, 243, 0.8);
-}
-.block-color-red_background {
-	background: rgba(253, 235, 236, 1);
-}
-.select-value-color-interactiveBlue { background-color: rgba(35, 131, 226, .07); }
-.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
-.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
-.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
-.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
-.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
-.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
-.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
-.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
-.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
-.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
-.select-value-color-pageGlass { background-color: undefined; }
-.select-value-color-washGlass { background-color: undefined; }
-
-.checkbox {
-	display: inline-flex;
-	vertical-align: text-bottom;
-	width: 16;
-	height: 16;
-	background-size: 16px;
-	margin-left: 2px;
-	margin-right: 5px;
-}
-
-.checkbox-on {
-	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
-}
-
-.checkbox-off {
-	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
-}
-	
-</style></head><body><article id="97ae39ad-bfb8-4bfa-9520-ea597eaeaf1b" class="page sans"><header><h1 class="page-title">베겐드 AWS</h1><p class="page-description"></p></header><div class="page-body"><p id="4a745096-5028-4b6f-a151-d965be2a091d" class="">django project aws 배포 방법</p><p id="18f21ecd-7568-43cf-9488-5d18e95891f8" class="">노트북이 mac인 관계로 mac 기준으로 설명드립니다. 따라서 윈도우에서는 git bash를 설치하고 따라해주세요.</p><p id="2de16998-c1e2-46f9-abde-d386355c0d5f" class="">또한 장고로 프로젝트를 하였기에 장고 기준으로 설명드립니다. 다른 프레임워크나 언어로 개발시 참고만 해주세요!</p><p id="14c4d52c-0059-4df8-98d9-812b004b9f1c" class="">사전 준비</p><ul id="abf19b4c-c013-4888-afa7-60e8e2dde950" class="bulleted-list"><li style="list-style-type:disc">github 계정이 있어야 합니다.</li></ul><ul id="ddf134c4-adc5-4128-aefa-7c01108579d6" class="bulleted-list"><li style="list-style-type:disc">AWS 계정이 있어야 합니다. 처음 가입하면 1년간 무료로 EC2 서버를 이용할 수 있고, 이 가이드에서도 해당 서버를 기준으로 설명합니다.</li></ul><p id="f0286d77-f1fd-4d2a-9fbf-31a15d0abf29" class="">배포할 Django 프로젝트 만들기</p><ul id="244508e6-b56c-4dff-bdff-bbdd1c1363fb" class="bulleted-list"><li style="list-style-type:disc">가상환경 폴더 만들기</li></ul><pre id="6eb5021f-36c7-4731-8c44-bebb21275ad4" class="code"><code>$ python3 -m venv myvenv</code></pre><ul id="7201916a-a074-4eea-beee-a7ab978e9d5a" class="bulleted-list"><li style="list-style-type:disc">myvenv 자리엔 원하는 가상환경 명을 입력하시면 됩니다. </li></ul><ul id="3aac7027-4dc2-4a82-b40b-734696b0c4af" class="bulleted-list"><li style="list-style-type:disc">가상환경 활성화 방법</li></ul><ul id="064906ff-7ea8-4b35-9a6d-3807a2dfaf2b" class="bulleted-list"><li style="list-style-type:disc">mac의 경우</li></ul><pre id="7d3796ec-595b-4118-996a-5711823f22e7" class="code"><code>$ source myvenv/bin/activate</code></pre><ul id="6e102c1a-c9ee-46cd-b162-a0ae16f3622e" class="bulleted-list"><li style="list-style-type:disc">windows의 경우</li></ul><pre id="24579152-8be0-4ee3-89da-3269f640e39e" class="code"><code>$ source myvenv/Scripts/activate</code></pre><p id="f72a1d72-b353-4a84-b2fe-16b7dd3784f7" class="">터미널에서 아래와 같이 표시된다면 가상환경이 활성화 된 겁니다.</p><pre id="00c0f98c-482f-479d-b1f4-a083f0139d0d" class="code"><code>(myvenv) [현재 위치]$</code></pre><p id="1d24fa4c-0ea1-4c1c-bd29-cf05591dfffc" class="">장고 설치</p><pre id="2e24e3eb-4112-420f-8cbf-077722dd6ab2" class="code"><code>$ pip3 install django</code></pre><p id="fd34b530-7356-44f1-82d3-3ffd879d946a" class="">배포할 프로젝트 생성 프로젝트 명은 원하는 것을 입력하시면 됩니다.</p><pre id="f449ac22-fe8f-4ffc-b194-93b6d3aa7ac2" class="code"><code>$ django-admin startproject mysite</code></pre><p id="0e0d1a79-1ab2-4f6b-8dfe-a770c8de5f3b" class="">프로젝트에 앱(app)을 만듭니다.</p><pre id="b2e57aad-a186-4744-8a97-71d489ca61b8" class="code"><code>$ cd mysite
-$ python3 manage.py startapp app</code></pre><p id="4e8854fa-f72a-486f-939c-3c26bf780428" class=""><a href="http://settings.py">settings.py</a> 에서 app 앱을 추가하고 사용하는 언어와 timezone을 수정합니다. 사이트가 영어만을 사용한다면 LANGUAGE_CODE는 변경하지 않아도 됩니다.</p><ul id="590d84d2-3cbe-465c-9660-dac500e56c30" class="bulleted-list"><li style="list-style-type:disc">mysite/settings.py</li></ul><pre id="a2c90eec-204b-4949-9854-bdf149173c9f" class="code"><code>...
-
-INSTALLED_APPS = [
-    &#x27;django.contrib.admin&#x27;,
-    &#x27;django.contrib.auth&#x27;,
-    &#x27;django.contrib.contenttypes&#x27;,
-    &#x27;django.contrib.sessions&#x27;,
-    &#x27;django.contrib.messages&#x27;,
-    &#x27;django.contrib.staticfiles&#x27;,
-		&#x27;app&#x27;,
-]
-...
-LANGUAGE_CODE = &#x27;ko-kr&#x27;
-
-TIME_ZONE = &#x27;Asia/Seoul&#x27;
-
-USE_I18N = True
-
-USE_L10N = True
-
-USE_TZ = True
-
-...</code></pre><p id="14ec1092-dc70-41b4-8d76-d27dbb8e84ca" class="">배포 성공시 체크할 간단한 템플릿을 만들겠습니다.</p><p id="2b108bf9-b1d9-4b45-8c31-cd54d5ddea9c" class="">app 폴더 안에 templates 폴더를 만들고, 그 안에 main 폴더를 만든 뒤 index.html을 아래와 같이 만드세요.</p><p id="6711b29e-5e4e-4726-aa25-48512ee62ce8" class="">app/templates/main/index.html</p><pre id="a17b8570-fc98-4604-b4b2-532b3fa9446a" class="code"><code>&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-&lt;head&gt;
-    &lt;meta charset=&quot;UTF-8&quot;&gt;
-    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
-    &lt;title&gt;Document&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;h1&gt;~배포 성공~&lt;/h1&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre><p id="2fa2f2c8-d278-49e2-9ca7-77f2997664ca" class="">views와 urls설정을 합니다.</p><p id="1c96f3b1-bf14-4066-a13c-a63774b73aa8" class="">app/views.py</p><pre id="a485fcff-dbc6-4888-b2f0-91fcbef05394" class="code"><code>from django.contrib import admin
-from django.urls import path
-from main import views as main_views
-
-urlpatterns = [
-    path(&#x27;&#x27;, main_views.index, name=&quot;index&quot;),
-    path(&#x27;admin/&#x27;, admin.site.urls),
-]</code></pre><p id="54820ee8-48b1-45ee-b384-f4848f1a7946" class="">migrate 해준 뒤, runserver를 해줍니다.</p><pre id="b123dd8f-2f91-406c-b80d-ad7d25ec9bfb" class="code"><code>$ python3 manage.py makemigrations
-$ python3 manage.py migrate
-$ python3 manage.py runserver</code></pre><p id="82c04a29-daad-417e-91b5-f6552dde1f55" class="">프로젝트를 업로드할 준비가 되면, 프로젝트에 사용한 패키지와 라이브러리들을 서버 컴퓨터에도 똑같이 설치해야 하기 때문에 설치한 패키지와 라이브러리들 목록을 저장하기 위해 manage.py가 있는 폴더에서</p><pre id="86a8e3b6-89d4-4cc7-bb89-eebd53c6cffe" class="code"><code>$ pip3 freeze &gt;&gt; requirements.txt</code></pre><p id="05cabb26-553c-4ab3-a74e-94c572e72fe0" class="">이 명령어를 입력하면 현재 활성화된 가상환경에 설치된 패키지들을 requirements.txt에 저장할 수 있습니다.</p><p id="304f1773-aa70-41ca-a7c7-ea21875f15df" class="">AWS 서버 대여하기</p><p id="2473b050-61e2-4f17-8db3-e4a61c7b2db4" class="">aws에 로그인하고, EC2를 검색해 들어갑니다.</p><figure id="55df77bc-22c1-47db-8450-58cb3a4900a5" class="image"><a href="%E1%84%87%E1%85%A6%E1%84%80%E1%85%A6%E1%86%AB%E1%84%83%E1%85%B3%20AWS%2097ae39adbfb84bfa9520ea597eaeaf1b/Untitled.png"><img style="width:2254px" src="%E1%84%87%E1%85%A6%E1%84%80%E1%85%A6%E1%86%AB%E1%84%83%E1%85%B3%20AWS%2097ae39adbfb84bfa9520ea597eaeaf1b/Untitled.png"/></a></figure><p id="790db0e0-6c40-416e-bf70-cf8d8b59e546" class="">서비스 리전을 서울로 선택해줍니다.</p><figure id="9475f91e-b38e-4581-8e14-762dedcfbd2a" class="image"><a href="%E1%84%87%E1%85%A6%E1%84%80%E1%85%A6%E1%86%AB%E1%84%83%E1%85%B3%20AWS%2097ae39adbfb84bfa9520ea597eaeaf1b/Untitled%201.png"><img style="width:710px" src="%E1%84%87%E1%85%A6%E1%84%80%E1%85%A6%E1%86%AB%E1%84%83%E1%85%B3%20AWS%2097ae39adbfb84bfa9520ea597eaeaf1b/Untitled%201.png"/></a></figure><p id="6f0d7761-3156-413f-ab4f-5c440e933f1a" class="">인스턴스를 클릭해 들어갑니다. 인스턴스 = 컴퓨터라고 생각하시면 됩니다.</p><p id="84ceab62-fef6-41c8-a66d-013353ba8d9f" class="">인스턴스 시작을 클릭합니다.</p><figure id="1a6543c8-aae1-428a-b3d2-3859c442fbda" class="image"><a href="%E1%84%87%E1%85%A6%E1%84%80%E1%85%A6%E1%86%AB%E1%84%83%E1%85%B3%20AWS%2097ae39adbfb84bfa9520ea597eaeaf1b/Untitled%202.png"><img style="width:2854px" src="%E1%84%87%E1%85%A6%E1%84%80%E1%85%A6%E1%86%AB%E1%84%83%E1%85%B3%20AWS%2097ae39adbfb84bfa9520ea597eaeaf1b/Untitled%202.png"/></a></figure><figure id="ce962aea-55d1-4695-8390-8659941349fe" class="image"><a href="%E1%84%87%E1%85%A6%E1%84%80%E1%85%A6%E1%86%AB%E1%84%83%E1%85%B3%20AWS%2097ae39adbfb84bfa9520ea597eaeaf1b/Untitled%203.png"><img style="width:2696px" src="%E1%84%87%E1%85%A6%E1%84%80%E1%85%A6%E1%86%AB%E1%84%83%E1%85%B3%20AWS%2097ae39adbfb84bfa9520ea597eaeaf1b/Untitled%203.png"/></a></figure><p id="cb36940a-025d-4a37-b8dc-2b7d8d6c9d67" class="">더 많은 AMI 찾아보기를 클릭하고</p><p id="a4a4a3ac-bf51-4f86-be7b-476531a781ac" class="">Ubuntu server라고 입력하고 </p><figure id="1224b5c5-e557-4db4-abf7-d4b034e6b50c" class="image"><a href="%E1%84%87%E1%85%A6%E1%84%80%E1%85%A6%E1%86%AB%E1%84%83%E1%85%B3%20AWS%2097ae39adbfb84bfa9520ea597eaeaf1b/Untitled%204.png"><img style="width:2640px" src="%E1%84%87%E1%85%A6%E1%84%80%E1%85%A6%E1%86%AB%E1%84%83%E1%85%B3%20AWS%2097ae39adbfb84bfa9520ea597eaeaf1b/Untitled%204.png"/></a></figure><p id="0cef1d01-f451-47a2-b73e-ba2ddf3ebd19" class="">제일 상단에 있는 “Ubuntu Server 22.04 LTS (HVM), SSD Volume Type”를 선택해주세요.</p><figure id="8f21431c-2d8d-473b-9762-41d132746938" class="image"><a href="%E1%84%87%E1%85%A6%E1%84%80%E1%85%A6%E1%86%AB%E1%84%83%E1%85%B3%20AWS%2097ae39adbfb84bfa9520ea597eaeaf1b/Untitled%205.png"><img style="width:2576px" src="%E1%84%87%E1%85%A6%E1%84%80%E1%85%A6%E1%86%AB%E1%84%83%E1%85%B3%20AWS%2097ae39adbfb84bfa9520ea597eaeaf1b/Untitled%205.png"/></a></figure><p id="d2a288ee-2442-4e26-b80d-fbb6796aab51" class="">이제 키 페어를 생성해야 합니다. 새 키 페어 생성을 클릭하고,</p><p id="5c5c8327-1878-457a-a39c-c54e9f129a62" class="">키 페어 이름을 입력하고 키 페어 생성 버튼을 누르면 키 페어가 다운 받아집니다.</p><p id="abbb9af2-eb0b-43fd-8b92-11946eb4f002" class="">이 키 페어는 여러분이 임대한 AWS EC2 서버에 원격으로 접근하기 위한 키입니다. 절대 잃어버리면 안되고, 외부에 공개해서도 안됩니다.</p><figure id="20a5b15b-0594-496c-9f12-5bc0a3af36cb" class="image"><a href="%E1%84%87%E1%85%A6%E1%84%80%E1%85%A6%E1%86%AB%E1%84%83%E1%85%B3%20AWS%2097ae39adbfb84bfa9520ea597eaeaf1b/Untitled%206.png"><img style="width:2654px" src="%E1%84%87%E1%85%A6%E1%84%80%E1%85%A6%E1%86%AB%E1%84%83%E1%85%B3%20AWS%2097ae39adbfb84bfa9520ea597eaeaf1b/Untitled%206.png"/></a></figure><p id="99e2982e-82ea-4df5-a079-e4c0c6008405" class="">이제 나머지 설정들은 건들지 마시고 인스턴스 시작 버튼을 누르면 성공적으로 인스턴스가 실행됩니다.</p><p id="a7d22d1c-bc09-4549-8442-aba8332ad790" class="">이제 다운받은 키 페어를 관리해봅시다.</p><p id="c82c159b-8c9a-49ec-a392-686a248905d4" class="">다운로드 폴더에 있는 키 페어을 홈 폴더의 .ssh 폴더로 옮깁니다. 만약 홈 폴더에 .ssh 폴더가 없다면 생성한 뒤 옮겨줍니다.</p><pre id="2e34aee4-9ab3-4943-af49-a7fdab671878" class="code"><code>(~/.ssh 폴더가 없을 경우) $ mkdir ~/.ssh/
-$ mv ~/Downloads/test.pem ~/.ssh/</code></pre><p id="879222d2-d19c-41b0-a90e-8d7d8a8cb61d" class="">키 페어 파일의 권한을 소유주만 읽을 수 있도록 변경합니다.</p><pre id="9256ea23-e006-463d-83cf-cfe017c7b5bf" class="code"><code>$ chmod 400 ~/.ssh/test.pem</code></pre><p id="8d90dc55-ed03-4d40-8676-8ff36b85bcfa" class="">AWS EC2 서버에 원격 접속하기</p><p id="f90a3825-df62-4ad0-9527-a9c8931ec767" class="">터미널에서 다음 명령어를 입력하면 원격으로 접속 할 수 있습니다.</p><pre id="6690b184-35ac-4752-a65a-618367a4d60d" class="code"><code>ssh -i [키 페어 경로] [유저 이름]@[퍼플릭 DNS 주소]</code></pre><p id="ef1c9abb-74ca-4f86-ac30-9b822db6ba73" class="">초기 유저 이름은 ubuntu로 설정되어 있습니다.</p><p id="2d2630a6-aea8-43c2-b009-9b7d87020abd" class="">따라서 저의 경우는 .ssh폴더에 test.pem이 있으니 다음 명령어와 같습니다</p><pre id="26c6c3df-bb26-495e-ad5a-e2b0acc856b2" class="code"><code>ssh -i ~/.ssh/test.pem ubuntu@ec2-43-201-24-115.ap-northeast-2.compute.amazonaws.com</code></pre><figure id="76321c4e-ab01-44ee-abb4-4774fcbe68a6" class="image"><a href="%E1%84%87%E1%85%A6%E1%84%80%E1%85%A6%E1%86%AB%E1%84%83%E1%85%B3%20AWS%2097ae39adbfb84bfa9520ea597eaeaf1b/Untitled%207.png"><img style="width:2848px" src="%E1%84%87%E1%85%A6%E1%84%80%E1%85%A6%E1%86%AB%E1%84%83%E1%85%B3%20AWS%2097ae39adbfb84bfa9520ea597eaeaf1b/Untitled%207.png"/></a></figure><p id="adf49623-d043-4939-904b-733e991121c1" class="">인스턴스를 누르고 오른쪽 상단에 연결을 누른 후, SSH 클라이언트를 누르면 명령어를 확인 할 수 있습니다.</p><figure id="40ccf9b8-896a-4bb9-9969-31372bdb6761" class="image"><a href="%E1%84%87%E1%85%A6%E1%84%80%E1%85%A6%E1%86%AB%E1%84%83%E1%85%B3%20AWS%2097ae39adbfb84bfa9520ea597eaeaf1b/Untitled%208.png"><img style="width:2140px" src="%E1%84%87%E1%85%A6%E1%84%80%E1%85%A6%E1%86%AB%E1%84%83%E1%85%B3%20AWS%2097ae39adbfb84bfa9520ea597eaeaf1b/Untitled%208.png"/></a></figure><pre id="1fdc3341-188d-442f-a1e5-564dd13c9a2f" class="code"><code>The authenticity of host &#x27;ec2-43-201-24-115.ap-northeast-2.compute.amazonaws.com (43.201.24.115)&#x27; can&#x27;t be established.
-ED25519 key fingerprint is SHA256:bSaGlsUJjJ8369c/cjPnSnLdnXjnn7x9C1W3fJ9Tirk.
-This key is not known by any other names
-Are you sure you want to continue connecting (yes/no/[fingerprint])? </code></pre><p id="402a0b14-9ee1-48f0-882e-2356cabcc3e5" class="">처음 접속 시 이런 문구가 뜨는데 정상적이니 yes라고 하세요. 만약</p><pre id="82e6f5a6-336e-442a-8323-23fe29b45eb2" class="code"><code>Warning: Permanently added &#x27;ec2-43-201-24-115.ap-northeast-2.compute.amazonaws.com&#x27; (ED25519) to the list of known hosts.
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-@         WARNING: UNPROTECTED PRIVATE KEY FILE!          @
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-Permissions 0644 for &#x27;/Users/zsu/.ssh/test.pem&#x27; are too open.
-It is required that your private key files are NOT accessible by others.
-This private key will be ignored.
-Load key &quot;/Users/zsu/.ssh/test.pem&quot;: bad permissions
-ubuntu@ec2-43-201-24-115.ap-northeast-2.compute.amazonaws.com: Permission denied (publickey).</code></pre><p id="f8509210-e612-4f00-9d77-6da935718bfd" class="">이런 문구가 뜬다면 chomd 400을 적용했는지 다시 확인해보세요. chomd 400 명령어를 적용하고 다시 접속하면 정상적으로 연결됩니다.</p><pre id="2e0f9aaa-5dcb-4f57-ad57-bc7aa89303e7" class="code"><code>Welcome to Ubuntu 22.04.3 LTS (GNU/Linux 6.2.0-1012-aws x86_64)
-
- * Documentation:  https://help.ubuntu.com
- * Management:     https://landscape.canonical.com
- * Support:        https://ubuntu.com/advantage
-
-  System information as of Fri Nov 24 12:09:20 UTC 2023
-
-  System load:  0.0               Processes:             96
-  Usage of /:   20.5% of 7.57GB   Users logged in:       0
-  Memory usage: 21%               IPv4 address for eth0: 172.31.0.176
-  Swap usage:   0%
-
-Expanded Security Maintenance for Applications is not enabled.
-
-0 updates can be applied immediately.
-
-Enable ESM Apps to receive additional future security updates.
-See https://ubuntu.com/esm or run: sudo pro status
-
-
-The list of available updates is more than a week old.
-To check for new updates run: sudo apt update
-
-
-The programs included with the Ubuntu system are free software;
-the exact distribution terms for each program are described in the
-individual files in /usr/share/doc/*/copyright.
-
-Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
-applicable law.
-
-To run a command as administrator (user &quot;root&quot;), use &quot;sudo &lt;command&gt;&quot;.
-See &quot;man sudo_root&quot; for details.
-
-ubuntu@ip-172-31-0-176:~$</code></pre><p id="0250ddfa-720c-4d6f-af24-01e92ac150f8" class="">AWS EC2 기본 세팅</p><p id="d862217a-90a9-43d6-a2cd-57300cfd423c" class="">접속한 서버 컴퓨터에서 패키지 정보를 업데이트하고, 설치 중 Y/N가 나오면 y치고 엔터를 누르세요.</p><pre id="008dd139-133f-46e1-8395-4c4118867786" class="code"><code>$ sudo apt-get update</code></pre><p id="628a9bb9-280c-4457-bb16-6469b1a02ee9" class="">패키지 의존성 검사 및 업그레이드</p><pre id="c1bc68ba-8ce5-48b5-8e45-0a87e206644d" class="code"><code>$ sudo apt-get dist-upgrade</code></pre><figure id="5961569c-d372-456c-aa9f-804ff378d6f0" class="image"><a href="%E1%84%87%E1%85%A6%E1%84%80%E1%85%A6%E1%86%AB%E1%84%83%E1%85%B3%20AWS%2097ae39adbfb84bfa9520ea597eaeaf1b/Untitled%209.png"><img style="width:1136px" src="%E1%84%87%E1%85%A6%E1%84%80%E1%85%A6%E1%86%AB%E1%84%83%E1%85%B3%20AWS%2097ae39adbfb84bfa9520ea597eaeaf1b/Untitled%209.png"/></a></figure><p id="22221ed2-8291-4eef-a2b8-6df99242c494" class="">이런 화면이 나오면 그냥 엔터 계속 치고 넘어가세요.</p><p id="b0eba201-756b-43be-b23e-2fa3d8b763bf" class="">python3 패키지 매니저(pip3) 설치</p><pre id="5424fd32-cb3a-450b-8b7d-7c015a70cbfe" class="code"><code>$ sudo apt-get install python3-pip</code></pre><p id="87ffc034-ecd8-41d9-8c0b-5ef2a050aeb8" class="">뭐 물어보면 y치고 엔터누르세요.</p><p id="da57aac2-05e4-4338-a74b-f67ad9a1f7f3" class="">AWS EC2 서버에 git clone 해오기.</p><p id="36edc74e-e394-4702-b130-1a558371f277" class="">우선 ec2 서버에 접속한 후 프로젝트 파일들을 clone 할 것입니다. 프로젝트 파일들은 /srv/ 폴더에 clone 하기 위해 이 폴더의 소유권을 현재 유저인 ubuntu로 바꿔줍니다.</p><pre id="a35ed375-d360-4211-89db-7aceb21b8bc8" class="code"><code>$ sudo chown -R ubuntu:ubuntu /srv/</code></pre><pre id="f70b4bc6-d230-4c01-9169-040de1fa6582" class="code"><code>$ cd /
-$ ls -al</code></pre><p id="ca3c1191-4e52-4e7a-824e-fc86f969ff1c" class="">명령어를 이용해 소유권이 잘 바뀌었는지 확인합니다.</p><pre id="204a249c-6673-4c4a-8ab4-9a8e8ddf9948" class="code"><code>total 72
-drwxr-xr-x  19 root   root    4096 Nov 24 11:54 .
-drwxr-xr-x  19 root   root    4096 Nov 24 11:54 ..
-lrwxrwxrwx   1 root   root       7 Sep 19 02:19 bin -&gt; usr/bin
-drwxr-xr-x   4 root   root    4096 Nov 24 12:16 boot
-drwxr-xr-x  16 root   root    3220 Nov 24 12:15 dev
-drwxr-xr-x  93 root   root    4096 Nov 24 12:16 etc
-drwxr-xr-x   3 root   root    4096 Nov 24 11:54 home
-lrwxrwxrwx   1 root   root       7 Sep 19 02:19 lib -&gt; usr/lib
-lrwxrwxrwx   1 root   root       9 Sep 19 02:19 lib32 -&gt; usr/lib32
-lrwxrwxrwx   1 root   root       9 Sep 19 02:19 lib64 -&gt; usr/lib64
-lrwxrwxrwx   1 root   root      10 Sep 19 02:19 libx32 -&gt; usr/libx32
-drwx------   2 root   root   16384 Sep 19 02:22 lost+found
-drwxr-xr-x   2 root   root    4096 Sep 19 02:19 media
-drwxr-xr-x   2 root   root    4096 Sep 19 02:19 mnt
-drwxr-xr-x   2 root   root    4096 Sep 19 02:19 opt
-dr-xr-xr-x 156 root   root       0 Nov 24 11:54 proc
-drwx------   4 root   root    4096 Nov 24 11:54 root
-drwxr-xr-x  27 root   root     940 Nov 24 12:16 run
-lrwxrwxrwx   1 root   root       8 Sep 19 02:19 sbin -&gt; usr/sbin
-drwxr-xr-x   8 root   root    4096 Sep 19 02:26 snap
-drwxr-xr-x   2 ubuntu ubuntu  4096 Sep 19 02:19 srv
-dr-xr-xr-x  13 root   root       0 Nov 24 11:54 sys
-drwxrwxrwt  12 root   root    4096 Nov 24 12:22 tmp
-drwxr-xr-x  14 root   root    4096 Sep 19 02:19 usr
-drwxr-xr-x  13 root   root    4096 Sep 19 02:21 var</code></pre><p id="4d15481e-64b2-42e8-a30f-e75fd4b8cd65" class="">/srv/ 폴더의 소유권이 ubuntu로 잘 바뀌었음을 알 수 있습니다.</p><p id="9427984b-9df5-404f-b40e-444272781a8a" class="">/srv/ 폴더로 이동해 github 프로젝트를 clone 해옵시다.</p><pre id="817644e6-1e2f-41b5-aff9-51cb511e9243" class="code"><code>$ cd /srv
-$ git clone [레포지토리 주소]</code></pre><p id="be9e1e71-58e7-41a5-a54c-981030c5b3b2" class="">서버 컴퓨터에 프로젝트를 위한 패키지 설치를 위해 로컬과 동일한게 가상환경을 만들어 주고 패키지와 버전들을 저장한 requirements.txt를 통해 설치합니다.</p><p id="9b2a9353-27fe-485b-a98f-f10ccc4070f4" class="">가상환경을 만들기 전에 python3-venv를 설치합니다.</p><pre id="f9f3862c-fc18-4092-9893-6086ae69fb89" class="code"><code>$ sudo apt-get install python3-venv</code></pre><p id="ec949e7d-a8ee-4e5b-8f08-4a68328f1a02" class="">가상환경 폴더의 위치는 홈 폴더에 만들겠습니다.</p><pre id="a9620679-49df-4ebb-976e-526283c6316d" class="code"><code>$ cd ~
-$ python3 -m venv myvenv</code></pre><p id="c5da4336-1234-478f-9738-260d1035c268" class="">가상환경을 활성화 하고, 프로젝트 폴더에 있는 requirements.txt 파일을 통해 패키지를 설치합니다.</p><pre id="6eb4635b-13b2-427a-bfc8-174695a1b475" class="code"><code>$ source myvenv/bin/activate
-$ cd /srv/Back/
-$ pip3 install -r requirements.txt</code></pre><p id="631a4439-f064-47e6-9a6b-4fe906d864e3" class="">프로젝트 폴더에 있는 <a href="http://manage.py">manage.py</a>가 있는 폴더에서 runserver를 합니다</p><pre id="386aac69-6025-460b-8a25-fd3fc3bd5b8d" class="code"><code>python3 manage.py runserver 0:8080</code></pre><p id="a85fbd1c-6fd5-4392-92df-7f43f910289a" class="">그 후 퍼블릭 DNS 주소 뒤에 포트 번호인 :8080를 붙여 접속해보세요. </p><ul id="f484512e-95da-4a41-8df5-71051f2ae3e0" class="bulleted-list"><li style="list-style-type:disc">아마 깃허브에서 Back 코드를 그래도 git clone 하고 runserver를 하면 에러가 날 겁니다. my_settings.py를 찾을 수 없다고 이는 Django 의 secret_key 와 database 정보를 my_settings.py에  따로 옮기고 import 해와서 사용하기 때문입니다. my_settings.py는 외부에 공개되면 안되기에 .gitignore 파일에서 git push가 되지 않게 합니다. my_settings.py는 manage.py와 동일한 위치에 존재합니다. 아래 코드가 my_settings.py 입니다. *는 정보를 가리기 위해 임의로 넣은 것입니다.<pre id="194b3afc-7fe5-4fd7-be95-87f9ab5d5ecf" class="code"><code>import pymysql
-
-pymysql.install_as_MySQLdb()
-
-DATABASES = {
-    &#x27;default&#x27;: {
-        &#x27;ENGINE&#x27;: &#x27;django.db.backends.mysql&#x27;,
-        &#x27;NAME&#x27;: &#x27;urop-db&#x27;,
-        &#x27;USER&#x27;: &#x27;admin&#x27;,
-        &#x27;PASSWORD&#x27;: &#x27;*******&#x27;,
-        &#x27;HOST&#x27;: &#x27;database-1.ccgwtelz3n2i.us-east-1.rds.amazonaws.com&#x27;,
-        &#x27;PORT&#x27;: &#x27;3306&#x27;,
-        &#x27;OPTIONS&#x27;: {
-            &#x27;init_command&#x27;: &#x27;SET sql_mode=&quot;STRICT_TRANS_TABLES&quot;&#x27;
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- 문서의 문자 인코딩 및 화면 크기 설정 -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>2023-2 UROP</title>
+
+    <!-- Bootstrap CSS 가져오기 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+</head>
+
+<body>
+    <!-- 네비게이션 바 설정 -->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgb(0,0,0);">
+        <div class="container-fluid">
+            <!-- UROP 로고 링크 -->
+            <a class="navbar-brand" href="index.html">UROP</a>
+            <!-- 네비게이션 바 버튼 설정 -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- 네비게이션 바 아이템 목록 설정 -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <!-- 개발 가이드 드롭다운 메뉴 -->
+                    <li class="nav-item dropdown">
+                        <a id="guide-link" class="nav-link dropdown-toggle" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            개발 가이드
+                        </a>
+                        <!-- 개발 가이드 하위 메뉴 -->
+                        <ul class="dropdown-menu">
+                            <li><a id="environment-link" class="dropdown-item">환경설정</a></li>
+                            <li><a id="client-link" class="dropdown-item">클라이언트</a></li>
+                            <li><a id="server-link" class="dropdown-item">서버</a></li>
+                            <li><a id="algorithm-link" class="dropdown-item">알고리즘</a></li>
+                        </ul>
+                    </li>
+                    <!-- 앱 설명 드롭다운 메뉴 -->
+                    <li class="nav-item dropdown">
+                        <a id="description-link" class="nav-link dropdown-toggle" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            앱 설명
+                        </a>
+                        <!-- 앱 설명 하위 메뉴 -->
+                        <ul class="dropdown-menu">
+                            <li><a id="build-link" class="dropdown-item">앱 빌드 방법</a></li>
+                            <li><a id="app-link" class="dropdown-item">앱 구동 모습 설명</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="p-5 mb-4 bg-light rounded-3">
+        <div class="container-fluid py-5">
+            <h1 class="fw-bold">AWS 설정</h1>
+            <br>
+            <p class="col-md-12 fs-5">
+                AWS 설정에 필요한 단계를 익히고 설정합니다.
+                <br>
+                AWS 설정을 위해 아래의 개발 가이드를 따라 주세요.
+            </p>
+            <br>
+            <br>
+            <h3 class="fw-bold">🔗&nbsp;&nbsp;AWS 설정 단계</h3>
+            <hr>
+            <p class="col-md-12 fs-5">
+            	대략적인 AWS 설정 단계는 다음 페이지를 참고해 주세요.
+                <br>
+                다음 페이지를 통해 AWS 설정 단계에 대해 전반적인 이해를 얻을 수 있습니다.
+                <br>
+                <a href="backend-aws/structure.html" style="color: rgb(80, 164, 191);">Structure Explanation &rarr;</a>
+            </p>
+            <br>
+            <br>
+            <h3 class="fw-bold">🔎&nbsp;&nbsp;AWS 설정</h3>
+            <hr>
+            <p class="col-md-12 fs-5">
+                AWS 설정 단계의 상세 설명은 다음 페이지를 참고해 주세요.
+                <br>
+                다음 페이지는 AWS 설정에 필요한 상세한 설명를 포함하고 있습니다.
+                <br>
+                <a href="backend-aws/function.html" style="color: rgb(80, 164, 191);">Main Function &rarr;</a>
+            </p>
+        </div>
+    </div>
+    
+
+    <!-- 페이지 내 스타일 설정 -->
+    <style>
+        .navbar-brand {
+            font-size: 20px;
+            font-weight: bold;
+            margin-left: 10px;
         }
-    }
-}
-SECRET = {
-         &#x27;secret&#x27;:&#x27;django-insecure-***************&#x27;
-}</code></pre><p id="dced62ef-a43f-4648-91b6-46fd6417c56d" class="">따라서 <a href="http://settings.py">settings.py</a> 코드도 수정해야 합니다. 아래와 같이 수정해주세요.</p><pre id="26d75076-9972-497e-82c2-4f3cabe20bca" class="code"><code>import my_settings
 
-...
-SECRET_KEY = my_settings.SECRET[&#x27;secret&#x27;]
-...
-# DATABASES = {
-#     &#x27;default&#x27;: {
-#         &#x27;ENGINE&#x27;: &#x27;django.db.backends.sqlite3&#x27;,
-#         &#x27;NAME&#x27;: BASE_DIR / &#x27;db.sqlite3&#x27;,
-#     }
-# }
-DATABASES = my_settings.DATABASES
-....</code></pre><p id="ce98ce01-2ba7-4608-b5cf-bdc8829834e9" class="">my_settings.py는 git push가 안되기 때문에 서버컴퓨터에서 찾을 수 없습니다. 따라서 서버 컴퓨터에 접속 후 vi 편집기를 이용해 파일을 만들고 작성해 줍시다. 서버 컴퓨터에 접속 한 후 아래 명령어를 이용하세요.</p><pre id="764ec6a9-bb52-4754-9f86-fb154afefc02" class="code"><code>$ cd ~/srv/Back
-$ vi my_settings.py</code></pre><p id="0206aed5-7caf-422b-aafd-d650ccd881a5" class="">이후 vi편집 모드에서 my_settings.py를 본인에 맞는 설정에 맞춰서 작성해주시면 됩니다. ‘i’를 눌러 작성을 하고 ‘:wq’를 입력해 저장하고 종료합니다.</p></li></ul><p id="9ed7c5c1-3637-449e-9353-d3c3d81c2b88" class=""><a href="http://ec2-43-201-24-115.ap-northeast-2.compute.amazonaws.com/">ec2-43-201-24-115.ap-northeast-2.compute.amazonaws.com</a>:8080 그러면 로딩만 하고 페이지가 나오지 않을 겁니다. 우리가 만든 서버의 8080 포트가 열려있지 않기 때문입니다. AWS에 접속해 EC2 화면으로 가서 인스턴스를 누르고 보안을 눌러주세요.</p><figure id="bad80be7-3afc-4d53-bf5a-2e43b52c5bad" class="image"><a href="%E1%84%87%E1%85%A6%E1%84%80%E1%85%A6%E1%86%AB%E1%84%83%E1%85%B3%20AWS%2097ae39adbfb84bfa9520ea597eaeaf1b/Untitled%2010.png"><img style="width:2330px" src="%E1%84%87%E1%85%A6%E1%84%80%E1%85%A6%E1%86%AB%E1%84%83%E1%85%B3%20AWS%2097ae39adbfb84bfa9520ea597eaeaf1b/Untitled%2010.png"/></a></figure><p id="faf9abe9-5f0d-4ad6-8a48-e66820289cf1" class="">그 후 인바운드 규칙에 보안 그룹을 누르고</p><figure id="c5fe994c-90f1-48cb-b855-3f30916d5519" class="image"><a href="%E1%84%87%E1%85%A6%E1%84%80%E1%85%A6%E1%86%AB%E1%84%83%E1%85%B3%20AWS%2097ae39adbfb84bfa9520ea597eaeaf1b/Untitled%2011.png"><img style="width:2218px" src="%E1%84%87%E1%85%A6%E1%84%80%E1%85%A6%E1%86%AB%E1%84%83%E1%85%B3%20AWS%2097ae39adbfb84bfa9520ea597eaeaf1b/Untitled%2011.png"/></a></figure><p id="4127e812-d7e5-4371-bcd4-571b5cb5c2f5" class="">인바운드 규칙 편집을 누른 후</p><figure id="66983439-ff0c-4afb-97d4-d7d689453403" class="image"><a href="%E1%84%87%E1%85%A6%E1%84%80%E1%85%A6%E1%86%AB%E1%84%83%E1%85%B3%20AWS%2097ae39adbfb84bfa9520ea597eaeaf1b/Untitled%2012.png"><img style="width:2652px" src="%E1%84%87%E1%85%A6%E1%84%80%E1%85%A6%E1%86%AB%E1%84%83%E1%85%B3%20AWS%2097ae39adbfb84bfa9520ea597eaeaf1b/Untitled%2012.png"/></a></figure><p id="3a8d8480-90e4-4164-be9e-8ae5c956f9f0" class="">8080 포트를 만들고 저장해줍니다.</p><p id="c0516d9e-59d8-44d2-aeb8-fa8198527dd5" class="">그 후 로컬 컴퓨터에 있는 프로젝트 폴더에서 <a href="http://settings.py">settings.py</a> 에 ALLOWED_HOSTS에 주소를 추가합니다.</p><p id="3200e03e-a0bf-4d35-98c2-6941ba480cc9" class="">mysite/settings.py</p><pre id="76c3ffbb-beb8-450a-9747-a44c95baf926" class="code"><code>ALLOWED_HOSTS = [
-    &quot;.ap-northeast-2.compute.amazonaws.com&quot;
-]</code></pre><p id="8a47c141-4f7f-4b3e-881a-348b3c6c866f" class="">그 후 <a href="http://manage.py">manage.py</a>가 있는 폴더로 이동한 후 깃에 push 해주고 서버 컴퓨터로 돌아와서 pull 해서 변경 사항을 업데이트 해줍니다. 그러면 성공적으로 사이트에 접속 가능할 것입니다.</p><p id="b951ea4a-6ddb-4dc0-b426-1beaee38582a" class="">uWSGI 서버 연결하기</p><p id="1e87ddbd-6f76-45ae-97d9-1b18c36ae5ae" class="">Django는 웹 서버와 직접적으로 통신할 수 없기에 중간에 WSGI server를 설치해 주어야 합니다.</p><pre id="d43d2178-422e-44db-b0ce-792a992175df" class="code"><code>$ source ~/myvenv/bin/activate
-$ pip3 install uwsgi</code></pre><p id="556a9095-6e20-4f13-8c81-49616c7c3ca8" class="">uwsgi 서버를 이용해 django 서버를 키려면 다음 형식의 명령어를 치시면 됩니다.</p><pre id="75e3808d-6086-4b16-ac29-1f3d3c83cd8f" class="code"><code>$ uwsgi --http :[포트번호] --home [가상환경 경로] --chdir [장고프로젝트폴더 경로] -w [wsgi 모듈이 있는 폴더].wsgi</code></pre><p id="e703e420-c0ed-4be8-bd63-6e4ea9a29d09" class="">즉, 그대로 적용하면 저의 명령어는 아래와 같습니다.</p><pre id="c6eb80ac-298c-40d2-a061-878fcac93d7a" class="code"><code>$ uwsgi --http :8080 --home /home/ubuntu/myvenv/ --chdir /srv/Back/ -w mysite.wsgi</code></pre><p id="60ab76a4-ef9e-4a12-ad29-d01329502976" class="">
-</p><p id="bf8aeb51-2e96-4a9e-9e94-d70d50d53910" class="">
-</p><p id="59ed8a15-5407-4536-ae49-42bf11ae358d" class="">
-</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
+        .nav-item {
+            font-size: 20px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        .form-control {
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .form-label {
+            font-weight: bold;
+            font-size: 20px;
+        }
+    </style>
+
+    <!-- Bootstrap JavaScript 가져오기 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+
+    <!-- 페이지 로딩 시 실행될 스크립트 -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Intro 페이지로 이동
+            document.getElementById("intro-link").addEventListener("click", function () {
+                window.location.href = "intro.html";
+            });
+
+            // 환경설정 페이지로 이동
+            document.getElementById("environment-link").addEventListener("click", function () {
+                window.location.href = "environment.html";
+            });
+
+            // 클라이언트 페이지로 이동
+            document.getElementById("client-link").addEventListener("click", function () {
+                window.location.href = "client.html";
+            });
+
+            // 서버 페이지로 이동
+            document.getElementById("server-link").addEventListener("click", function () {
+                window.location.href = "server.html";
+            });
+
+            // 알고리즘 페이지로 이동
+            document.getElementById("algorithm-link").addEventListener("click", function () {
+                window.location.href = "algorithm.html";
+            });
+
+            // 앱 빌드 방법 페이지로 이동
+            document.getElementById("build-link").addEventListener("click", function () {
+                window.location.href = "build.html";
+            });
+
+            // 앱 구동 모습 설명 페이지로 이동
+            document.getElementById("app-link").addEventListener("click", function () {
+                window.location.href = "app.html";
+            });
+        });
+    </script>
+</body>
+
+</html>
