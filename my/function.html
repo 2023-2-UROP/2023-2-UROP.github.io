@@ -1,28 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
+    <!-- 문서의 문자 인코딩 및 화면 크기 설정 -->
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>2023-2 UROP</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <title>MY - function</title>
+
+    <!-- Bootstrap CSS 가져오기 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <!-- 페이지 내 스타일 설정 -->
     <style>
         body {
             font-family: 'Arial', sans-serif;
         }
-        .navbar-brand, .nav-item {
+
+        .navbar-brand {
             font-size: 20px;
             font-weight: bold;
+            margin-left: 10px;
         }
-        .form-control, .form-label {
+
+        .nav-item {
+            font-size: 20px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        .form-control {
             font-weight: bold;
             font-size: 20px;
         }
+
+        .form-label {
+            font-weight: bold;
+            font-size: 20px;
+        }
+
         .bg-light {
             padding: 20px;
         }
+
         .in {
             text-indent: 30px;
         }
+
         .container {
             background-color: #ffffff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -30,45 +54,59 @@
             margin-top: 20px;
             padding: 20px;
         }
+
         pre {
             background-color: #f4f4f4;
             padding: 10px 50px;
             border: 1px solid #ddd;
             border-radius: 5px;
         }
-        ul{
-            list-style:none;
+
+        ul {
+            list-style: none;
         }
     </style>
 </head>
-<body>
 
+<body>
+    <!-- 네비게이션 바 설정 -->
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgb(0,0,0);">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">UROP</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <!-- UROP 로고 링크 -->
+            <a class="navbar-brand" href="https://2023-2-urop.github.io/index.html">UROP</a>
+            <!-- 네비게이션 바 버튼 설정 -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            <!-- 네비게이션 바 아이템 목록 설정 -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <!-- 개발 가이드 드롭다운 메뉴 -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a id="guide-link" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
                             개발 가이드
                         </a>
+                        <!-- 개발 가이드 하위 메뉴 -->
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">환경설정</a></li>
-                            <li><a class="dropdown-item" href="#">클라이언트</a></li>
-                            <li><a class="dropdown-item" href="#">서버</a></li>
-                            <li><a class="dropdown-item" href="#">알고리즘</a></li>
+                            <li><a id="environment-link" class="dropdown-item">환경설정</a></li>
+                            <li><a id="client-link" class="dropdown-item">클라이언트</a></li>
+                            <li><a id="server-link" class="dropdown-item">서버</a></li>
+                            <li><a id="algorithm-link" class="dropdown-item">알고리즘</a></li>
                         </ul>
                     </li>
+                    <!-- 앱 설명 드롭다운 메뉴 -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a id="description-link" class="nav-link dropdown-toggle" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
                             앱 설명
                         </a>
+                        <!-- 앱 설명 하위 메뉴 -->
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">앱 빌드 방법</a></li>
-                            <li><a class="dropdown-item" href="#">앱 구동 모습 설명</a></li>
+                            <li><a id="build-link" class="dropdown-item">앱 빌드 방법</a></li>
+                            <li><a id="app-link" class="dropdown-item">앱 구동 모습 설명</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -294,11 +332,50 @@
                 }
                 </code>
             </pre>
-
-            
         </div>
     </div>
+                        
+    <!-- Bootstrap JavaScript 가져오기 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <!-- 페이지 로딩 시 실행될 스크립트 -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            // 환경설정 페이지로 이동
+            document.getElementById("environment-link").addEventListener("click", function () {
+                window.location.href = "https://2023-2-urop.github.io/environment.html";
+            });
+
+            // 클라이언트 페이지로 이동
+            document.getElementById("client-link").addEventListener("click", function () {
+                window.location.href = "https://2023-2-urop.github.io/client.html";
+            });
+
+            // 서버 페이지로 이동
+            document.getElementById("server-link").addEventListener("click", function () {
+                window.location.href = "https://2023-2-urop.github.io/server.html";
+            });
+
+            // 알고리즘 페이지로 이동
+            document.getElementById("algorithm-link").addEventListener("click", function () {
+                window.location.href = "https://2023-2-urop.github.io/algorithm.html";
+            });
+
+            // 앱 빌드 방법 페이지로 이동
+            document.getElementById("build-link").addEventListener("click", function () {
+                window.location.href = "https://2023-2-urop.github.io/build.html";
+            });
+
+            // 앱 구동 모습 설명 페이지로 이동
+            document.getElementById("app-link").addEventListener("click", function () {
+                window.location.href = "https://2023-2-urop.github.io/app.html";
+            });
+        });
+    </script>
+    
 </body>
+                        
 </html>
