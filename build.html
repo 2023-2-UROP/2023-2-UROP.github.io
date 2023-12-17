@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- 문서의 문자 인코딩 및 화면 크기 설정 -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MAIN - function</title>
+
+  <!-- Bootstrap CSS 가져오기 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+  <!-- 페이지 내 스타일 설정 -->
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+    }
+
+    .navbar-brand {
+      font-size: 20px;
+      font-weight: bold;
+      margin-left: 10px;
+    }
+
+    .nav-item {
+      font-size: 20px;
+      font-weight: bold;
+      margin-left: 10px;
+    }
+
+    .form-control {
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    .form-label {
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    .bg-light {
+      padding: 20px;
+    }
+
+    .in {
+      text-indent: 30px;
+    }
+
+    .container {
+      background-color: #ffffff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      margin-top: 20px;
+      padding: 20px;
+    }
+
+    pre {
+      background-color: #f4f4f4;
+      padding: 10px 50px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    ul {
+      list-style: none;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 네비게이션 바 설정 -->
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgb(0,0,0);">
+    <div class="container-fluid">
+      <!-- UROP 로고 링크 -->
+      <a class="navbar-brand" href="https://2023-2-urop.github.io/index.html">UROP</a>
+      <!-- 네비게이션 바 버튼 설정 -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- 네비게이션 바 아이템 목록 설정 -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <!-- 개발 가이드 드롭다운 메뉴 -->
+          <li class="nav-item dropdown">
+            <a id="guide-link" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              개발 가이드
+            </a>
+            <!-- 개발 가이드 하위 메뉴 -->
+            <ul class="dropdown-menu">
+              <li><a id="environment-link" class="dropdown-item">환경설정</a></li>
+              <li><a id="client-link" class="dropdown-item">클라이언트</a></li>
+              <li><a id="server-link" class="dropdown-item">서버</a></li>
+              <li><a id="algorithm-link" class="dropdown-item">알고리즘</a></li>
+            </ul>
+          </li>
+          <!-- 앱 설명 드롭다운 메뉴 -->
+          <li class="nav-item dropdown">
+            <a id="description-link" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              앱 설명
+            </a>
+            <!-- 앱 설명 하위 메뉴 -->
+            <ul class="dropdown-menu">
+              <li><a id="build-link" class="dropdown-item">앱 빌드 방법</a></li>
+              <li><a id="app-link" class="dropdown-item">앱 구동 모습 설명</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="p-5 mb-4 bg-light rounded-3">
+    <div class="container-fluid py-5">
+      <h3 class="fw-bold">📌&nbsp;&nbsp;앱 빌드 방법</h3>
+      <br>
+      <h6>→&nbsp;&nbsp;앱 빌드 예시는 Flutter 프레임워크를 사용하여 앱을 빌드 합니다. Flutter 설치 후 빌드를 진행해 주세요.</h6>
+      <hr>
+
+      <br>
+      <p class="col-md-12 fs-5"><strong>0. Flutter 설치 확인</strong></p>
+      <pre>
+        <code>
+
+    flutter doctor -v
+        </code>
+    </pre>
+    <br>
+      <p class="col-md-12 fs-6 in">Flutter CLI에서 위의 명령어를 통해 Flutter 설치가 올바르게 되었는지 확인 합니다.</p>
+      <br>
+      <pre>
+        <code>
+
+    flutter pub upgrade --dry-run
+        </code>
+    </pre>
+    <br>
+    <p class="col-md-12 fs-6 in">위의 명령어를 통해 Flutter 버전 업그레이드가 가능합니다.</p>
+      <br>
+      <br>
+      <p class="col-md-12 fs-5"><strong>1. 프로젝트 생성 및 빌드</strong></p>
+      <br>
+      <pre>
+        <code>
+
+    flutter create [프로젝트 이름]
+        </code>
+    </pre>
+    <br>
+      <pre>
+        <code>
+
+    flutter pub get
+        </code>
+    </pre>
+    <br>
+      <pre>
+        <code>
+        
+    flutter run
+
+    flutter run --device-id [device_id] // 특정 기기에서 앱을 실행하고 싶을 때
+        </code>
+    </pre>
+    <br>
+
+      <pre>
+        <code>
+
+    flutter build apk
+
+    flutter build ios // 타겟 플랫폼 옵션
+    flutter build apk --debug // 빌드 모드 지정
+    flutter build apk --release //
+        </code>
+    </pre>
+    <br>
+    <br>
+      <p class="col-md-12 fs-6 in">각각의 명령어에 대한 설명입니다.</p>
+      <p class="col-md-12 fs-6 in">1.1 새 프로젝트를 생성하는 명령어입니다.</p>
+      <p class="col-md-12 fs-6 in">1.2 pubspec.yaml 파일에 나열된 의존성 패키지들을 설치하는 명령어입니다.</p>
+      <p class="col-md-12 fs-6 in">1.3 플러터 앱을 실행하는 명령어입니다. --divice-id 옵션을 통해 기기 id를 지정할 수 있습니다.</p>
+      <p class="col-md-12 fs-6 in">1.4 플러터 앱을 빌드하는 명령어입니다. 기본적으로 안드로이드 APK로 빌드 되며, 추가 옵션을 통해 타겟 플랫폼, 빌드 모드를 변경할 수 있습니다.</p>
+      <br>
+     
+    </div>
+  </div>
+
+  <!-- Bootstrap JavaScript 가져오기 -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
+
+  <!-- 페이지 로딩 시 실행될 스크립트 -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+      // 환경설정 페이지로 이동
+      document.getElementById("environment-link").addEventListener("click", function () {
+        window.location.href = "https://2023-2-urop.github.io/environment.html";
+      });
+
+      // 클라이언트 페이지로 이동
+      document.getElementById("client-link").addEventListener("click", function () {
+        window.location.href = "https://2023-2-urop.github.io/client.html";
+      });
+
+      // 서버 페이지로 이동
+      document.getElementById("server-link").addEventListener("click", function () {
+        window.location.href = "https://2023-2-urop.github.io/server.html";
+      });
+
+      // 알고리즘 페이지로 이동
+      document.getElementById("algorithm-link").addEventListener("click", function () {
+        window.location.href = "https://2023-2-urop.github.io/algorithm.html";
+      });
+
+      // 앱 빌드 방법 페이지로 이동
+      document.getElementById("build-link").addEventListener("click", function () {
+        window.location.href = "https://2023-2-urop.github.io/build.html";
+      });
+
+      // 앱 구동 모습 설명 페이지로 이동
+      document.getElementById("app-link").addEventListener("click", function () {
+        window.location.href = "https://2023-2-urop.github.io/app.html";
+      });
+    });
+  </script>
+
+</body>
+
+</html>
